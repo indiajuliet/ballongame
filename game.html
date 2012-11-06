@@ -1,0 +1,82 @@
+<html>  
+  <head>  
+    <title>Simple game with HTML5 Canvas</title>  
+	<link rel="stylesheet" type="text/css" href="css/game.css">
+	
+	<!-- JQuery und JQuery Mobile einbinden-->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	
+	<script type="text/javascript" src="js/preroll.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="js/initialisation.js"></script>
+	<script type="text/javascript" src="js/playGame.js"></script>
+	<script type="text/javascript" src="js/levelManager.js"></script>
+	
+	<script type="text/javascript">
+		
+	</script>
+	
+  </head>  
+  <body onload='new Preroll().init(["pics/spaceship.png", "pics/sun.png"], 2000, 1000, document.getElementById("menu"))'> 
+	
+	<!-- Hauptmenue -->
+	<div data-role="page" id="menu">
+ 
+	  <div data-role="header">
+		<h1>Hauptmenu</h1>
+	  </div>
+	 
+	  <div data-role="content"> 
+		<p><a href="#main" data-role="button" id="startBtn">Start</a></p>
+		<p><a href="#options" data-role="button">Optionen</a></p>    
+	  </div>
+	 
+	</div>
+	
+	<!-- Optionen -->
+	<div data-role="page" id="options">
+	 
+	  <div data-role="header">
+		<h1>Optionen</h1>
+	  </div>
+	 
+	  <div data-role="content"> 
+		<a href="#menu" data-role="button">Zurueck</a>
+	  </div>
+	 
+	</div>
+	
+	<!-- Spiel -->
+	<div data-role="page" id="main">
+	 
+	  <div data-role="header">
+		<a href="#menu" data-role="button" id="backBtn">Zurueck</a>
+		<a href="" data-role="button" id="pauseBtn">Pause</a>
+		
+		<h1>Spiel</h1>
+		<!--img id="windDirection" src="pics/up_arrow_small.png" alt="wind direction" /-->
+	  </div>
+	 
+	  <div data-role="content"> 
+		<!--div id="statusbar">
+			<div id="flightAttitute">dskfj</div>
+			<img id="windDirection" src="pics/up_arrow_small.png" alt="wind direction" />
+		</div-->
+		<div><canvas id="statusbar" width="480" height="40"></canvas></div>
+		<div><canvas id="gameCanvas" width="480" height="650"></canvas></div>
+	  </div>
+	 
+	</div>
+	
+	
+	<div id="pwidget">  
+		<div id="progressbar">
+			<div id="indicator"></div>
+		</div>
+		<div id="progressnum">0</div>
+	</div>
+        
+  </body>  
+</html>

@@ -1,0 +1,81 @@
+body {  
+	margin:0px;  
+	padding:0px;  
+	text-align:center;
+	background-color: #999999;	
+}  
+  
+#gameCanvas{
+	opacity:0;
+	border:1px solid #000;
+	margin-top: auto;
+	margin-left: auto;  
+	margin-right: auto;
+	width: 480px;
+	height: 650px;
+}
+
+#statusbar {
+	opacity:0;
+	background-color: #0F0F0F; 	
+	margin-top: auto;
+	margin-left: auto;  
+	margin-right: auto; 
+	width:480px;
+	height:40px;
+	border:1px solid #000;
+}
+
+#menu
+{
+	opacity: 0;
+}
+
+#windDirection {
+	float:right;
+	padding:4px;
+}
+
+
+
+/* Fortschrittsbalken */
+#pwidget
+{
+  visibility:hidden;
+  position:absolute;
+  left:600;
+  top:300;
+  background-color:lightgray;
+  width:254px;
+  padding:2px;
+  -moz-border-radius:3px;
+  border-radius:3px;
+  text-align:left;
+  border:1px solid gray;	
+}
+#progressbar
+{
+  position:relative;
+  width:250px;
+  padding:0 0 0 0;
+  background-image:url("../pics/pggray.png");
+  height:14px;
+  border:1px solid #CCC;
+  -moz-border-radius:2px;
+  border-radius:2px;	
+}
+#indicator
+{
+  position:absolute;
+  left:0;
+  top:0;
+  width:0px;
+  background-image:url("../pics/pggreen.png");
+  height:14px;
+  margin:0 0 0 0;
+}
+#progressnum
+{
+  text-align:center;
+  width:250px;
+}
