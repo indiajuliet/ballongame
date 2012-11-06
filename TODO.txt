@@ -4,12 +4,12 @@ Status 06.11.2012
 
 **Spiel Start**
 
-- Bei Intro Skip-Button einfügen
+- Bei Intro Skip-Button einfuegen
 
 - Start-Button
 	DIV: 	Neues Spiel	-->neuen Spieler anlegen / mit angelegtem Spieler spielen
 		Weiterspielen	-->aus Auswahl angelegten Spieler weiterspielen
-		zurück
+		zurueck
 
 - Optionen-Button
 	DIV:	Musik: an/aus
@@ -22,7 +22,7 @@ Status 06.11.2012
 	Punkteanzeige | Windpfeil | Tankanzeige
 
 - Heightbar rechts
-	Höhenmeter in Linien
+	Hoehenmeter in Linien
 	Miniatur-Ballon der hochfliegt
 
 - Footbar unten
