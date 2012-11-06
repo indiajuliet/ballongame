@@ -1,4 +1,4 @@
-
+//game.js
 // width of the canvas
 var width = 320;  
 
