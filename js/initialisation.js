@@ -3,20 +3,24 @@ window.addEventListener("load", function() {
 	// Hole das Canvas Element
 	var myCanvas = document.getElementById('gameCanvas');
 	var myStatusbar = document.getElementById('statusbar');
+	var myHeightBar = document.getElementById('heightBar');
 	
-	if (!myCanvas || !myCanvas.getContext || !myStatusbar || !myStatusbar.getContext) {
+	if (!myCanvas || !myCanvas.getContext || !myStatusbar || !myStatusbar.getContext || !myHeightBar || !myHeightBar.getContext) {
 		return;
 	}
 
 	// Hole das Canvas 2d Context
 	ctx = myCanvas.getContext('2d');
 	sctx = myStatusbar.getContext('2d');
+	hctx = myHeightBar.getContext('2d');
 	
 	// Initialisiere das Spiel
 	//playBackgroundMusic();
 	
 	myCanvas.style.opacity = 1;
 	myStatusbar.style.opacity = 1;
+	myHeightBar.style.opacity = 1;
+	
 	width = myCanvas.width;
 	height = myCanvas.height;
 			

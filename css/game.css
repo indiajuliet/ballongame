@@ -21,14 +21,44 @@ body {
 	margin-top: auto;
 	margin-left: auto;  
 	margin-right: auto; 
-	width:480px;
+	width:520px;
 	height:40px;
+	border:1px solid #000;
+}
+
+#heightBar {
+	opacity:0;
+	background-color: #FF0000; 	
+	margin-top: auto;
+	margin-left: auto;  
+	margin-right: auto; 
+	width:40px;
+	height:650px;
 	border:1px solid #000;
 }
 
 #menu
 {
 	opacity: 0;
+}
+
+#foot 
+{
+	background-color: #0F0F0F;
+	margin-top: auto;
+	margin-left: auto;  
+	margin-right: auto; 
+	width: 520px;
+	height: 40px;
+}
+
+#backBtn
+{
+	/*padding-top: 10px;*/
+	background-image: url(../pics/up_arrow_small.png);
+	height: 30px;
+	width: 30px;
+	
 }
 
 #windDirection {

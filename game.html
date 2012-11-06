@@ -51,21 +51,16 @@
 	<!-- Spiel -->
 	<div data-role="page" id="main">
 	 
-	  <div data-role="header">
-		<a href="#menu" data-role="button" id="backBtn">Zurueck</a>
-		<a href="" data-role="button" id="pauseBtn">Pause</a>
-		
-		<h1>Spiel</h1>
-		<!--img id="windDirection" src="pics/up_arrow_small.png" alt="wind direction" /-->
-	  </div>
-	 
 	  <div data-role="content"> 
-		<!--div id="statusbar">
-			<div id="flightAttitute">dskfj</div>
-			<img id="windDirection" src="pics/up_arrow_small.png" alt="wind direction" />
-		</div-->
-		<div><canvas id="statusbar" width="480" height="40"></canvas></div>
-		<div><canvas id="gameCanvas" width="480" height="650"></canvas></div>
+		<div><canvas id="statusbar" width="520" height="40"></canvas></div>
+		<div>
+			<canvas id="gameCanvas" width="480" height="650"></canvas><canvas id="heightBar" width="40" height="650"></canvas>
+		</div>
+	  </div>
+	  
+	  <div data-role="footer" id="foot">
+		<a href="#menu" data-role="button" id="backBtn" >&nbsp;</a>
+		<a href="" data-role="button" id="pauseBtn">Pause</a>
 	  </div>
 	 
 	</div>
