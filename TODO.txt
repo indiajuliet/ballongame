@@ -1,0 +1,46 @@
+TO DO
+
+Status 06.11.2012
+
+**Spiel Start**
+
+- Bei Intro Skip-Button einfügen
+
+- Start-Button
+	DIV: 	Neues Spiel	-->neuen Spieler anlegen / mit angelegtem Spieler spielen
+		Weiterspielen	-->aus Auswahl angelegten Spieler weiterspielen
+		zurück
+
+- Optionen-Button
+	DIV:	Musik: an/aus
+		Schwierigkeitsgrad: leicht - mittel - schwer
+
+- Beenden-Button
+	DIV:	Abfrage: Ja/Nein
+
+- Statusbar oben
+	Punkteanzeige | Windpfeil | Tankanzeige
+
+- Heightbar rechts
+	Höhenmeter in Linien
+	Miniatur-Ballon der hochfliegt
+
+- Footbar unten
+	Buttons: Play, Stop, Break, Music on/off, Menu
+
+
+
+Johanna
+- Bilder
+- Footbar unten
+
+Micha
+- Powerups
+
+Konni
+- LevelMgmt
+- Heightbar
+
+IJ
+- Benutzer
+- Musik
