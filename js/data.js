@@ -21,7 +21,7 @@ var DOWN_ARROW = 40;
 var SPACE_BAR = 32;
 
 // Bilder
-var sky, background, cloud1, cloud2, cloud3, sun, balloon, balloon_fire, ground, montains, windArrow;
+var sky, background, cloud1, cloud2, cloud3, sun, balloon, balloon_fire, balloon_hole, balloonHB, balloonHB_fire, balloonHB_hole, balloonPicture, heightBarPicture, ground, montains, windArrow;
 var countImagesLoading = 0;
 
 // Progressbar

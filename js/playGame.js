@@ -20,12 +20,14 @@ function keyDown(e) {
 			
 		case UP_ARROW:
 			balloonPicture = balloon_fire;
+			heightBarPicture = balloonHB_fire;
 			balloonDirection = -2;
 			balloonVertSpeed--;
 			break;	
 			
 		case DOWN_ARROW:
 			balloonPicture = balloon_hole;
+			heightBarPicture = balloonHB_hole;
 			balloonVertSpeed++;
 			balloonDirection = 2;
 			break;
@@ -86,7 +88,6 @@ function updateBalloon() {
 	
 	// Flughoehe aktualisieren
 	flightAttitude += -balloonVertSpeed;
-	flightAttitude = Math.round(flightAttitude);
 	
 	// Falls die Y Position des Ballons < 200 ist wird der Ballon nicht mehr bewegt nur die Objekte
 	if(balloonYPosition > 200) {
@@ -100,12 +101,14 @@ function updateBalloon() {
 	}
 	
 	// Falls die Flughoehe die maximale Level Hoehe erreicht
-	if(flightAttitude >= maxLvlHeight) {
+	if(flightAttitude > maxLvlHeight) {
 		flightAttitude = maxLvlHeight;
 		balloonVertSpeed = 0;
-		console.log("Höhe: " + flightAttitude);
-		console.log("Max Höhe: " + maxLvlHeight);
+		//console.log(");
 	}
+	flightAttitude = Math.round(flightAttitude);
+	
+	console.log("Höhe: " + flightAttitude + "Max Höhe: " + maxLvlHeight);
 	
 	// Beende Bewegung wenn Ballon am Rand ist
 	if(balloonXPosition <= -10) { 						// linker Rand
@@ -124,7 +127,7 @@ function updateBalloon() {
 	balloonHorSpeed += windSpeed / 100;
 	balloonXPosition += balloonHorSpeed;
 	
-	console.log("WindSpeed: " + windSpeed + " balloonHorSpeed: " + balloonHorSpeed);
+	//console.log("WindSpeed: " + windSpeed + " balloonHorSpeed: " + balloonHorSpeed);
 	
 	timer++;
 	
@@ -135,6 +138,7 @@ function updateBalloon() {
 		
 		timer = 0;
 		balloonPicture = balloon;
+		heightBarPicture = balloonHB;
 	}
 }
 
@@ -161,6 +165,34 @@ function updateWindArrow() {
 	rotateIt(sctx, windArrow, degree, posW, posH);
 }
 
+function updateHeightBar() {
+	
+	
+	// Zeichne horizontale Linien
+	var s = height / 10;
+	
+	hctx.beginPath();
+	
+	for (var i = 0; i < s; i++) {
+		hctx.moveTo(0, i * s + 0.5);
+		hctx.lineTo(40, i * s + 0.5);
+	}
+	
+	hctx.lineWidth = 1;
+	hctx.strokeStyle = "#FFFFFF";
+	hctx.stroke();
+	
+	// Zeichne Mini-Ballon
+	hctx.save();
+	
+	var step = (height - 80) / maxLvlHeight;
+	var relHeight = (height - 80) - (flightAttitude * step);
+	hctx.drawImage(heightBarPicture, 0, relHeight);
+	
+	hctx.restore();
+}
+
+// Dreht ein Objekt entsprechend der Gradzahl an der gewuenschten Position
 function rotateIt(objContext, objImg, lngPhi, posW, posH){
 	var w = objImg.width;
 	var h = objImg.height;
@@ -227,6 +259,7 @@ function drawScene() {
 	// loeschen des Inhaltes vom Canvas-Elements
 	ctx.clearRect(0,0, width, height);
 	sctx.clearRect(0,0, width, 40);
+	hctx.clearRect(0,0, 40, height);
 	
 	// Zeichnen des Himmels als ein linearer Gradient
 	sky = ctx.createLinearGradient(0, width, 0, height);
@@ -241,6 +274,10 @@ function drawScene() {
 	
 	// zeichne den Text
 	drawText();
+	
+	// aktuellisiere HeightBar 
+	updateHeightBar();
+	
 	
 	// Zeichnen der Berge
 	//ctx.drawImage(mountains, -20, height - 350);
@@ -298,8 +335,6 @@ function drawClouds() {
 		ctx.drawImage(clouds[b].pic, clouds[b].x, clouds[b].y);
 		//ctx.drawImage(bird, birds[b].x, birds[b].y);
 	}
-	
-	console.log("Wolkenanzahl: " + clouds.length);
 }
 
 

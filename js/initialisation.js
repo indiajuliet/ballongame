@@ -102,17 +102,17 @@ function loadAllImages() {
 	mountains.src = 'pics/mountains.png';
 	mountains.addEventListener("load", function() { countImagesLoading--; }, false);
 	
-	// Ballon
-	countImagesLoading++;
-	balloon = new Image();
-	balloon.src = 'pics/balloon_small.png';
-	balloon.addEventListener("load", function() { countImagesLoading--; }, false);
-	
 	// Spaceship
 	countImagesLoading++;
 	bird = new Image();
 	bird.src = 'pics/spaceship.png';
 	bird.addEventListener("load", function() { countImagesLoading--; }, false);
+	
+	// Ballon
+	countImagesLoading++;
+	balloon = new Image();
+	balloon.src = 'pics/balloon_small.png';
+	balloon.addEventListener("load", function() { countImagesLoading--; }, false);
 	
 	// Ballon mit Flamme
 	countImagesLoading++;
@@ -126,6 +126,24 @@ function loadAllImages() {
 	balloon_hole.src = 'pics/balloon_small_hole.png';
 	balloon_hole.addEventListener("load", function() { countImagesLoading--; }, false);
 	
+	// Ballon HeightBar
+	countImagesLoading++;
+	balloonHB = new Image();
+	balloonHB.src = 'pics/balloon_tiny.png';
+	balloonHB.addEventListener("load", function() { countImagesLoading--; }, false);
+	
+	// Ballon mit Flamme HeightBar
+	countImagesLoading++;
+	balloonHB_fire = new Image();
+	balloonHB_fire.src = 'pics/balloon_tiny_fire.png';
+	balloonHB_fire.addEventListener("load", function() { countImagesLoading--; }, false);
+	
+	// Ballon mit Loch HeightBar
+	countImagesLoading++;
+	balloonHB_hole = new Image();
+	balloonHB_hole.src = 'pics/balloon_tiny_hole.png';
+	balloonHB_hole.addEventListener("load", function() { countImagesLoading--; }, false);
+	
 	// Windpfeil
 	countImagesLoading++;
 	windArrow = new Image();
@@ -133,6 +151,7 @@ function loadAllImages() {
 	windArrow.addEventListener("load", function() { countImagesLoading--; }, false);
 	
 	balloonPicture = balloon;
+	heightBarPicture = balloonHB;
 	
 	setTimeout(checkIfAllImagesLoaded, 100);
 }
