@@ -3,12 +3,8 @@ body {
 	padding:0px;  
 	text-align:center;
 	background-color: #999999;	
-}
-
-#contentArea {
-	padding: 0px;
-}
-
+}  
+  
 #gameCanvas{
 	opacity:0;
 	border:1px solid #000;
@@ -25,14 +21,14 @@ body {
 	margin-top: auto;
 	margin-left: auto;  
 	margin-right: auto; 
-	width:522px;
+	width:520px;
 	height:40px;
 	border:1px solid #000;
 }
 
 #heightBar {
 	opacity:0;
-	background-color: #0F0F0F; 	
+	background-color: #FF0000; 	
 	margin-top: auto;
 	margin-left: auto;  
 	margin-right: auto; 
@@ -52,9 +48,8 @@ body {
 	margin-top: auto;
 	margin-left: auto;  
 	margin-right: auto; 
-	width: 522px;
+	width: 520px;
 	height: 40px;
-	padding: 0px;
 }
 
 #backBtn

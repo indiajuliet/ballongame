@@ -20,14 +20,12 @@ function keyDown(e) {
 			
 		case UP_ARROW:
 			balloonPicture = balloon_fire;
-			heightBarPicture = balloonHB_fire;
 			balloonDirection = -2;
 			balloonVertSpeed--;
 			break;	
 			
 		case DOWN_ARROW:
 			balloonPicture = balloon_hole;
-			heightBarPicture = balloonHB_hole;
 			balloonVertSpeed++;
 			balloonDirection = 2;
 			break;
@@ -83,11 +81,47 @@ function createCloud() {
 	clouds.push(newCloud);
 }	
 
+//Erzeugt ein zufälliges Power Up
+function createPowerUp() {
+	var x = -100 + Math.random() * 5 * 320;
+	var y = -200 + Math.random() * 5 * 500;
+	var s = Math.random() * 10;
+	
+	// Ermittle die Position des naechsten Objekts
+	if(x >= 0)
+		y = -200;
+	else if(y >= 0)
+		x = -200;
+		
+	// Waehle zufaellig ein Bild
+	var nr = ~~(Math.random() * 2);
+	var pic, type;
+	
+	switch(nr) {
+		case 0:
+			pic = gas;
+			type = 0;
+			break;
+		case 1:
+			pic = repairKit;
+			type = 1;
+			break;
+		default:
+			pic = gas;
+			type = 0;
+			break;
+	}
+
+	var newpowerUp = new powerUp(x, y, s, pic, type);
+	powerUps.push(newpowerUp);
+}
+
 // verringere Geschwindigkeit (beim Fallen)
 function updateBalloon() {
 	
 	// Flughoehe aktualisieren
 	flightAttitude += -balloonVertSpeed;
+	flightAttitude = Math.round(flightAttitude);
 	
 	// Falls die Y Position des Ballons < 200 ist wird der Ballon nicht mehr bewegt nur die Objekte
 	if(balloonYPosition > 200) {
@@ -101,14 +135,12 @@ function updateBalloon() {
 	}
 	
 	// Falls die Flughoehe die maximale Level Hoehe erreicht
-	if(flightAttitude > maxLvlHeight) {
+	if(flightAttitude >= maxLvlHeight) {
 		flightAttitude = maxLvlHeight;
 		balloonVertSpeed = 0;
-		//console.log(");
+		console.log("Höhe: " + flightAttitude);
+		console.log("Max Höhe: " + maxLvlHeight);
 	}
-	flightAttitude = Math.round(flightAttitude);
-	
-	console.log("Höhe: " + flightAttitude + "Max Höhe: " + maxLvlHeight);
 	
 	// Beende Bewegung wenn Ballon am Rand ist
 	if(balloonXPosition <= -10) { 						// linker Rand
@@ -127,9 +159,18 @@ function updateBalloon() {
 	balloonHorSpeed += windSpeed / 100;
 	balloonXPosition += balloonHorSpeed;
 	
-	//console.log("WindSpeed: " + windSpeed + " balloonHorSpeed: " + balloonHorSpeed);
+	console.log("WindSpeed: " + windSpeed + " balloonHorSpeed: " + balloonHorSpeed);
 	
 	timer++;
+	
+	//Falls Ballon auf ein PowerUp trifft, wird dieses entfernt und die entsprechende Aktion ausgeführt
+	for (var b = 0; b < powerUps.length; b++) {
+		if (powerUps[b].x >= balloonXPosition && powerUps[b].y >= balloonYPosition
+				&& powerUps[b].x <= balloonXPosition + 130 && powerUps[b].y <= balloonYPosition + 130){
+			powerUps.splice(b, 1);
+			b--;
+		}
+	}
 	
 	// verringere geschwindigkeit jede Sekunde um 1 (Schwerkraft)
 	if(timer == 20) {
@@ -138,7 +179,6 @@ function updateBalloon() {
 		
 		timer = 0;
 		balloonPicture = balloon;
-		heightBarPicture = balloonHB;
 	}
 }
 
@@ -165,34 +205,6 @@ function updateWindArrow() {
 	rotateIt(sctx, windArrow, degree, posW, posH);
 }
 
-function updateHeightBar() {
-	
-	
-	// Zeichne horizontale Linien
-	var s = height / 10;
-	
-	hctx.beginPath();
-	
-	for (var i = 0; i < s; i++) {
-		hctx.moveTo(0, i * s + 0.5);
-		hctx.lineTo(40, i * s + 0.5);
-	}
-	
-	hctx.lineWidth = 1;
-	hctx.strokeStyle = "#FFFFFF";
-	hctx.stroke();
-	
-	// Zeichne Mini-Ballon
-	hctx.save();
-	
-	var step = (height - 80) / maxLvlHeight;
-	var relHeight = (height - 80) - (flightAttitude * step);
-	hctx.drawImage(heightBarPicture, 0, relHeight);
-	
-	hctx.restore();
-}
-
-// Dreht ein Objekt entsprechend der Gradzahl an der gewuenschten Position
 function rotateIt(objContext, objImg, lngPhi, posW, posH){
 	var w = objImg.width;
 	var h = objImg.height;
@@ -252,6 +264,7 @@ function draw() {
 	drawScene();
 	drawClouds();
 	drawBalloon();
+	drawPowerUp();
 }
 
 // Zeichnet alle Hintergrundteile der Szene 
@@ -259,7 +272,6 @@ function drawScene() {
 	// loeschen des Inhaltes vom Canvas-Elements
 	ctx.clearRect(0,0, width, height);
 	sctx.clearRect(0,0, width, 40);
-	hctx.clearRect(0,0, 40, height);
 	
 	// Zeichnen des Himmels als ein linearer Gradient
 	sky = ctx.createLinearGradient(0, width, 0, height);
@@ -274,10 +286,6 @@ function drawScene() {
 	
 	// zeichne den Text
 	drawText();
-	
-	// aktuellisiere HeightBar 
-	updateHeightBar();
-	
 	
 	// Zeichnen der Berge
 	//ctx.drawImage(mountains, -20, height - 350);
@@ -335,6 +343,28 @@ function drawClouds() {
 		ctx.drawImage(clouds[b].pic, clouds[b].x, clouds[b].y);
 		//ctx.drawImage(bird, birds[b].x, birds[b].y);
 	}
+	
+	console.log("Wolkenanzahl: " + clouds.length);
 }
 
-
+function drawPowerUp() {
+	// Entferne alle Voegel, die sich nicht mehr innerhalb des Bildschirms befinden
+	for (var b = 0; b < powerUps.length; b++) {
+		if (powerUps[b].defunct == true || powerUps[b].x > width || powerUps[b].y > height ) {
+			powerUps.splice(b, 1);
+			b--;
+		}
+	}
+	
+	for (var b = 0; b < powerUps.length; b++) {
+		// Bewege den Vogel nach rechts
+		powerUps[b].x += powerUps[b].speed;
+		
+		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
+		if(balloonYPosition < 200)
+			powerUps[b].y -= balloonVertSpeed;
+		
+		ctx.drawImage(powerUps[b].pic, powerUps[b].x, powerUps[b].y);
+		//ctx.drawImage(bird, birds[b].x, birds[b].y);
+	}
+}
