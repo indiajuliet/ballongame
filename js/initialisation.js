@@ -102,17 +102,17 @@ function loadAllImages() {
 	mountains.src = 'pics/mountains.png';
 	mountains.addEventListener("load", function() { countImagesLoading--; }, false);
 	
-	// Ballon
-	countImagesLoading++;
-	balloon = new Image();
-	balloon.src = 'pics/balloon_small.png';
-	balloon.addEventListener("load", function() { countImagesLoading--; }, false);
-	
 	// Spaceship
 	countImagesLoading++;
 	bird = new Image();
 	bird.src = 'pics/spaceship.png';
 	bird.addEventListener("load", function() { countImagesLoading--; }, false);
+	
+	// Ballon
+	countImagesLoading++;
+	balloon = new Image();
+	balloon.src = 'pics/balloon_small.png';
+	balloon.addEventListener("load", function() { countImagesLoading--; }, false);
 	
 	// Ballon mit Flamme
 	countImagesLoading++;
@@ -126,55 +126,32 @@ function loadAllImages() {
 	balloon_hole.src = 'pics/balloon_small_hole.png';
 	balloon_hole.addEventListener("load", function() { countImagesLoading--; }, false);
 	
+	// Ballon HeightBar
+	countImagesLoading++;
+	balloonHB = new Image();
+	balloonHB.src = 'pics/balloon_tiny.png';
+	balloonHB.addEventListener("load", function() { countImagesLoading--; }, false);
+	
+	// Ballon mit Flamme HeightBar
+	countImagesLoading++;
+	balloonHB_fire = new Image();
+	balloonHB_fire.src = 'pics/balloon_tiny_fire.png';
+	balloonHB_fire.addEventListener("load", function() { countImagesLoading--; }, false);
+	
+	// Ballon mit Loch HeightBar
+	countImagesLoading++;
+	balloonHB_hole = new Image();
+	balloonHB_hole.src = 'pics/balloon_tiny_hole.png';
+	balloonHB_hole.addEventListener("load", function() { countImagesLoading--; }, false);
+	
 	// Windpfeil
 	countImagesLoading++;
 	windArrow = new Image();
 	windArrow.src = 'pics/up_arrow_small.png';
 	windArrow.addEventListener("load", function() { countImagesLoading--; }, false);
 	
-	//Tankanzeige Grün
-	countImagesLoading++;
-	tank_green = new Image();
-	tank_green.src = 'pics/Tankanzeige_gruen.png';
-	tank_green.addEventListener("load", function() { countImagesLoading--; }, false);
-	
-	//Tankanzeige Gelb
-	countImagesLoading++;
-	tank_yellow = new Image();
-	tank_yellow.src = 'pics/Tankanzeige_gelb.png';
-	tank_yellow.addEventListener("load", function() { countImagesLoading--; }, false);
-	
-	//Tankanzeige Orange
-	countImagesLoading++;
-	tank_orange = new Image();
-	tank_orange.src = 'pics/Tankanzeige_orange.png';
-	tank_orange.addEventListener("load", function() { countImagesLoading--; }, false);
-	
-	//Tankanzeige Rot
-	countImagesLoading++;
-	tank_red = new Image();
-	tank_red.src = 'pics/Tankanzeige_rot.png';
-	tank_red.addEventListener("load", function() { countImagesLoading--; }, false);
-	
-	//Tankanzeige leer
-	countImagesLoading++;
-	tank_empty = new Image();
-	tank_empty.src = 'pics/Tankanzeige_leer.png';
-	tank_empty.addEventListener("load", function() { countImagesLoading--; }, false);
-	
-	// PowerUp - Benzin
-	countImagesLoading++;
-	gas = new Image();
-	gas.src = 'pics/Kanister2.png';
-	gas.addEventListener("load", function() { countImagesLoading--; }, false);
-	
-	// PowerUp - Flickzeug
-	countImagesLoading++;
-	repairKit = new Image();
-	repairKit.src = 'pics/try.png';
-	repairKit.addEventListener("load", function() { countImagesLoading--; }, false);
-	
 	balloonPicture = balloon;
+	heightBarPicture = balloonHB;
 	
 	setTimeout(checkIfAllImagesLoaded, 100);
 }
@@ -194,7 +171,6 @@ function checkIfAllImagesLoaded() {
 function startGame() {
 	gameHandle = setInterval(draw, 50);
 	cloudHandle = setInterval(createCloud, 1000);
-	powerUpHandle = setInterval(createPowerUp, 1300);
 }
 
 // Spiel pausieren oder wieder fortsetzen
@@ -202,7 +178,6 @@ function pauseGame() {
 	if (!gamePaused) {
 		clearInterval(gameHandle);
 		clearInterval(cloudHandle);
-		clearInterval(powerUpHandle);
 		gamePaused = true;
 	} else if (gamePaused) {
 		startGame();

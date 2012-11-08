@@ -21,8 +21,7 @@ var DOWN_ARROW = 40;
 var SPACE_BAR = 32;
 
 // Bilder
-var sky, background, cloud1, cloud2, cloud3, tank_green, tank_yellow, tank_orange, tank_red, 
-			tank_empty, repairKit, gas, sun, balloon, balloon_fire, ground, montains, windArrow;
+var sky, background, cloud1, cloud2, cloud3, sun, balloon, balloon_fire, balloon_hole, balloonHB, balloonHB_fire, balloonHB_hole, balloonPicture, heightBarPicture, ground, montains, windArrow;
 var countImagesLoading = 0;
 
 // Progressbar
@@ -32,7 +31,6 @@ var itv = 0;  // id to setinterval
 
 // verschiedene Variablen fuer das Spiel
 var clouds = [];
-var powerUps = [];
 
 // Balloon Variablen
 var balloonXPosition = 150;
@@ -47,7 +45,6 @@ var timer = 0;
 var gamePaused = false;
 var gameHandle = 0;
 var cloudHandle = 0;
-var powerUpHandle = 0;
 
 var windSpeed = 0;
 var degree = 0;
@@ -65,13 +62,3 @@ var Cloud = function(x, y, s, p) {
 	this.pic = p;
 	this.defunct = false;
 }   
-
-// Neues powerUp
-var powerUp = function(x, y, s, p, t) {
-	this.x = x;
-	this.y = y;
-	this.speed = s;
-	this.pic = p;
-	this.type = t;
-	this.defunct = false;
-}
