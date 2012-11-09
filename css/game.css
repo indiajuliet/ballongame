@@ -53,17 +53,63 @@ body {
 	margin-left: auto;  
 	margin-right: auto; 
 	width: 522px;
-	height: 40px;
+	height: 50px;
 	padding: 0px;
 }
 
+
 #backBtn
 {
-	/*padding-top: 10px;*/
-	background-image: url(../pics/up_arrow_small.png);
+	margin-top: 5 px;
+	background-image: url(../pics/button_back.png);
 	height: 30px;
-	width: 30px;
-	
+	width: 30px;	
+}
+
+#optionBtns
+{	
+	margin-top: auto;
+	margin-left: auto;  
+	margin-right: auto;	
+	padding: 0px;
+	height:40px;
+	width:160px;
+}
+
+#radio
+{	
+	margin-left: 360;  
+	padding-left: 0px;
+	padding-right: 0px;
+    float: left;
+    width: 90px;
+	height: 25px;
+}
+
+
+#radioBtns
+{
+	margin-top: auto;
+	margin-left: auto;  
+	margin-right: auto;	
+	height:40px;
+	width:100px;
+}
+
+#playBtn
+{
+	padding-top: 3px;
+	/*background-image: url(../pics/up_arrow_small.png);*/
+	background-image: url(../pics/button_play.png);
+	height: 40px;
+	width: 40px;	
+}
+
+#pauseBtn
+{
+	background-image: url(../pics/button_pause.png);
+	height: 30px;
+	width: 30px;	
 }
 
 #windDirection {
@@ -71,6 +117,12 @@ body {
 	padding:4px;
 }
 
+#overviewOptions
+{	
+	margin-top: auto;
+	margin-left: auto;  
+	margin-right: auto;	
+}
 
 
 /* Fortschrittsbalken */

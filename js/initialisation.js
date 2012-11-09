@@ -41,10 +41,13 @@ $(document).ready(function(){
 	$("#startBtn").click(function() {
 		startGame();
 	});
-	$("#pauseBtn").click(function() {
+	$("#backBtn").click(function() {
 		pauseGame();
 	});
-	$("#backBtn").click(function() {
+	$("#playBtn").click(function() {
+		startGame();
+	});
+	$("#pauseBtn").click(function() {
 		pauseGame();
 	});
 });
@@ -149,6 +152,12 @@ function loadAllImages() {
 	windArrow = new Image();
 	windArrow.src = 'pics/up_arrow_small.png';
 	windArrow.addEventListener("load", function() { countImagesLoading--; }, false);
+	
+	// JH Button Play
+	countImagesLoading++;
+	buttonPlay = new Image();
+	buttonPlay.src = 'pics/button_play.png';
+	buttonPlay.addEventListener("load", function() { countImagesLoading--; }, false);
 	
 	balloonPicture = balloon;
 	heightBarPicture = balloonHB;
