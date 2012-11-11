@@ -66,16 +66,16 @@ function createCloud() {
 	
 	switch(nr) {
 		case 0:
-			pic = cloud1;
+			pic = cloud0;
 			break;
 		case 1:
-			pic = cloud2;
+			pic = cloud1;
 			break;
 		case 2:
-			pic = cloud3;
+			pic = cloud2;
 			break;
 		default:
-			pic = cloud3;
+			pic = cloud2;
 			break;
 	}
 
@@ -104,7 +104,9 @@ function updateBalloon() {
 	if(flightAttitude > maxLvlHeight) {
 		flightAttitude = maxLvlHeight;
 		balloonVertSpeed = 0;
-		//console.log(");
+		
+		// lade naechstes Level
+		nextLevel();
 	}
 	flightAttitude = Math.round(flightAttitude);
 	
@@ -151,7 +153,7 @@ function updateWindArrow() {
 	// Berechne Windgeschwindikeit
 	var randSpeed = getRandom(-1, 1);
 	
-	if(windSpeed + randSpeed < 9 && windSpeed + randSpeed > -9)
+	if(windSpeed + randSpeed < maxWindStrenght && windSpeed + randSpeed > -maxWindStrenght)
 		windSpeed += randSpeed;
 	
 	// Ermittle den Windpfeilwinkel
@@ -211,6 +213,18 @@ function rotateIt(objContext, objImg, lngPhi, posW, posH){
 	objContext.restore();
 }
 
+// Lade naechstes Level
+function nextLevel() {
+	clearScene();
+	
+	// Wolken-Array leeren
+	clouds = [];
+	
+	lvlMngr.nextLevel();
+	
+	flightAttitude = 0;
+}
+
 // Dreht ein Objekt entsprechend der Gradzahl (jQuery)
 function rotate($object, degree) {
 	// For All Browsers
@@ -243,6 +257,12 @@ function getRandom(min, max) {
 	return min + parseInt(r * (max-min+1));
 }
 
+function clearScene() {
+	ctx.clearRect(0,0, width, height);
+	sctx.clearRect(0,0, width, 40);
+	hctx.clearRect(0,0, 40, height);
+}
+
 //===========================================================
 // Zeichenfunktionen
 //===========================================================
@@ -257,9 +277,7 @@ function draw() {
 // Zeichnet alle Hintergrundteile der Szene 
 function drawScene() {
 	// loeschen des Inhaltes vom Canvas-Elements
-	ctx.clearRect(0,0, width, height);
-	sctx.clearRect(0,0, width, 40);
-	hctx.clearRect(0,0, 40, height);
+	clearScene();
 	
 	// Zeichnen des Himmels als ein linearer Gradient
 	sky = ctx.createLinearGradient(0, width, 0, height);

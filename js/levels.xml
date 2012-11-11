@@ -9,19 +9,17 @@
 			</background>
 			<ground>ground1.png</ground>
 			<clouds>
-				<cloud1>cloud1.png</cloud1>
-				<cloud2>cloud2.png</cloud2>
-				<cloud3>cloud3.png</cloud3>
+				<cloud id="0">cloud1.png</cloud>
 			</clouds>
 		</scene>
 		<powerUps>
-			<powerUp id="1">fuel</powerUp>
+			<powerUp id="0">fuel</powerUp>
 		</powerUps>
 		<lvlHeight>2000</lvlHeight>
 		<maxWindStrenght>3</maxWindStrenght>
 		<enemies>
-			<enemy1>bird</enemy1>
-			<enemy2>plane</enemy2>
+			<enemy id="0">bird</enemy>
+			<enemy id="1">plane</enemy>
 		</enemies>
 	</level>
 	<level id="1">
@@ -34,28 +32,94 @@
 			</background>
 			<ground>ground1.png</ground>
 			<clouds>
-				<cloud1>cloud1.png</cloud1>
-				<cloud2>cloud2.png</cloud2>
-				<cloud3>cloud3.png</cloud3>
+				<cloud id="0">cloud1.png</cloud>
+				<cloud id="1">cloud2.png</cloud>
+				<cloud id="2">cloud3.png</cloud>
 			</clouds>
 		</scene>
 		<powerUps>
-			<powerUp id="1">fuel</powerUp>
+			<powerUp id="0">fuel</powerUp>
 		</powerUps>
 		<lvlHeight>35000</lvlHeight>
-		<maxWindStrenght>3</maxWindStrenght>
+		<maxWindStrenght>9</maxWindStrenght>
 		<enemies>
-			<enemy1>bird</enemy1>
-			<enemy2>plane</enemy2>
+			<enemy id="0">bird</enemy>
+			<enemy id="1">plane</enemy>
 		</enemies>
 	</level>
 	<level id="2">
 		<title>ThirdStage</title>
+		<scene>
+			<background>
+				<picture></picture>
+				<color>#00FF00</color>
+				<music>blub.mp3</music>
+			</background>
+			<ground>ground1.png</ground>
+			<clouds>
+				<cloud id="0">cloud1.png</cloud>
+				<cloud id="1">cloud2.png</cloud>
+				<cloud id="2">cloud3.png</cloud>
+			</clouds>
+		</scene>
+		<powerUps>
+			<powerUp id="0">fuel</powerUp>
+		</powerUps>
+		<lvlHeight>35000</lvlHeight>
+		<maxWindStrenght>9</maxWindStrenght>
+		<enemies>
+			<enemy id="0">bird</enemy>
+			<enemy id="1">plane</enemy>
+		</enemies>
 	</level>
 	<level id="3">
 		<title>FourthStage</title>
+		<scene>
+			<background>
+				<picture></picture>
+				<color>#0000FF</color>
+				<music>blub.mp3</music>
+			</background>
+			<ground>ground1.png</ground>
+			<clouds>
+				<cloud id="0">cloud1.png</cloud>
+				<cloud id="1">cloud2.png</cloud>
+				<cloud id="2">cloud3.png</cloud>
+			</clouds>
+		</scene>
+		<powerUps>
+			<powerUp id="0">fuel</powerUp>
+		</powerUps>
+		<lvlHeight>35000</lvlHeight>
+		<maxWindStrenght>9</maxWindStrenght>
+		<enemies>
+			<enemy id="0">bird</enemy>
+			<enemy id="1">plane</enemy>
+		</enemies>
 	</level>
 	<level id="4">
 		<title>FifthStage</title>
+		<scene>
+			<background>
+				<picture></picture>
+				<color>#0F0F0F</color>
+				<music>blub.mp3</music>
+			</background>
+			<ground>ground1.png</ground>
+			<clouds>
+				<cloud id="0">cloud1.png</cloud>
+				<cloud id="1">cloud2.png</cloud>
+				<cloud id="2">cloud3.png</cloud>
+			</clouds>
+		</scene>
+		<powerUps>
+			<powerUp id="0">fuel</powerUp>
+		</powerUps>
+		<lvlHeight>35000</lvlHeight>
+		<maxWindStrenght>9</maxWindStrenght>
+		<enemies>
+			<enemy id="0">bird</enemy>
+			<enemy id="1">plane</enemy>
+		</enemies>
 	</level>
 </levels>
