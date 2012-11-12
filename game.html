@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="js/initialisation.js"></script>
 	<script type="text/javascript" src="js/playGame.js"></script>
 	<script type="text/javascript" src="js/levelManager.js"></script>
+	<script type="text/javascript" src="js/ImageManager.js"></script>
 	
 	<script type="text/javascript">
 		
@@ -31,6 +32,7 @@
 	  <div data-role="content"> 
 		<p><a href="#main" data-role="button" id="startBtn">Start</a></p>
 		<p><a href="#options" data-role="button">Optionen</a></p>    
+		<p><a href="#exit" data-role="button">Beenden</a></p>
 	  </div>
 	 
 	</div>
@@ -41,17 +43,44 @@
 	  <div data-role="header">
 		<h1>Optionen</h1>
 	  </div>
-	 
-	  <div data-role="content"> 
-		<a href="#menu" data-role="button">Zurueck</a>
-	  </div>
-	 
+	  
+		<div data-role="content" id="overviewOptions">	  
+		<h3>Musik:	</h3>
+			
+			<!-- Variante 1 nebeneinander, Abstaende muessen noch korrigiert werden -->
+			<label id="radioBtns"></label>
+				<span id="radio"><input type='radio' name='answer_id'> An</span>
+				<span id="radio"><input type='radio' name='answer_id'> Aus</span>	
+			
+			<!-- Variante 2 untereinander, doppelte Checkbuttons muessen korrigiert werden -->
+			<label id="radioBtns">
+				<input type='radio' name='answer_id'> Aus
+			</label> 
+		<a href="" data-role="button" id="optionBtns">Weiterspielen</a>
+		
+		<a href="#menu" data-role="button" id="optionBtns">Zurück</a>
+		
+		</div>
+		
+	</div>
+	
+	<!-- Beenden -->
+	<div data-role="page" id="exit">
+	
+		<div data-role="header">
+			<h1>Beenden</h1>
+		</div>
+		
+		<div data-role="content"> 
+			<a href="" data-role="button">Ja</a>
+			<a href="#menu" data-role="button">Nein</a>
+		</div>
 	</div>
 	
 	<!-- Spiel -->
 	<div data-role="page" id="main">
 	 
-	  <div data-role="content"> 
+	  <div data-role="content" id="contentArea"> 
 		<div><canvas id="statusbar" width="520" height="40"></canvas></div>
 		<div>
 			<canvas id="gameCanvas" width="480" height="650"></canvas><canvas id="heightBar" width="40" height="650"></canvas>
@@ -60,7 +89,8 @@
 	  
 	  <div data-role="footer" id="foot">
 		<a href="#menu" data-role="button" id="backBtn" >&nbsp;</a>
-		<a href="" data-role="button" id="pauseBtn">Pause</a>
+		<a href="" data-role="button" id="playBtn">&nbsp;</a>
+		<a href="" data-role="button" id="pauseBtn">&nbsp;</a>
 	  </div>
 	 
 	</div>
