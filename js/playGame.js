@@ -83,6 +83,41 @@ function createCloud() {
 	clouds.push(newCloud);
 }	
 
+//Erzeugt ein zufälliges Power Up
+function createPowerUp() {
+	var x = -100 + Math.random() * 5 * 320;
+	var y = -200 + Math.random() * 5 * 500;
+	var s = Math.random() * 10;
+	
+	// Ermittle die Position des naechsten Objekts
+	if(x >= 0)
+		y = -200;
+	else if(y >= 0)
+		x = -200;
+		
+	// Waehle zufaellig ein Bild
+	var nr = ~~(Math.random() * 2);
+	var pic, type;
+	
+	switch(nr) {
+		case 0:
+			pic = gas;
+			type = 0;
+			break;
+		case 1:
+			pic = repairKit;
+			type = 1;
+			break;
+		default:
+			pic = gas;
+			type = 0;
+			break;
+	}
+
+	var newpowerUp = new powerUp(x, y, s, pic, type);
+	powerUps.push(newpowerUp);
+}
+
 // verringere Geschwindigkeit (beim Fallen)
 function updateBalloon() {
 	
@@ -132,6 +167,15 @@ function updateBalloon() {
 	//console.log("WindSpeed: " + windSpeed + " balloonHorSpeed: " + balloonHorSpeed);
 	
 	timer++;
+	
+	//Falls Ballon auf ein PowerUp trifft, wird dieses entfernt und die entsprechende Aktion ausgeführt
+	for (var b = 0; b < powerUps.length; b++) {
+		if (powerUps[b].x >= balloonXPosition && powerUps[b].y >= balloonYPosition
+				&& powerUps[b].x <= balloonXPosition + 130 && powerUps[b].y <= balloonYPosition + 130){
+			powerUps.splice(b, 1);
+			b--;
+		}
+	}
 	
 	// verringere geschwindigkeit jede Sekunde um 1 (Schwerkraft)
 	if(timer == 20) {
@@ -272,6 +316,7 @@ function draw() {
 	drawScene();
 	drawClouds();
 	drawBalloon();
+	drawPowerUp();
 }
 
 // Zeichnet alle Hintergrundteile der Szene 
@@ -355,4 +400,24 @@ function drawClouds() {
 	}
 }
 
-
+function drawPowerUp() {
+	// Entferne alle Voegel, die sich nicht mehr innerhalb des Bildschirms befinden
+	for (var b = 0; b < powerUps.length; b++) {
+		if (powerUps[b].defunct == true || powerUps[b].x > width || powerUps[b].y > height ) {
+			powerUps.splice(b, 1);
+			b--;
+		}
+	}
+	
+	for (var b = 0; b < powerUps.length; b++) {
+		// Bewege den Vogel nach rechts
+		powerUps[b].x += powerUps[b].speed;
+		
+		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
+		if(balloonYPosition < 200)
+			powerUps[b].y -= balloonVertSpeed;
+		
+		ctx.drawImage(powerUps[b].pic, powerUps[b].x, powerUps[b].y);
+		//ctx.drawImage(bird, birds[b].x, birds[b].y);
+	}
+}
