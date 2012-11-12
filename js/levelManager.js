@@ -45,11 +45,10 @@ LevelManager.prototype.getCurrentLevelId = function() {
 LevelManager.prototype.loadLevel = function(level) {
 	$(this.xml).find('level').each(function(){
 		var id = $(this).attr('id');
+		var color = $(this).find('color').text();
 		
 		if(id == level) {
 			var title = $(this).find('title').text();
-			var color = $(this).find('color').text();
-			var lvlHeight = $(this).find('lvlHeight').text();
 			
 			// setze die Hintergrundfarbe
 			if(color == null || color == "")
@@ -58,7 +57,21 @@ LevelManager.prototype.loadLevel = function(level) {
 				SKY_COLOR = color;
 			
 			// setze maximale Level Hoehe
-			maxLvlHeight = lvlHeight;
+			maxLvlHeight = $(this).find('lvlHeight').text();
+			
+			// maximale Windstaerke
+			maxWindStrenght = $(this).find('maxWindStrenght').text();
+			
+			/*$(this).find('cloud').each(function(){
+				var id = $(this).attr('id');
+				id = id++;
+				var obj = "cloud" + id;
+				eval(obj);
+				
+				obj = $(this).text();
+				
+				//$(cloud+(id+1)) =  $(this).text();
+			});*/
 			
 			alert(title);
 		}

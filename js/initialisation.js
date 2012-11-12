@@ -71,21 +71,21 @@ function loadAllImages() {
 	
 	// Wolke 1
 	countImagesLoading++;
-	cloud1 = new Image();
-	cloud1.src = 'pics/cloud1.png';
-	cloud1.addEventListener("load", function() { countImagesLoading--; }, false);
+	cloud0 = new Image();
+	cloud0.src = 'pics/cloud1.png';
+	cloud0.addEventListener("load", function() { countImagesLoading--; }, false);
 	
 	// Wolke 2
 	countImagesLoading++;
-	cloud2 = new Image();
-	cloud2.src = 'pics/cloud2.png';
-	cloud2.addEventListener("load", function() { countImagesLoading--; }, false);
+	cloud1 = new Image();
+	cloud1.src = 'pics/cloud2.png';
+	cloud1.addEventListener("load", function() { countImagesLoading--; }, false);
 	
 	// Wolke 3
 	countImagesLoading++;
-	cloud3 = new Image();
-	cloud3.src = 'pics/cloud3.png';
-	cloud3.addEventListener("load", function() { countImagesLoading--; }, false);
+	cloud2 = new Image();
+	cloud2.src = 'pics/cloud3.png';
+	cloud2.addEventListener("load", function() { countImagesLoading--; }, false);
 	
 	// Sonne
 	countImagesLoading++;
