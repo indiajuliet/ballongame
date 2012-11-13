@@ -59,6 +59,7 @@ body {
 
 #music
 {
+	float:left;
 	height: 60px;
 	width: 50px;
 	margin-left:10px;
@@ -67,16 +68,17 @@ body {
 #gameBtns
 {
 	float:left;
-	height: 60px;
-	width: 250 px;
+	height: 40px;
+	width: 250px;
 	margin-top: auto;
-	margin-left: auto;  
+	margin-left: 150px;  
 	margin-right: auto; 
 }
 
 
 #backBtn
 {
+	float:left;
 	margin-top: 5 px;
 	background-image: url(../pics/button_back.png);
 	height: 30px;
@@ -119,14 +121,16 @@ body {
 
 #playBtn
 {
-	padding-top: 3px;
+	float:left;
+	margin-top: 0px;
 	background-image: url(../pics/button_play.png);
-	height: 40px;
+	height: 43px;
 	width: 40px;	
 }
 
 #pauseBtn
 {
+	float:left;
 	background-image: url(../pics/button_pause.png);
 	height: 30px;
 	width: 30px;	
@@ -134,7 +138,6 @@ body {
 
 #musicBtn
 {
-	padding-left: 40 px;
 	background-image: url(../pics/Button_music_on.png);
 	height: 30px;
 	width: 30px;
