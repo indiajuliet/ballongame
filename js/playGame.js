@@ -23,6 +23,7 @@ function keyDown(e) {
 			heightBarPicture = balloonHB_fire;
 			balloonDirection = -2;
 			balloonVertSpeed--;
+			tankStatus--;
 			break;	
 			
 		case DOWN_ARROW:
@@ -207,13 +208,7 @@ function updateBalloon() {
 	timer++;
 	
 	//Falls Ballon auf ein PowerUp trifft, wird dieses entfernt und die entsprechende Aktion ausgeführt
-	for (var b = 0; b < powerUps.length; b++) {
-		if (powerUps[b].x >= balloonXPosition && powerUps[b].y >= balloonYPosition
-				&& powerUps[b].x <= balloonXPosition + 130 && powerUps[b].y <= balloonYPosition + 130){
-			powerUps.splice(b, 1);
-			b--;
-		}
-	}
+	collect();
 	
 	// verringere geschwindigkeit jede Sekunde um 1 (Schwerkraft)
 	if(timer == 20) {
@@ -223,6 +218,21 @@ function updateBalloon() {
 		timer = 0;
 		balloonPicture = balloon;
 		heightBarPicture = balloonHB;
+	}
+}
+
+function collect(){
+	for (var b = 0; b < powerUps.length; b++) {
+		if (powerUps[b].x >= balloonXPosition && powerUps[b].y >= balloonYPosition
+				&& powerUps[b].x <= balloonXPosition + 130 && powerUps[b].y <= balloonYPosition + 140){
+			var type = powerUps[b].type;
+			if (type == 0 && tankStatus <= 300){
+				tankStatus += 100;
+			}
+			
+			powerUps.splice(b, 1);
+			b--;
+		}
 	}
 }
 
@@ -242,7 +252,7 @@ function updateWindArrow() {
 	degree = windSpeed * 10;
 	
 	// Position des Pfeils
-	var posW = width - 5;
+	var posW = width / 2;
 	var posH = 40 - 5 ;
 	
 	// Rotiere den Windpfeil um diesen Winkel an einer bestimmten Position
@@ -294,6 +304,38 @@ function rotateIt(objContext, objImg, lngPhi, posW, posH){
 	objContext.drawImage(objImg, posW - w, posH - h);   // Bild zentriert zeichnen
 	
 	objContext.restore();
+}
+
+function updateTank(){
+	// Position der Tankanzeige
+	var posW = width - 5;
+	var posH = 1;
+
+	sctx.save();
+	
+	var pic = null;
+	
+	// Hole die richtige Tankanzeige, entsprechend dem aktuellen Status			
+	if (tankStatus < 100){
+		pic = tank_empty;
+	}
+	if (tankStatus >= 100 && tankStatus < 200){
+		pic = tank_red;
+	}
+	if (tankStatus >= 200 && tankStatus < 300){
+		pic = tank_orange;
+	}
+	if (tankStatus >= 300 && tankStatus < 400){
+		pic = tank_yellow;
+	} 
+	if (tankStatus >= 400){
+		pic = tank_green;
+	}
+	console.log("tankStatus: " + tankStatus);
+	sctx.drawImage(pic, posW, posH);
+	
+	sctx.restore();
+	
 }
 
 // Lade naechstes Level
@@ -374,6 +416,7 @@ function drawScene() {
 	
 	// zeichne den Pfeil neu
 	updateWindArrow();
+	updateTank();
 	
 	// zeichne den Text
 	drawText();
