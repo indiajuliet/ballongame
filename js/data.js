@@ -21,7 +21,9 @@ var DOWN_ARROW = 40;
 var SPACE_BAR = 32;
 
 // Bilder
-var sky, background, cloud0, cloud1, cloud2, tank_green, tank_yellow, tank_orange, tank_red, tank_empty, repairKit, gas, sun, balloon, balloon_fire, balloon_hole, balloonHB, balloonHB_fire, balloonHB_hole, balloonPicture, heightBarPicture, ground, montains, windArrow;
+var sky, background, cloud0, cloud1, cloud2, tank_green, tank_yellow, tank_orange, tank_red, tank_empty;
+var repairKit, gas, sun, balloon, balloon_fire, balloon_hole, balloonHB, balloonHB_fire, balloonHB_hole;
+var balloonPicture, heightBarPicture, ground, montains, windArrow, bird0, bird1;
 var countImagesLoading = 0;
 
 // Progressbar
@@ -32,6 +34,7 @@ var itv = 0;  // id to setinterval
 // verschiedene Variablen fuer das Spiel
 var clouds = [];
 var powerUps = [];
+var enemies = [];
 
 // Balloon Variablen
 var balloonXPosition = 150;
@@ -47,6 +50,7 @@ var gamePaused = false;
 var gameHandle = 0;
 var cloudHandle = 0;
 var powerUpHandle = 0;
+var enemyHandle = 0;
 
 var windSpeed = 0;
 var degree = 0;
@@ -73,6 +77,17 @@ var powerUp = function(x, y, s, p, t) {
 	this.y = y;
 	this.speed = s;
 	this.pic = p;
+	this.type = t;
+	this.defunct = false;
+}
+
+// Definiere ein Gegner
+var Enemy = function(x, y, s, p1, p2, t) {
+	this.x = x;
+	this.y = y;
+	this.speed = s;
+	this.pic1 = p1;
+	this.pic2 = p2;
 	this.type = t;
 	this.defunct = false;
 }
