@@ -461,10 +461,14 @@ function drawEnemies() {
 		
 		var xPos = Math.round(enemies[b].x);
 		
-		if((xPos % 30) == 0)
+		if((xPos % 50) >= 0 && (xPos % 50) <= 10) {
 			pic = enemies[b].pic1;
-		else
+			enemies[b].y += 3;
+		}
+		else {
 			pic = enemies[b].pic2;
+			enemies[b].y -= 3;
+		}
 		
 		
 		Math.round

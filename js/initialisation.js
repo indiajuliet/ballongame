@@ -124,7 +124,7 @@ function startGame() {
 	gameHandle = setInterval(draw, 50);
 	cloudHandle = setInterval(createCloud, 1000);
 	powerUpHandle = setInterval(createPowerUp, 1300);
-	enemyHandle = setInterval(createEnemy, 1300);
+	enemyHandle = setInterval(createEnemy, 500);
 }
 
 // Spiel pausieren oder wieder fortsetzen
