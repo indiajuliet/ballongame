@@ -51,7 +51,6 @@ _p._loadItem = function(queueItem, itemCounter, onDone, onProgress) {
 		self._onItemLoaded(queueItem, itemCounter, onDone, onProgress, true);
 	};
 	
-	
 	img.onerror = function() {
 		self._images[queueItem.key] = self._placeholder ? self._placeholder : null;
 		self._onItemLoaded(queueItem, itemCounter, onDone, onProgress, false);
@@ -70,7 +69,6 @@ _p._onItemLoaded = function(queueItem, itemCounter, onDone, onProgress, success)
 };
 
 _p.get = function(key) {
-	//alert(this._images[key]);
 	return this._images[key];
 };
 

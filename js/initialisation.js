@@ -33,7 +33,8 @@ window.addEventListener("load", function() {
 	// Image Manager
 	imgMngr =  new ImageManager();
 	imgMngr.load({
-		"bird" 					: "./pics/bird2.1.png",
+		"bird0" 				: "./pics/bird2.png",
+		"bird1" 				: "./pics/bird3.png",
 		"cloud1" 				: "./pics/cloud1.png",
 		"cloud2" 				: "./pics/cloud2.png",
 		"cloud3" 				: "./pics/cloud3.png",
@@ -82,6 +83,9 @@ function onDone() {
 	tank_empty 		= imgMngr.get("tank_empty");
 	repairKit 		= imgMngr.get("repairKit");
 	gas 			= imgMngr.get("gas");
+	bird0 			= imgMngr.get("bird0");
+	bird1 			= imgMngr.get("bird1");
+	
 
 	balloonPicture = balloon;
 	heightBarPicture = balloonHB;
@@ -120,6 +124,7 @@ function startGame() {
 	gameHandle = setInterval(draw, 50);
 	cloudHandle = setInterval(createCloud, 1000);
 	powerUpHandle = setInterval(createPowerUp, 1300);
+	enemyHandle = setInterval(createEnemy, 1300);
 }
 
 // Spiel pausieren oder wieder fortsetzen

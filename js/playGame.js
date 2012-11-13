@@ -118,6 +118,44 @@ function createPowerUp() {
 	powerUps.push(newpowerUp);
 }
 
+//Erzeugt ein zufälliges Power Up
+function createEnemy() {
+	var x = -100 + Math.random() * 5 * 320;
+	var y = -200 + Math.random() * 5 * 500;
+	var s = Math.random() * 10;
+	
+	// Ermittle die Position des naechsten Objekts
+	if(x >= 0)
+		y = -200;
+	else if(y >= 0)
+		x = -200;
+		
+	// Waehle zufaellig ein Bild
+	var nr = ~~(Math.random() * 2);
+	var pic, type;
+	
+	switch(nr) {
+		case 0:
+			pic1 = bird0;
+			pic2 = bird1;
+			type = 0;
+			break;
+		case 1:
+			pic1 = bird0;
+			pic2 = bird1;
+			type = 0;
+			break;
+		default:
+			pic1 = bird0;
+			pic2 = bird1;
+			type = 0;
+			break;
+	}
+
+	var newEnemy = new Enemy(x, y, s, pic1, pic2, type);
+	enemies.push(newEnemy);
+}
+
 // verringere Geschwindigkeit (beim Fallen)
 function updateBalloon() {
 	
@@ -318,6 +356,7 @@ function draw() {
 	drawClouds();
 	drawBalloon();
 	drawPowerUp();
+	drawEnemies();
 }
 
 // Zeichnet alle Hintergrundteile der Szene 
@@ -341,25 +380,7 @@ function drawScene() {
 	
 	// aktuellisiere HeightBar 
 	updateHeightBar();
-	
-	// Zeichnen der Berge
-	//ctx.drawImage(mountains, -20, height - 350);
-	
-	// Zeichnen des Bodens
-	//ctx.drawImage(ground, 0, height - 80);
-	
-	// Zeichnen der Sonne
-	/*if(sunPosition >= width) {
-		sunPosition = SUN_START_POSITION;
-	}
-	else 
-		sunPosition++;
-	ctx.drawImage(sun, sunPosition, 0);*/
 
-	// Zeichnen der Wolken
-	/*ctx.drawImage(cloud1, 20, 50);
-	ctx.drawImage(cloud2, 150, 130);
-	ctx.drawImage(cloud3, 300, 40);*/
 }
 
 // Zeichnet den Ballon an seiner aktuellen Position
@@ -418,6 +439,39 @@ function drawPowerUp() {
 			powerUps[b].y -= balloonVertSpeed;
 		
 		ctx.drawImage(powerUps[b].pic, powerUps[b].x, powerUps[b].y);
+		//ctx.drawImage(bird, birds[b].x, birds[b].y);
+	}
+}
+
+function drawEnemies() {
+	// Entferne alle Voegel, die sich nicht mehr innerhalb des Bildschirms befinden
+	for (var b = 0; b < enemies.length; b++) {
+		if (enemies[b].defunct == true || enemies[b].x > width || enemies[b].y > height ) {
+			enemies.splice(b, 1);
+			b--;
+		}
+	}
+	
+	for (var b = 0; b < enemies.length; b++) {
+		// Bewege den Vogel nach rechts
+		enemies[b].x += enemies[b].speed;
+		
+		var pic = enemies[b].pic1;
+		
+	
+		if((enemies[b].x % 10) == 0)
+			pic = enemies[b].pic1;
+		else
+			pic = enemies[b].pic2;
+		
+		
+		
+		
+		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
+		if(balloonYPosition < 200)
+			enemies[b].y -= balloonVertSpeed;
+		
+		ctx.drawImage(pic, enemies[b].x, enemies[b].y);
 		//ctx.drawImage(bird, birds[b].x, birds[b].y);
 	}
 }
