@@ -233,6 +233,7 @@ function updateHeightBar() {
 	
 	var step = (height - 80) / maxLvlHeight;
 	var relHeight = (height - 80) - (flightAttitude * step);
+	
 	hctx.drawImage(heightBarPicture, 0, relHeight);
 	
 	hctx.restore();
@@ -340,7 +341,6 @@ function drawScene() {
 	
 	// aktuellisiere HeightBar 
 	updateHeightBar();
-	
 	
 	// Zeichnen der Berge
 	//ctx.drawImage(mountains, -20, height - 350);

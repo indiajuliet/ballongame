@@ -45,17 +45,19 @@ _p.load = function(images, onDone, onProgress) {
 _p._loadItem = function(queueItem, itemCounter, onDone, onProgress) {
 	var self = this;
 	var img = new Image();
+	
 	img.onload = function() {
 		self._images[queueItem.key] = img;
 		self._onItemLoaded(queueItem, itemCounter, onDone, onProgress, true);
 	};
 	
+	
 	img.onerror = function() {
 		self._images[queueItem.key] = self._placeholder ? self._placeholder : null;
 		self._onItemLoaded(queueItem, itemCounter, onDone, onProgress, false);
 	};
-	
-	img.src = queueItem.path;
+		
+	img.src = queueItem.path;	
 };
 
 _p._onItemLoaded = function(queueItem, itemCounter, onDone, onProgress, success) {
@@ -68,6 +70,11 @@ _p._onItemLoaded = function(queueItem, itemCounter, onDone, onProgress, success)
 };
 
 _p.get = function(key) {
+	//alert(this._images[key]);
 	return this._images[key];
 };
+
+_p.getAll = function() {
+	return this._images;
+}
 
