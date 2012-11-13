@@ -30,11 +30,31 @@
 	  </div>
 	 
 	  <div data-role="content"> 
-		<p><a href="#main" data-role="button" id="startBtn">Start</a></p>
+		<p><a href="#levels" data-role="button" id="startBtn">Start</a></p>
 		<p><a href="#options" data-role="button">Optionen</a></p>    
 		<p><a href="#exit" data-role="button">Beenden</a></p>
 	  </div>
 	 
+	</div>
+	
+	<!-- Level -->
+	<div data-role="page" id="levels">
+		<div data-role="header">
+			<h1>Levelauswahl</h1>
+		</div>
+		
+		<div data-role="content" id="levelOverwiev">
+			<div class="ui-grid-b" id="levelIcons">
+				<div class="ui-block-a"><a href="#main" data-role="button"  data-theme="c">Level 1</a></div> 
+				<div class="ui-block-b"><button type="button" data-theme="c">Level 2</button></div>	   
+				<div class="ui-block-c"><button type="button" data-theme="c">Level 3</button></div>	   
+			</div>
+		
+		<a href="#menu" data-role="button" id="optionBtns">Zurück</a>
+		</div>
+		
+		<!-- #main -->
+		
 	</div>
 	
 	<!-- Optionen -->
@@ -44,7 +64,7 @@
 		<h1>Optionen</h1>
 	  </div>
 	  
-		<div id="overviewOptions">	  
+		<div data-role="content" id="overviewOptions">	  
 		
 			
 			<!-- Variante 1 nebeneinander, Abstaende muessen noch korrigiert werden -->
