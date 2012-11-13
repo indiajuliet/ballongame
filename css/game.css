@@ -59,11 +59,14 @@ body {
 
 #music
 {
-	margin-left:20px;
+	height: 60px;
+	width: 50px;
+	margin-left:10px;
 }
 
 #gameBtns
 {
+	float:left;
 	height: 60px;
 	width: 250 px;
 	margin-top: auto;
