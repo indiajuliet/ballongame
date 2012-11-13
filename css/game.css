@@ -178,10 +178,30 @@ body {
 	margin-top: auto;
 	margin-left: auto;  
 	margin-right: auto;	
-	height:60px;
-	width:500px;
+	height:180px;
+	width:550px;
 }
 
+#level1
+{
+	background-image: url(../pics/Button_level_1.png);
+	height: 170px;
+	width: 170px;
+}
+
+#level2
+{
+	background-image: url(../pics/button_level_x.png);	
+	height: 170px;
+	width: 170px;
+}
+
+#level3
+{
+	background-image: url(../pics/button_level_x.png);
+	height: 170px;
+	width: 170px;
+}
 
 /* Fortschrittsbalken */
 #pwidget
