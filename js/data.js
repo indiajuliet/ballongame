@@ -36,7 +36,7 @@ var clouds = [];
 var powerUps = [];
 var enemies = [];
 
-var tankStatus = 450;
+var tankStatus = 420;
 
 // Balloon Variablen
 var balloonXPosition = 150;
