@@ -210,6 +210,9 @@ function updateBalloon() {
 	//Falls Ballon auf ein PowerUp trifft, wird dieses entfernt und die entsprechende Aktion ausgeführt
 	collect();
 	
+	//Falls Vogel in den Ballon fliegt
+	//collision();
+	
 	// verringere geschwindigkeit jede Sekunde um 1 (Schwerkraft)
 	if(timer == 20) {
 		if(balloonVertSpeed >= -20 && balloonVertSpeed <= 20) 
@@ -224,7 +227,7 @@ function updateBalloon() {
 function collect(){
 	for (var b = 0; b < powerUps.length; b++) {
 		if (powerUps[b].x >= balloonXPosition && powerUps[b].y >= balloonYPosition
-				&& powerUps[b].x <= balloonXPosition + 130 && powerUps[b].y <= balloonYPosition + 140){
+				&& powerUps[b].x <= balloonXPosition + 260 && powerUps[b].y <= balloonYPosition + 550){
 			var type = powerUps[b].type;
 			if (type == 0 && tankStatus <= 300){
 				tankStatus += 100;
@@ -236,12 +239,21 @@ function collect(){
 	}
 }
 
+/*function collision(){
+	for (var b = 0; b < enemies.length; b++) {
+		if (enemies[b].x >= balloonXPosition && enemies[b].y >= balloonYPosition
+				&& enemies[b].x <= balloonXPosition + 260 && enemies[b].y <= balloonYPosition + 550){
+			
+			
+			powerUps.splice(b, 1);
+			b--;
+		}
+	}
+}*/
+
 // aktualisiere den Windpfeil
 function updateWindArrow() {
 
-	// Hole das Pfeilbild
-	var $windArrow = $("#windDirection");
-	
 	// Berechne Windgeschwindikeit
 	var randSpeed = getRandom(-1, 1);
 	
@@ -260,7 +272,6 @@ function updateWindArrow() {
 }
 
 function updateHeightBar() {
-	
 	
 	// Zeichne horizontale Linien
 	var s = height / 10;
@@ -331,7 +342,7 @@ function updateTank(){
 	if (tankStatus >= 400){
 		pic = tank_green;
 	}
-	console.log("tankStatus: " + tankStatus);
+	//console.log("tankStatus: " + tankStatus);
 	sctx.drawImage(pic, posW, posH);
 	
 	sctx.restore();
