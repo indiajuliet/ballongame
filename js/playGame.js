@@ -470,9 +470,6 @@ function drawEnemies() {
 			enemies[b].y -= 3;
 		}
 		
-		
-		Math.round
-		
 		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
 		if(balloonYPosition < 200)
 			enemies[b].y -= balloonVertSpeed;
