@@ -44,18 +44,17 @@
 		<h1>Optionen</h1>
 	  </div>
 	  
-		<div data-role="content" id="overviewOptions">	  
-		<h3>Musik:	</h3>
+		<div id="overviewOptions">	  
+		
 			
 			<!-- Variante 1 nebeneinander, Abstaende muessen noch korrigiert werden -->
-			<label id="radioBtns"></label>
-				<span id="radio"><input type='radio' name='answer_id'> An</span>
-				<span id="radio"><input type='radio' name='answer_id'> Aus</span>	
 			
-			<!-- Variante 2 untereinander, doppelte Checkbuttons muessen korrigiert werden -->
-			<label id="radioBtns">
-				<input type='radio' name='answer_id'> Aus
-			</label> 
+			
+		<div id="radioBtns">
+			<span id="radio"><b>Musik</b></span>
+			<span id="radio"><input type='radio' name='answer_id' id="rad"> An</span>
+			<span id="radio"><input type='radio' name='answer_id'id="rad"> Aus</span>	
+		</div>
 		<a href="" data-role="button" id="optionBtns">Weiterspielen</a>
 		
 		<a href="#menu" data-role="button" id="optionBtns">Zurück</a>
