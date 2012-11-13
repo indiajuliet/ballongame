@@ -225,10 +225,26 @@ function updateBalloon() {
 }
 
 function collect(){
-	for (var b = 0; b < powerUps.length; b++) {
-		if (powerUps[b].x >= balloonXPosition && powerUps[b].y >= balloonYPosition
-				&& powerUps[b].x <= balloonXPosition + 260 && powerUps[b].y <= balloonYPosition + 550){
-			var type = powerUps[b].type;
+	for (var b = 0; b < enemies.length; b++) {
+		if (enemies[b].x >= balloonXPosition && enemies[b].y >= balloonYPosition
+				&& enemies[b].x <= balloonXPosition + 260 && enemies[b].y <= balloonYPosition + 550){
+			var type = enemies[b].type;
+			if (type == 0){
+				balloonVertSpeed = 0;
+			}
+			
+			enemies.splice(b, 1);
+			b--;
+		}
+	}
+}
+
+function collision(){
+	for (var b = 0; b < enemies.length; b++) {
+		if (enemies[b].x >= balloonXPosition && enemies[b].y >= balloonYPosition
+				&& enemies[b].x <= balloonXPosition + 260 && enemies[b].y <= balloonYPosition + 550){
+			
+			var type = enemies[b].type;
 			if (type == 0 && tankStatus <= 300){
 				tankStatus += 100;
 			}
@@ -238,18 +254,6 @@ function collect(){
 		}
 	}
 }
-
-/*function collision(){
-	for (var b = 0; b < enemies.length; b++) {
-		if (enemies[b].x >= balloonXPosition && enemies[b].y >= balloonYPosition
-				&& enemies[b].x <= balloonXPosition + 260 && enemies[b].y <= balloonYPosition + 550){
-			
-			
-			powerUps.splice(b, 1);
-			b--;
-		}
-	}
-}*/
 
 // aktualisiere den Windpfeil
 function updateWindArrow() {
