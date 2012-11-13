@@ -122,7 +122,7 @@ function createPowerUp() {
 function createEnemy() {
 	var x = -100 + Math.random() * 5 * 320;
 	var y = -200 + Math.random() * 5 * 500;
-	var s = Math.random() * 10;
+	var s = getRandom(3, 7);
 	
 	// Ermittle die Position des naechsten Objekts
 	if(x >= 0)
@@ -183,7 +183,7 @@ function updateBalloon() {
 	}
 	flightAttitude = Math.round(flightAttitude);
 	
-	console.log("Höhe: " + flightAttitude + "Max Höhe: " + maxLvlHeight);
+	//console.log("Höhe: " + flightAttitude + "Max Höhe: " + maxLvlHeight);
 	
 	// Beende Bewegung wenn Ballon am Rand ist
 	if(balloonXPosition <= -10) { 						// linker Rand
@@ -457,15 +457,17 @@ function drawEnemies() {
 		enemies[b].x += enemies[b].speed;
 		
 		var pic = enemies[b].pic1;
+		console.log("X: " + enemies[b].x);
 		
-	
-		if((enemies[b].x % 10) == 0)
+		var xPos = Math.round(enemies[b].x);
+		
+		if((xPos % 30) == 0)
 			pic = enemies[b].pic1;
 		else
 			pic = enemies[b].pic2;
 		
 		
-		
+		Math.round
 		
 		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
 		if(balloonYPosition < 200)
