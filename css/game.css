@@ -43,7 +43,26 @@ body {
 
 #menu
 {
+	
 	opacity: 0;
+}
+
+#overviewMenu
+{
+	margin-top: 10px;
+	margin-left: auto;  
+	margin-right: auto;
+	height:300px;
+	width:300px;
+}
+
+#overviewExit
+{
+	margin-top: 10px;
+	margin-left: auto;  
+	margin-right: auto;
+	height:300px;
+	width:300px;
 }
 
 #foot 
@@ -147,6 +166,8 @@ body {
 	float:right;
 	padding:4px;
 }
+
+
 
 #options
 {
