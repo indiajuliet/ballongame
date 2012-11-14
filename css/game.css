@@ -43,7 +43,26 @@ body {
 
 #menu
 {
+	
 	opacity: 0;
+}
+
+#overviewMenu
+{
+	margin-top: 10px;
+	margin-left: auto;  
+	margin-right: auto;
+	height:300px;
+	width:300px;
+}
+
+#overviewExit
+{
+	margin-top: 10px;
+	margin-left: auto;  
+	margin-right: auto;
+	height:300px;
+	width:300px;
 }
 
 #foot 
@@ -148,6 +167,8 @@ body {
 	padding:4px;
 }
 
+
+
 #options
 {
 	
@@ -166,6 +187,42 @@ body {
 	
 }
 
+#levelOverwiev
+{
+	margin-top: auto;
+	margin-left: auto;  
+	margin-right: auto;	
+}
+
+#levelIcons
+{
+	margin-top: auto;
+	margin-left: auto;  
+	margin-right: auto;	
+	height:180px;
+	width:550px;
+}
+
+#level1
+{
+	background-image: url(../pics/Button_level_1.png);
+	height: 170px;
+	width: 170px;
+}
+
+#level2
+{
+	background-image: url(../pics/button_level_x.png);	
+	height: 170px;
+	width: 170px;
+}
+
+#level3
+{
+	background-image: url(../pics/button_level_x.png);
+	height: 170px;
+	width: 170px;
+}
 
 /* Fortschrittsbalken */
 #pwidget

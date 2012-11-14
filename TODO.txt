@@ -1,5 +1,27 @@
 TO DO
 
+Status 13.11.2012
+
+Allgemeiner Beschluss:
+- Spielerauswahl wird nach hinten gestellt
+- vorrangig Levelmanagement und Funktionen
+
+Johanna
+- Buttons zentral und kleiner
+- Vogelbilder aktualisieren: weiﬂ unterer Fluegel
+- Hintergrund weitere Level
+- Level-Texte etc.
+
+IJ
+- Sounds: Kollision, Power-Ups
+- Button-Funktionen Music
+
+Micha
+- Kollision Voegel bzw. Gegner allgemein
+
+Konni
+- Optimierungen
+
 Status 06.11.2012
 
 **Spiel Start**
