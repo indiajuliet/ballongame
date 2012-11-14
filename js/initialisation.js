@@ -56,6 +56,7 @@ window.addEventListener("load", function() {
 		"tank_empty" 			: "./pics/Tankanzeige_leer_small.png",
 		"repairKit" 			: "./pics/Kanister2.png",
 		"gas" 					: "./pics/try.png",
+		"background"			: backgroundPic
 	}, onDone);
 	
 	// Mouse Events
@@ -85,6 +86,7 @@ function onDone() {
 	gas 			= imgMngr.get("gas");
 	bird0 			= imgMngr.get("bird0");
 	bird1 			= imgMngr.get("bird1");
+	background 		= imgMngr.get("background");
 	
 
 	balloonPicture = balloon;

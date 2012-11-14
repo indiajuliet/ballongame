@@ -56,11 +56,15 @@ LevelManager.prototype.loadLevel = function(level) {
 			else
 				SKY_COLOR = color;
 			
+			// setze Hintergrundbild
+			backgroundPic = $(this).find('picture').text();
+			
 			// setze maximale Level Hoehe
 			maxLvlHeight = $(this).find('lvlHeight').text();
 			
 			// maximale Windstaerke
 			maxWindStrenght = $(this).find('maxWindStrenght').text();
+			
 			
 			/*$(this).find('cloud').each(function(){
 				var id = $(this).attr('id');

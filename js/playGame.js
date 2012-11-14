@@ -346,8 +346,23 @@ function nextLevel() {
 	clouds = [];
 	
 	lvlMngr.nextLevel();
+
+	alert(backgroundPic);
+	
+	// Hintergrund neu laden
+	/*background = imgMngr.updatePath("background", backgroundPic);
+	alert(background.src);
+	background = imgMngr.get("background");
+	alert(background.src);*/
+	imgMngr.load({
+		"background" : backgroundPic
+	}, todo);
 	
 	flightAttitude = 0;
+}
+
+function todo() {
+	background = imgMngr.get("background");
 }
 
 // Dreht ein Objekt entsprechend der Gradzahl (jQuery)
@@ -382,6 +397,13 @@ function getRandom(min, max) {
 	return min + parseInt(r * (max-min+1));
 }
 
+function updateBackground() {
+	var yPos = background.height - height;
+	yPos = yPos - (flightAttitude / 50);
+	
+	ctx.drawImage(background, 0, -yPos);
+}
+
 function clearScene() {
 	ctx.clearRect(0,0, width, height);
 	sctx.clearRect(0,0, width, 40);
@@ -413,6 +435,9 @@ function drawScene() {
 	sky.addColorStop(1, '#FFFFFF');
 	ctx.fillStyle = sky;
 	ctx.fillRect(0, 0, width, height);
+	
+	// Hintergrundbild zeichnen
+	updateBackground();
 	
 	// zeichne den Pfeil neu
 	updateWindArrow();

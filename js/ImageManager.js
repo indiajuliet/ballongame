@@ -42,6 +42,12 @@ _p.load = function(images, onDone, onProgress) {
 	}
 };
 
+_p.updatePath = function(obj, path) {
+	var self = this;
+	self.load({obj : path}, null);
+	return self.get(obj);
+}
+
 _p._loadItem = function(queueItem, itemCounter, onDone, onProgress) {
 	var self = this;
 	var img = new Image();

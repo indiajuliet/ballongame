@@ -24,6 +24,9 @@ var SPACE_BAR = 32;
 var sky, background, cloud0, cloud1, cloud2, tank_green, tank_yellow, tank_orange, tank_red, tank_empty;
 var repairKit, gas, sun, balloon, balloon_fire, balloon_hole, balloonHB, balloonHB_fire, balloonHB_hole;
 var balloonPicture, heightBarPicture, ground, montains, windArrow, bird0, bird1;
+
+var backgroundPic; 
+ 
 var countImagesLoading = 0;
 
 // Progressbar
