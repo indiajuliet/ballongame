@@ -3,10 +3,14 @@ var ctx = null;		// Spiel Canvas
 var sctx = null;	// Statusbar Canvas
 
 // width of the canvas
-var width = 480;  
+var width = 480; 
+var HBWidth = null;
+var SBWidth = null; 
 
 // height of the canvas  
 var height = 700; 
+var HBHeight = null;
+var SBHeight = null;
 
 // verschiedene Konstanten 
 var STD_SKY_COLOR = '#6495ED';
@@ -23,7 +27,7 @@ var SPACE_BAR = 32;
 // Bilder
 var sky, background, cloud0, cloud1, cloud2, tank_green, tank_yellow, tank_orange, tank_red, tank_empty;
 var repairKit, gas, sun, balloon, balloon_fire, balloon_hole, balloonHB, balloonHB_fire, balloonHB_hole;
-var balloonPicture, heightBarPicture, ground, montains, windArrow, bird0, bird1;
+var balloonPicture, heightBarPicture, ground, montains, windArrow, bird0, bird1, birdSprite;
 
 var backgroundPic; 
  
@@ -47,7 +51,9 @@ var balloonYPosition = 250;
 var balloonDirection = 0;
 var balloonVertSpeed = 0;
 var balloonHorSpeed = 0;
-var balloonPicture = null;
+var balloonFrame = 0;
+var heightBarFrame = 3;
+
 
 var sunPosition = -120;
 var timer = 0;
@@ -62,37 +68,39 @@ var degree = 0;
 var flightAttitude = 0;
 var maxLvlHeight = 0;
 var lvlMngr = null;
+var level = null;
 var imgMngr = null;
 var maxWindStrenght = 9;
+var b_sprite = null;
+var t_sprite = null;
 
 //var xml;
 
 // Definiere ein Wolken Objekt
-var Cloud = function(x, y, s, p) {
+var Cloud = function(x, y, s, sp, f) {
 	this.x = x;
 	this.y = y;
 	this.speed = s;
-	this.pic = p;
+	this.sprite = sp;
+	this.frame = f;
 	this.defunct = false;
 }   
 
 // Neues powerUp
-var powerUp = function(x, y, s, p, t) {
+var powerUp = function(x, y, p, t) {
 	this.x = x;
 	this.y = y;
-	this.speed = s;
 	this.pic = p;
 	this.type = t;
 	this.defunct = false;
 }
 
 // Definiere ein Gegner
-var Enemy = function(x, y, s, p1, p2, t) {
+var Enemy = function(x, y, s, sp, d) {
 	this.x = x;
 	this.y = y;
 	this.speed = s;
-	this.pic1 = p1;
-	this.pic2 = p2;
-	this.type = t;
+	this.sprite = sp;
+	this.dir = d;
 	this.defunct = false;
 }

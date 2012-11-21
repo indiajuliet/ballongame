@@ -19,16 +19,16 @@ function keyDown(e) {
 			break;
 			
 		case UP_ARROW:
-			balloonPicture = balloon_fire;
-			heightBarPicture = balloonHB_fire;
+			balloonFrame = 1;
+			heightBarFrame = 4;
 			balloonDirection = -2;
 			balloonVertSpeed--;
 			tankStatus--;
 			break;	
 			
 		case DOWN_ARROW:
-			balloonPicture = balloon_hole;
-			heightBarPicture = balloonHB_hole;
+			balloonFrame = 2;
+			heightBarFrame = 5;
 			balloonVertSpeed++;
 			balloonDirection = 2;
 			break;
@@ -59,54 +59,36 @@ function createCloud() {
 		y = -100;
 	else if(y >= 0)
 		x = -100;
-		
-	// Waehle zufaellig ein Bild
-	var nr = getRandom(0,2);
-
-	var pic = null;
 	
-	switch(nr) {
-		case 0:
-			pic = cloud0;
-			break;
-		case 1:
-			pic = cloud1;
-			break;
-		case 2:
-			pic = cloud2;
-			break;
-		default:
-			pic = cloud2;
-			break;
-	}
-
-	var newCloud = new Cloud(x, y, s, pic);
+	var frame = getRandom(0,2);
+	
+	var frames = [
+				[0, 0, 145, 100, 0, 0],
+				[146, 0, 172, 100, 0, 0],
+				[319, 0, 181, 100, 0, 0]
+			];
+	
+	var sprite = new SpriteSheet(cloudSprite, frames);
+	var newCloud = new Cloud(x, y, s, sprite, frame);
 	clouds.push(newCloud);
 }	
 
 //Erzeugt ein zufälliges Power Up
 function createPowerUp() {
-	var x = -100 + Math.random() * 5 * 320;
-	var y = -200 + Math.random() * 5 * 500;
-	var s = Math.random() * 10;
-	
-	// Ermittle die Position des naechsten Objekts
-	if(x >= 0)
-		y = -200;
-	else if(y >= 0)
-		x = -200;
+	var x = getRandom(0, width-40);
+	var y = getRandom(-100 , -60);
 		
 	// Waehle zufaellig ein Bild
-	var nr = ~~(Math.random() * 2);
+	var nr = getRandom(0,1);
 	var pic, type;
 	
 	switch(nr) {
 		case 0:
-			pic = gas;
+			pic = tank;
 			type = 0;
 			break;
 		case 1:
-			pic = repairKit;
+			pic = tank;
 			type = 1;
 			break;
 		default:
@@ -115,45 +97,35 @@ function createPowerUp() {
 			break;
 	}
 
-	var newpowerUp = new powerUp(x, y, s, pic, type);
+	var newpowerUp = new powerUp(x, y, pic, type);
 	powerUps.push(newpowerUp);
 }
 
 //Erzeugt ein zufälliges Power Up
 function createEnemy() {
-	var x = -100 + Math.random() * 5 * 320;
-	var y = -200 + Math.random() * 5 * 500;
+	var side = getRandom(0, 1);
+	var y = getRandom(0, 300);
 	var s = getRandom(3, 7);
+	var dir, x;
 	
 	// Ermittle die Position des naechsten Objekts
-	if(x >= 0)
-		y = -200;
-	else if(y >= 0)
-		x = -200;
-		
-	// Waehle zufaellig ein Bild
-	var nr = ~~(Math.random() * 2);
-	var pic, type;
-	
-	switch(nr) {
-		case 0:
-			pic1 = bird0;
-			pic2 = bird1;
-			type = 0;
-			break;
-		case 1:
-			pic1 = bird0;
-			pic2 = bird1;
-			type = 0;
-			break;
-		default:
-			pic1 = bird0;
-			pic2 = bird1;
-			type = 0;
-			break;
+	if(side == 0) {
+		x = 0;
 	}
-
-	var newEnemy = new Enemy(x, y, s, pic1, pic2, type);
+	else {
+		x = width;
+		s = -s;
+	}
+	
+	var frames = [
+				[255, 0, 63, 50, 0, 0],
+				[63, 0, 63, 50, 0, 0],
+				[318, 0, 63, 50, 0, 0],
+				[191, 0, 63, 50, 0, 0]
+			];
+	
+	var sprite = new SpriteSheet(birdSprite, frames);
+	var newEnemy = new Enemy(x, y, s, sprite, side);
 	enemies.push(newEnemy);
 }
 
@@ -187,16 +159,16 @@ function updateBalloon() {
 	//console.log("Höhe: " + flightAttitude + "Max Höhe: " + maxLvlHeight);
 	
 	// Beende Bewegung wenn Ballon am Rand ist
-	if(balloonXPosition <= -10) { 						// linker Rand
+	if(balloonXPosition <= 0) { 						// linker Rand
 		if(balloonHorSpeed < 0) {
 			balloonHorSpeed = 0;
-			balloonXPosition = -10;
+			balloonXPosition = 0;
 		}
 	}
-	else if((balloonXPosition + 140) >= width) {		// rechter Rand
+	else if((balloonXPosition + 124) >= width) {		// rechter Rand
 		if(balloonHorSpeed > 0) {
 			balloonHorSpeed = 0;
-			balloonXPosition = (width - 140);
+			balloonXPosition = (width - 124);
 		}
 	}
 	
@@ -219,8 +191,8 @@ function updateBalloon() {
 			balloonVertSpeed += 0.4;
 		
 		timer = 0;
-		balloonPicture = balloon;
-		heightBarPicture = balloonHB;
+		balloonFrame = 0;
+		heightBarFrame = 3;
 	}
 }
 
@@ -296,8 +268,11 @@ function updateHeightBar() {
 	
 	var step = (height - 80) / maxLvlHeight;
 	var relHeight = (height - 80) - (flightAttitude * step);
+	var center = HBWidth / 2;
 	
-	hctx.drawImage(heightBarPicture, 0, relHeight);
+	//hctx.drawImage(heightBarPicture, 0, relHeight);
+	
+	b_sprite.drawFrame(hctx, heightBarFrame, center - 16, relHeight);	
 	
 	hctx.restore();
 }
@@ -321,36 +296,37 @@ function rotateIt(objContext, objImg, lngPhi, posW, posH){
 	objContext.restore();
 }
 
-function updateTank(){
+function updateStatusBar(){
+	// aktualisiere Text
+	drawText();
+
+	// aktualisiere Windpfeil 
+	updateWindArrow();
+	
 	// Position der Tankanzeige
-	var posW = width - 5;
+	var posW = width - 50;
 	var posH = 1;
 
-	sctx.save();
-	
-	var pic = null;
+	var frame = 0;
 	
 	// Hole die richtige Tankanzeige, entsprechend dem aktuellen Status			
 	if (tankStatus < 100){
-		pic = tank_empty;
+		frame = 4;
 	}
 	if (tankStatus >= 100 && tankStatus < 200){
-		pic = tank_red;
+		frame = 3;
 	}
 	if (tankStatus >= 200 && tankStatus < 300){
-		pic = tank_orange;
+		frame = 2;
 	}
 	if (tankStatus >= 300 && tankStatus < 400){
-		pic = tank_yellow;
+		frame = 1;
 	} 
 	if (tankStatus >= 400){
-		pic = tank_green;
+		frame = 0;
 	}
-	//console.log("tankStatus: " + tankStatus);
-	sctx.drawImage(pic, posW, posH);
 	
-	sctx.restore();
-	
+	t_sprite.drawFrame(sctx, frame, posW, posH);
 }
 
 // Lade naechstes Level
@@ -361,16 +337,10 @@ function nextLevel() {
 	clouds = [];
 	
 	lvlMngr.nextLevel();
-
-	alert(backgroundPic);
+	level = lvlMngr.getCurrentLevel();
 	
-	// Hintergrund neu laden
-	/*background = imgMngr.updatePath("background", backgroundPic);
-	alert(background.src);
-	background = imgMngr.get("background");
-	alert(background.src);*/
 	imgMngr.load({
-		"background" : backgroundPic
+		"background" : level.getBgPicture()
 	}, todo);
 	
 	flightAttitude = 0;
@@ -454,12 +424,8 @@ function drawScene() {
 	// Hintergrundbild zeichnen
 	updateBackground();
 	
-	// zeichne den Pfeil neu
-	updateWindArrow();
-	updateTank();
-	
-	// zeichne den Text
-	drawText();
+	// aktualisiere StatusBar
+	updateStatusBar();
 	
 	// aktuellisiere HeightBar 
 	updateHeightBar();
@@ -470,7 +436,9 @@ function drawScene() {
 function drawBalloon() {
 	// Zeichne den Ballon
 	updateBalloon();
-	ctx.drawImage(balloonPicture, balloonXPosition, balloonYPosition);
+	
+	b_sprite.drawFrame(ctx, balloonFrame, balloonXPosition, balloonYPosition);
+	//ctx.drawImage(balloonPicture, balloonXPosition, balloonYPosition);
 }
 
 function drawText() {
@@ -498,14 +466,14 @@ function drawClouds() {
 		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
 		if(balloonYPosition < 200)
 			clouds[b].y -= balloonVertSpeed;
-		
-		ctx.drawImage(clouds[b].pic, clouds[b].x, clouds[b].y);
-		//ctx.drawImage(bird, birds[b].x, birds[b].y);
+
+		var sprite = clouds[b].sprite;
+		sprite.drawFrame(ctx, clouds[b].frame, clouds[b].x, clouds[b].y);
 	}
 }
 
 function drawPowerUp() {
-	// Entferne alle Voegel, die sich nicht mehr innerhalb des Bildschirms befinden
+	// Entferne alle PowerUps, die sich nicht mehr innerhalb des Bildschirms befinden
 	for (var b = 0; b < powerUps.length; b++) {
 		if (powerUps[b].defunct == true || powerUps[b].x > width || powerUps[b].y > height ) {
 			powerUps.splice(b, 1);
@@ -514,22 +482,18 @@ function drawPowerUp() {
 	}
 	
 	for (var b = 0; b < powerUps.length; b++) {
-		// Bewege den Vogel nach rechts
-		powerUps[b].x += powerUps[b].speed;
-		
 		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
 		if(balloonYPosition < 200)
 			powerUps[b].y -= balloonVertSpeed;
 		
 		ctx.drawImage(powerUps[b].pic, powerUps[b].x, powerUps[b].y);
-		//ctx.drawImage(bird, birds[b].x, birds[b].y);
 	}
 }
 
 function drawEnemies() {
 	// Entferne alle Voegel, die sich nicht mehr innerhalb des Bildschirms befinden
 	for (var b = 0; b < enemies.length; b++) {
-		if (enemies[b].defunct == true || enemies[b].x > width || enemies[b].y > height ) {
+		if (enemies[b].defunct == true || enemies[b].x > (width + 100) || enemies[b].x < -100 || enemies[b].y > height ) {
 			enemies.splice(b, 1);
 			b--;
 		}
@@ -537,19 +501,26 @@ function drawEnemies() {
 	
 	for (var b = 0; b < enemies.length; b++) {
 		// Bewege den Vogel nach rechts
-		enemies[b].x += enemies[b].speed;
-		
-		var pic = enemies[b].pic1;
-		console.log("X: " + enemies[b].x);
+		enemies[b].x += enemies[b].speed;	
 		
 		var xPos = Math.round(enemies[b].x);
 		
+		var frame = 0;
+		
 		if((xPos % 50) >= 0 && (xPos % 50) <= 10) {
-			pic = enemies[b].pic1;
+			if(enemies[b].dir == 1)
+				frame = 0;
+			else
+				frame = 2;
+				
 			enemies[b].y += 3;
 		}
 		else {
-			pic = enemies[b].pic2;
+			if(enemies[b].dir == 1)
+				frame = 1;
+			else
+				frame = 3;
+				
 			enemies[b].y -= 3;
 		}
 		
@@ -557,7 +528,8 @@ function drawEnemies() {
 		if(balloonYPosition < 200)
 			enemies[b].y -= balloonVertSpeed;
 		
-		ctx.drawImage(pic, enemies[b].x, enemies[b].y);
-		//ctx.drawImage(bird, birds[b].x, birds[b].y);
+		var sprite = enemies[b].sprite;
+		
+		sprite.drawFrame(ctx, frame, enemies[b].x, enemies[b].y);
 	}
 }

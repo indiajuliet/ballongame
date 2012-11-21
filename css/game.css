@@ -265,3 +265,14 @@ body {
   text-align:center;
   width:250px;
 }
+
+#container li {
+    background: url(../pics/bird_sprite.png) no-repeat top left;
+}
+
+.sprite-bird_l1{ background-position: 0 0; width: 63px; height: 50px; } 
+.sprite-bird_l2{ background-position: -73px 0; width: 63px; height: 50px; } 
+.sprite-bird_r1{ background-position: -146px 0; width: 63px; height: 50px; } 
+.sprite-bird_r2{ background-position: -219px 0; width: 63px; height: 50px; } 
+.sprite-bird_wl1{ background-position: -292px 0; width: 63px; height: 50px; } 
+.sprite-bird_wr1{ background-position: -365px 0; width: 63px; height: 50px; } 

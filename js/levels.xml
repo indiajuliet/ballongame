@@ -4,7 +4,7 @@
 		<scene>
 			<background>
 				<picture>./pics/Level1_HG.png</picture>
-				<color>#6495ED</color>
+				<color>#6495ED</color>	
 				<music>blub.mp3</music>
 			</background>
 			<ground>ground1.png</ground>
@@ -26,7 +26,7 @@
 		<title>SecondStage</title>
 		<scene>
 			<background>
-				<picture>./pics/bird2.1.png</picture>
+				<picture>./pics/Level2_HG.png</picture>
 				<color>#FF0000</color>
 				<music>blub.mp3</music>
 			</background>
@@ -41,17 +41,21 @@
 			<powerUp id="0">fuel</powerUp>
 		</powerUps>
 		<lvlHeight>35000</lvlHeight>
-		<maxWindStrenght>9</maxWindStrenght>
+		<maxWindStrenght>0</maxWindStrenght>
 		<enemies>
-			<enemy id="0">bird</enemy>
-			<enemy id="1">plane</enemy>
+			<enemy id="0">
+				<name>bird</name>
+			</enemy>
+			<enemy id="1">
+				<name>plane</name>
+			</enemy>
 		</enemies>
 	</level>
 	<level id="2">
 		<title>ThirdStage</title>
 		<scene>
 			<background>
-				<picture></picture>
+				<picture>./pics/Level3_HG.png</picture>
 				<color>#00FF00</color>
 				<music>blub.mp3</music>
 			</background>
