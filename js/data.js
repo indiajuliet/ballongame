@@ -70,9 +70,11 @@ var maxLvlHeight = 0;
 var lvlMngr = null;
 var level = null;
 var imgMngr = null;
-var maxWindStrenght = 9;
+var maxWindStrenght = 0;
 var b_sprite = null;
 var t_sprite = null;
+var spriteSheet = null;
+var bgFrame = 0;
 
 //var xml;
 

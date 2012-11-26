@@ -62,13 +62,13 @@ function createCloud() {
 	
 	var frame = getRandom(0,2);
 	
-	var frames = [
-				[0, 0, 145, 100, 0, 0],
-				[146, 0, 172, 100, 0, 0],
-				[319, 0, 181, 100, 0, 0]
+	var cloudFrames = [
+				[0, 1689, 145, 100, 0, 0],
+				[146, 1689, 172, 100, 0, 0],
+				[319, 1689, 181, 100, 0, 0]
 			];
 	
-	var sprite = new SpriteSheet(cloudSprite, frames);
+	var sprite = new SpriteSheet(spriteSheet, cloudFrames);
 	var newCloud = new Cloud(x, y, s, sprite, frame);
 	clouds.push(newCloud);
 }	
@@ -118,13 +118,13 @@ function createEnemy() {
 	}
 	
 	var frames = [
-				[255, 0, 63, 50, 0, 0],
-				[63, 0, 63, 50, 0, 0],
-				[318, 0, 63, 50, 0, 0],
-				[191, 0, 63, 50, 0, 0]
+				[255, 1790, 63, 50, 0, 0],
+				[63, 1790, 63, 50, 0, 0],
+				[318, 1790, 63, 50, 0, 0],
+				[191, 1790, 63, 50, 0, 0]
 			];
 	
-	var sprite = new SpriteSheet(birdSprite, frames);
+	var sprite = new SpriteSheet(spriteSheet, frames);
 	var newEnemy = new Enemy(x, y, s, sprite, side);
 	enemies.push(newEnemy);
 }
@@ -134,6 +134,12 @@ function updateBalloon() {
 	
 	// Flughoehe aktualisieren
 	flightAttitude += -balloonVertSpeed;
+	
+	// Geschwindigkeit drosseln
+	if(balloonVertSpeed <= -20)
+		balloonVertSpeed = -20;
+	if(balloonVertSpeed >= 20)
+		balloonVertSpeed = 20;
 	
 	// Falls die Y Position des Ballons < 200 ist wird der Ballon nicht mehr bewegt nur die Objekte
 	if(balloonYPosition > 200) {
@@ -186,9 +192,10 @@ function updateBalloon() {
 	//collision();
 	
 	// verringere geschwindigkeit jede Sekunde um 1 (Schwerkraft)
-	if(timer == 20) {
-		if(balloonVertSpeed >= -20 && balloonVertSpeed <= 20) 
-			balloonVertSpeed += 0.4;
+	if(timer == 10) {
+		if(balloonVertSpeed >= -20 && balloonVertSpeed <= 20) {
+			balloonVertSpeed += 1;
+		}
 		
 		timer = 0;
 		balloonFrame = 0;
@@ -336,18 +343,16 @@ function nextLevel() {
 	// Wolken-Array leeren
 	clouds = [];
 	
-	lvlMngr.nextLevel();
-	level = lvlMngr.getCurrentLevel();
-	
-	imgMngr.load({
-		"background" : level.getBgPicture()
-	}, todo);
+	level =lvlMngr.nextLevel();
+	updateLevel(level);
 	
 	flightAttitude = 0;
 }
 
-function todo() {
-	background = imgMngr.get("background");
+function updateLevel(level) {
+	maxLvlHeight = level.getLvlHeight();
+	maxWindStrenght = level.getMaxWindStrenght();
+	bgFrame = level.getLevelNr();
 }
 
 // Dreht ein Objekt entsprechend der Gradzahl (jQuery)
@@ -383,10 +388,10 @@ function getRandom(min, max) {
 }
 
 function updateBackground() {
-	var yPos = background.height - height;
+	var yPos = 1300 - height;
 	yPos = yPos - (flightAttitude / 50);
 	
-	ctx.drawImage(background, 0, -yPos);
+	bg_sprite.drawFrame(ctx, bgFrame, 0, -yPos);
 }
 
 function clearScene() {

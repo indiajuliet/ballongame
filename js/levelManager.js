@@ -49,41 +49,12 @@ LevelManager.prototype.loadLevel = function(lvl) {
 		var id = $(this).attr('id');
 		
 		if(id == lvl) {
-			/*	
-			Level.prototype.color = $(this).find('color').text();
-			Level.prototype.title = $(this).find('title').text();
-			*/
-			// setze die Hintergrundfarbe
-			/*if(this.level.color == null || this.level.color == "")
-				SKY_COLOR = STD_SKY_COLOR;
-			else
-				SKY_COLOR = color;*/
-			
-			// setze Hintergrundbild
+			Level.prototype.setLevelNr(id);
+			Level.prototype.setColor($(this).find('color').text());
+			Level.prototype.setTitle($(this).find('title').text());
 			Level.prototype.setBgPicture($(this).find('picture').text());
-		
-			/*this.level.lvlHeight = $(this).find('lvlHeight').text();
-			this.level.maxWindStrength = $(this).find('maxWindStrenght').text();	*/
-			
-			backgroundPic = $(this).find('picture').text();
-			
-			// setze maximale Level Hoehe
-			maxLvlHeight = $(this).find('lvlHeight').text();
-			
-			// maximale Windstaerke
-			maxWindStrenght = $(this).find('maxWindStrenght').text();
-			
-			
-			/*$(this).find('cloud').each(function(){
-				var id = $(this).attr('id');
-				id = id++;
-				var obj = "cloud" + id;
-				eval(obj);
-				
-				obj = $(this).text();
-				
-				//$(cloud+(id+1)) =  $(this).text();
-			});*/
+			Level.prototype.setLvlHeight($(this).find('lvlHeight').text());
+			Level.prototype.setMaxWindStrenght($(this).find('maxWindStrenght').text());
 		}
 	});
 	
@@ -94,6 +65,7 @@ LevelManager.prototype.loadLevel = function(lvl) {
 LevelManager.prototype.nextLevel = function() {
 	this.currentLevel++;
 	this.loadLevel(this.currentLevel);
+	return this.getCurrentLevel();
 }
 
 // Vorherriges Level

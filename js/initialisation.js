@@ -35,19 +35,14 @@ window.addEventListener("load", function() {
 	lvlMngr.init("js/levels.xml");
 	
 	level = lvlMngr.getCurrentLevel();
-	alert(level.getBgPicture());
+	updateLevel(level);
 	
 	// Image Manager
 	imgMngr =  new ImageManager();
 	imgMngr.load({
-		"birdSprite"			: "./pics/bird_sprite.png",
-		"cloudSprite" 			: "./pics/cloud_sprite.png",
-		"balloonSprite"			: "./pics/balloon_sprite.png",
-		"windArrow"		 		: "./pics/up_arrow_small.png",
-		"buttonPlay" 			: "./pics/button_play.png",
-		"tankSprite"			: "./pics/tank_sprite.png",
-		"tank"					: "./pics/tank.png",
-		"background"			: level.getBgPicture()
+		"spriteSheet"			: "./pics/spriteSheets/spriteSheet.png",
+		"tank"					: "./pics/tank.png",		
+		"windArrow"		 		: "./pics/up_arrow_small.png"
 	}, onDone);
 	
 	// Mouse Events
@@ -57,38 +52,41 @@ window.addEventListener("load", function() {
 }, false);
 
 function onDone() {
-	cloudSprite 	= imgMngr.get("cloudSprite");
-	balloonSprite	= imgMngr.get("balloonSprite");
-	birdSprite		= imgMngr.get("birdSprite");
-	tankSprite		= imgMngr.get("tankSprite");
-	windArrow 		= imgMngr.get("windArrow");
-	buttonPlay 		= imgMngr.get("buttonPlay");
+	spriteSheet 	= imgMngr.get("spriteSheet");
 	tank 			= imgMngr.get("tank");
-	background 		= imgMngr.get("background");
+	windArrow 		= imgMngr.get("windArrow");
 	
-	var ballonFrames = [
-				[0, 0, 124, 216, 0, 0],
-				[125, 0, 124, 216, 0, 0],
-				[250, 0, 124, 216, 0, 0],
-				[375, 0, 34, 59, 0, 0],
-				[410, 0, 34, 59, 0, 0],
-				[445, 0, 34, 59, 0, 0]
+	var bgFrames = [
+				[0, 0, 480, 1300, 0, 0],
+				[481, 0, 480, 1300, 0, 0],
+				[962, 0, 480, 1300, 0, 0]
 			];
 	
-	b_sprite = new SpriteSheet(balloonSprite, ballonFrames);
+	bg_sprite = new SpriteSheet(spriteSheet, bgFrames);
+	
+	var balloonFrames = [
+				[0, 1472, 124, 216, 0, 0],
+				[125, 1472, 124, 216, 0, 0],
+				[250, 1472, 124, 216, 0, 0],
+				[375, 1472, 34, 59, 0, 0],
+				[410, 1472, 34, 59, 0, 0],
+				[445, 1472, 34, 59, 0, 0]
+			];
+	
+	b_sprite = new SpriteSheet(spriteSheet, balloonFrames);
 	
 	balloonFrame = 0;
 	heightBarFrame = 3;
 	
 	var tankFrames = [
-				[0, 0, 42, 39, 0, 0],
-				[43, 0, 42, 39, 0, 0],
-				[86, 0, 42, 39, 0, 0],
-				[129, 0, 42, 39, 0, 0],
-				[172, 0, 42, 39, 0, 0]
+				[0, 1841, 42, 39, 0, 0],
+				[43, 1841, 42, 39, 0, 0],
+				[86, 1841, 42, 39, 0, 0],
+				[129, 1841, 42, 39, 0, 0],
+				[172, 1841, 42, 39, 0, 0]
 			];
 	
-	t_sprite = new SpriteSheet(tankSprite, tankFrames);
+	t_sprite = new SpriteSheet(spriteSheet, tankFrames);
 }
 
 // Event zum starten des Spieles
