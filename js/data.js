@@ -70,38 +70,11 @@ var lvlMngr = null;
 var level = null;
 var imgMngr = null;
 var maxWindStrenght = 0;
+var cloud_sprite = null;
 var b_sprite = null;
+var enemy_sprite = null;
 var t_sprite = null;
 var spriteSheet = null;
 var bgFrame = 0;
-
-//var xml;
-
-// Definiere ein Wolken Objekt
-var Cloud = function(x, y, s, sp, f) {
-	this.x = x;
-	this.y = y;
-	this.speed = s;
-	this.sprite = sp;
-	this.frame = f;
-	this.defunct = false;
-}   
-
-// Neues powerUp
-var powerUp = function(x, y, p, t) {
-	this.x = x;
-	this.y = y;
-	this.pic = p;
-	this.type = t;
-	this.defunct = false;
-}
-
-// Definiere ein Gegner
-var Enemy = function(x, y, s, sp, d) {
-	this.x = x;
-	this.y = y;
-	this.speed = s;
-	this.sprite = sp;
-	this.dir = d;
-	this.defunct = false;
-}
+var hasFocus = true;
+var isStarted = false;

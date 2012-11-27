@@ -62,14 +62,7 @@ function createCloud() {
 	
 	var frame = getRandom(0,2);
 	
-	var cloudFrames = [
-				[0, 1689, 145, 100, 0, 0],
-				[146, 1689, 172, 100, 0, 0],
-				[319, 1689, 181, 100, 0, 0]
-			];
-	
-	var sprite = new SpriteSheet(spriteSheet, cloudFrames);
-	var newCloud = new Cloud(x, y, s, sprite, frame);
+	var newCloud = new Cloud(x, y, s, frame);
 	clouds.push(newCloud);
 }	
 
@@ -97,7 +90,7 @@ function createPowerUp() {
 			break;
 	}
 
-	var newpowerUp = new powerUp(x, y, pic, type);
+	var newpowerUp = new PowerUp(x, y, 0, 0, type, pic);
 	powerUps.push(newpowerUp);
 }
 
@@ -117,15 +110,7 @@ function createEnemy() {
 		s = -s;
 	}
 	
-	var frames = [
-				[255, 1790, 63, 50, 0, 0],
-				[63, 1790, 63, 50, 0, 0],
-				[318, 1790, 63, 50, 0, 0],
-				[191, 1790, 63, 50, 0, 0]
-			];
-	
-	var sprite = new SpriteSheet(spriteSheet, frames);
-	var newEnemy = new Enemy(x, y, s, sprite, side);
+	var newEnemy = new Enemy(x, y, s, 0, side);
 	enemies.push(newEnemy);
 }
 
@@ -394,10 +379,43 @@ function updateBackground() {
 	bg_sprite.drawFrame(ctx, bgFrame, 0, -yPos);
 }
 
-function clearScene() {
+function clearScene() {	
 	ctx.clearRect(0,0, width, height);
 	sctx.clearRect(0,0, width, 40);
 	hctx.clearRect(0,0, 40, height);
+}
+
+function checkFocus() {
+	$(window).bind('blur', function(){
+        hasFocus = false;
+    });
+
+    $(window).bind('focus', function(){
+        hasFocus = true;
+    });
+    // IE EVENTS
+    $(document).bind('focusout', function(){
+        hasFocus = false;
+    });
+
+    $(document).bind('focusin', function(){
+        hasFocus = true;
+    });
+	
+	/*$(window).bind("blur", function() {
+		hasFocus = false;
+	});
+
+	$(window).bind("focus", function() {
+		hasFocus = true;
+	});*/
+	
+	if(hasFocus)
+		startGame();
+	else
+		pauseGame();
+		
+	console.log("hasFocus: " + hasFocus + " isStarted: " + isStarted);
 }
 
 //===========================================================
@@ -406,6 +424,8 @@ function clearScene() {
 
 // Zeichnet alles (Diese Funktion wird jede 50 ms wiederholt)
 function draw() {
+	checkFocus();
+		
 	drawScene();
 	drawClouds();
 	drawBalloon();
@@ -471,9 +491,8 @@ function drawClouds() {
 		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
 		if(balloonYPosition < 200)
 			clouds[b].y -= balloonVertSpeed;
-
-		var sprite = clouds[b].sprite;
-		sprite.drawFrame(ctx, clouds[b].frame, clouds[b].x, clouds[b].y);
+			
+		cloud_sprite.drawFrame(ctx, clouds[b].frame, clouds[b].x, clouds[b].y);
 	}
 }
 
@@ -532,9 +551,7 @@ function drawEnemies() {
 		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
 		if(balloonYPosition < 200)
 			enemies[b].y -= balloonVertSpeed;
-		
-		var sprite = enemies[b].sprite;
-		
-		sprite.drawFrame(ctx, frame, enemies[b].x, enemies[b].y);
+	
+		enemy_sprite.drawFrame(ctx, frame, enemies[b].x, enemies[b].y);
 	}
 }

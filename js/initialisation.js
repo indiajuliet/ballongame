@@ -26,9 +26,7 @@ window.addEventListener("load", function() {
 	HBWidth = myHeightBar.width;
 	HBHeight = myHeightBar.height;
 	SBWidth = myStatusBar.width;
-	SBHeight = myStatusBar.height;
-	
-	//loadAllImages();
+	SBHeight = myStatusBar.height;	
 	
 	// Level Manager
 	lvlMngr = new LevelManager();
@@ -61,6 +59,14 @@ function onDone() {
 	
 	bg_sprite = new SpriteSheet(spriteSheet, bgFrames);
 	
+	var cloudFrames = [
+				[0, 1689, 145, 100, 0, 0],
+				[146, 1689, 172, 100, 0, 0],
+				[319, 1689, 181, 100, 0, 0]
+			];
+	
+	cloud_sprite = new SpriteSheet(spriteSheet, cloudFrames);
+	
 	var balloonFrames = [
 				[0, 1472, 124, 216, 0, 0],
 				[125, 1472, 124, 216, 0, 0],
@@ -74,6 +80,15 @@ function onDone() {
 	
 	balloonFrame = 0;
 	heightBarFrame = 3;
+	
+	var enemy_frames = [
+				[255, 1790, 63, 50, 0, 0],
+				[63, 1790, 63, 50, 0, 0],
+				[318, 1790, 63, 50, 0, 0],
+				[191, 1790, 63, 50, 0, 0]
+			];
+	
+	enemy_sprite = new SpriteSheet(spriteSheet, enemy_frames);
 	
 	var tankFrames = [
 				[0, 1841, 42, 39, 0, 0],
@@ -98,7 +113,8 @@ $(document).ready(function(){
 		startNewGame(3);
 	});
 	$("#backBtn").click(function() {
-		pauseGame();
+		if(isStarted == true)
+			pauseGame();
 	});
 	$("#playBtn").click(function() {
 		//startGame();
@@ -106,6 +122,7 @@ $(document).ready(function(){
 	$("#pauseBtn").click(function() {
 		pauseGame();
 	});
+	
 });
 
 
@@ -118,13 +135,13 @@ function playBackgroundMusic() {
 	audio.src = "audio/backgroundMusic.mp3";
 }
 
-// starte das Spiel
+// starte ein neues Spiel
 function startNewGame(lvl) {
 	clearLevel();
 	
 	level = lvlMngr.loadLevel(lvl-1);
 	updateLevel(level);
-	
+
 	startGame();
 }
 
@@ -134,6 +151,10 @@ function clearLevel() {
 	flightAttitude = 0;
 	tankStatus = 420;
 	
+	clouds = [];
+	powerUps = [];
+	enemies = [];
+	
 	balloonXPosition = 200;
 	balloonYPosition = 250;
 	balloonDirection = 0;
@@ -141,25 +162,36 @@ function clearLevel() {
 	balloonHorSpeed = 0;
 	balloonFrame = 0;
 	heightBarFrame = 3;
+	
+	hasFocus = true;
+	isStarted = false;
 }
 
 function startGame() {
-	gameHandle = setInterval(draw, 50);
-	cloudHandle = setInterval(createCloud, 1000);
-	powerUpHandle = setInterval(createPowerUp, 15000);
-	enemyHandle = setInterval(createEnemy, 1000);
+	if(hasFocus && !isStarted) {
+		isStarted = true;
+		
+		gameHandle = setInterval(draw, 50);
+		cloudHandle = setInterval(createCloud, 1000);
+		powerUpHandle = setInterval(createPowerUp, 15000);
+		enemyHandle = setInterval(createEnemy, 1000);
+	}
 }
 
 function stopGame() {
-	clearInterval(gameHandle);
-	clearInterval(cloudHandle);
-	clearInterval(powerUpHandle);
-	clearInterval(enemyHandle);
+	if(isStarted) {
+		isStarted = false;
 	
-	gameHandle = 0;
-	cloudHandle = 0;
-	powerUpHandle = 0;
-	enemyHandle = 0;
+		clearInterval(gameHandle);
+		clearInterval(cloudHandle);
+		clearInterval(powerUpHandle);
+		clearInterval(enemyHandle);
+	
+		gameHandle = 0;
+		cloudHandle = 0;
+		powerUpHandle = 0;
+		enemyHandle = 0;
+	}
 }
 
 // Spiel pausieren oder wieder fortsetzen

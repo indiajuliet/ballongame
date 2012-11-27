@@ -45,6 +45,8 @@ LevelManager.prototype.getCurrentLevelId = function() {
 
 // Lade das uebergebene Level
 LevelManager.prototype.loadLevel = function(lvl) {
+	this.currentLevel = lvl;
+	
 	$(this.xml).find('level').each(function(){
 		var id = $(this).attr('id');
 		
