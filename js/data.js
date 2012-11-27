@@ -46,14 +46,13 @@ var enemies = [];
 var tankStatus = 420;
 
 // Balloon Variablen
-var balloonXPosition = 150;
+var balloonXPosition = 200;
 var balloonYPosition = 250;
 var balloonDirection = 0;
 var balloonVertSpeed = 0;
 var balloonHorSpeed = 0;
 var balloonFrame = 0;
 var heightBarFrame = 3;
-
 
 var sunPosition = -120;
 var timer = 0;
