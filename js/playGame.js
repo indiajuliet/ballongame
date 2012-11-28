@@ -402,14 +402,6 @@ function checkFocus() {
         hasFocus = true;
     });
 	
-	/*$(window).bind("blur", function() {
-		hasFocus = false;
-	});
-
-	$(window).bind("focus", function() {
-		hasFocus = true;
-	});*/
-	
 	if(hasFocus)
 		startGame();
 	else

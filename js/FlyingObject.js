@@ -11,6 +11,10 @@ FlyingObject = function(x, y, s, f) {
 	this.defunct = false;
 }
 
+/****
+*  Wolke
+*
+****/
 Cloud = function(x, y, s, f, sp) {	
 	this.base = FlyingObject;
 	this.base(x, y, s, f);
@@ -19,6 +23,10 @@ Cloud = function(x, y, s, f, sp) {
 Cloud.prototype = new FlyingObject();
 Cloud.prototype.constructor = Cloud;
 
+/****
+*  PowerUp
+*
+****/
 PowerUp = function(x, y, s, f, t, p) {
 	this.base = FlyingObject;
 	this.base(x, y, s, f);
@@ -30,6 +38,10 @@ PowerUp = function(x, y, s, f, t, p) {
 PowerUp.prototype = new FlyingObject();
 PowerUp.prototype.constructor = PowerUp;
 
+/****
+*  Gegner
+*
+****/
 Enemy = function(x, y, s, f, d) {
 	this.base = FlyingObject;
 	this.base(x, y, s, f);
