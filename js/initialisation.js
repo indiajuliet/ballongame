@@ -40,6 +40,8 @@ window.addEventListener("load", function() {
 		"windArrow"		 		: "./pics/up_arrow_small.png"
 	}, onDone);
 	
+	balloon = new Balloon(balloonXPosition, balloonYPosition, balloonHorSpeed, balloonVertSpeed, balloonFrame);
+	
 	// Mouse Events
 	document.addEventListener("mousemove", moveBalloon, false);
 	document.addEventListener("mousedown", fireBullet, false);
@@ -57,7 +59,7 @@ function onDone() {
 				[962, 0, 480, 1300, 0, 0]
 			];
 	
-	bg_sprite = new SpriteSheet(spriteSheet, bgFrames);
+	backgroundSprite = new SpriteSheet(spriteSheet, bgFrames);
 	
 	var cloudFrames = [
 				[0, 1689, 145, 100, 0, 0],
@@ -65,7 +67,7 @@ function onDone() {
 				[319, 1689, 181, 100, 0, 0]
 			];
 	
-	cloud_sprite = new SpriteSheet(spriteSheet, cloudFrames);
+	cloudSprite = new SpriteSheet(spriteSheet, cloudFrames);
 	
 	var balloonFrames = [
 				[0, 1472, 124, 216, 0, 0],
@@ -76,19 +78,19 @@ function onDone() {
 				[445, 1472, 34, 59, 0, 0]
 			];
 	
-	b_sprite = new SpriteSheet(spriteSheet, balloonFrames);
+	balloonSprite = new SpriteSheet(spriteSheet, balloonFrames);
 	
-	balloonFrame = 0;
-	heightBarFrame = 3;
+	balloon.setFrame(0);
+	balloon.setHeightBarFrame(3);
 	
-	var enemy_frames = [
+	var enemyFrames = [
 				[255, 1790, 63, 50, 0, 0],
 				[63, 1790, 63, 50, 0, 0],
 				[318, 1790, 63, 50, 0, 0],
 				[191, 1790, 63, 50, 0, 0]
 			];
 	
-	enemy_sprite = new SpriteSheet(spriteSheet, enemy_frames);
+	enemySprite = new SpriteSheet(spriteSheet, enemyFrames);
 	
 	var tankFrames = [
 				[0, 1841, 42, 39, 0, 0],
@@ -98,7 +100,13 @@ function onDone() {
 				[172, 1841, 42, 39, 0, 0]
 			];
 	
-	t_sprite = new SpriteSheet(spriteSheet, tankFrames);
+	tankSprite = new SpriteSheet(spriteSheet, tankFrames);
+	
+	var powerupFrames = [
+				[0, 1920, 42, 60, 0, 0]
+			];
+	
+	powerupSprite = new SpriteSheet(spriteSheet, powerupFrames);
 }
 
 // Event zum starten des Spieles
@@ -148,20 +156,16 @@ function startNewGame(lvl) {
 function clearLevel() {
 	stopGame();
 
-	flightAttitude = 0;
-	tankStatus = 420;
+	balloon.setFlightAttitude(0);
+	balloon.setTankStatus(420);
 	
-	clouds = [];
-	powerUps = [];
-	enemies = [];
+	objects = [];
 	
-	balloonXPosition = 200;
-	balloonYPosition = 250;
-	balloonDirection = 0;
-	balloonVertSpeed = 0;
-	balloonHorSpeed = 0;
-	balloonFrame = 0;
-	heightBarFrame = 3;
+	balloon.setX(200);
+	balloon.setX(250);
+	balloon.setVertSpeed(0);
+	balloon.setHorSpeed(0);
+	balloon.setFrame(0);
 	
 	hasFocus = true;
 	isStarted = false;

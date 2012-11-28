@@ -43,9 +43,12 @@ var clouds = [];
 var powerUps = [];
 var enemies = [];
 
+var objects = [];
+
 var tankStatus = 420;
 
 // Balloon Variablen
+var balloon = null;
 var balloonXPosition = 200;
 var balloonYPosition = 250;
 var balloonDirection = 0;
@@ -70,10 +73,10 @@ var lvlMngr = null;
 var level = null;
 var imgMngr = null;
 var maxWindStrenght = 0;
-var cloud_sprite = null;
-var b_sprite = null;
-var enemy_sprite = null;
-var t_sprite = null;
+var cloudSprite = null;
+var balloonSprite = null;
+var enemySprite = null;
+var tanksprite = null;
 var spriteSheet = null;
 var bgFrame = 0;
 var hasFocus = true;

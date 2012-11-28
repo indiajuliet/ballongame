@@ -9,28 +9,24 @@ function moveBalloon(e) {
 function keyDown(e) {
 	switch (e.keyCode) {
 		case LEFT_ARROW:
-			balloonHorSpeed--;
-			balloonDirection = -1;
+			balloon.decHorSpeed(1);
 			break;
 			
 		case RIGHT_ARROW:
-			balloonHorSpeed++;
-			balloonDirection = 1;
+			balloon.incHorSpeed(1);
 			break;
 			
 		case UP_ARROW:
-			balloonFrame = 1;
-			heightBarFrame = 4;
-			balloonDirection = -2;
-			balloonVertSpeed--;
-			tankStatus--;
+			balloon.decVertSpeed(1);
+			balloon.decTankStatus(1);
+			balloon.setFrame(1);
+			balloon.setHeightBarFrame(4);
 			break;	
 			
 		case DOWN_ARROW:
-			balloonFrame = 2;
-			heightBarFrame = 5;
-			balloonVertSpeed++;
-			balloonDirection = 2;
+			balloon.incVertSpeed(1);
+			balloon.setFrame(2);
+			balloon.setHeightBarFrame(5);
 			break;
 			
 		case SPACE_BAR:
@@ -50,142 +46,46 @@ function fireBullet() {
 
 // erstellt eine Wolke an einer Zufaelligen Stelle
 function createCloud() {
-	var x = getRandom(-100, width + 100);
-	var y = getRandom(-100, height);
-	var s = windSpeed;
-	
-	// Ermittle die Position des naechsten Objekts
-	if(x >= 0)
-		y = -100;
-	else if(y >= 0)
-		x = -100;
-	
-	var frame = getRandom(0,2);
-	
-	var newCloud = new Cloud(x, y, s, frame);
-	clouds.push(newCloud);
+	var newCloud = new Cloud(cloudSprite);
+	//clouds.push(newCloud);
+	objects.push(newCloud);
 }	
 
 //Erzeugt ein zufälliges Power Up
 function createPowerUp() {
-	var x = getRandom(0, width-40);
-	var y = getRandom(-100 , -60);
-		
-	// Waehle zufaellig ein Bild
-	var nr = getRandom(0,1);
-	var pic, type;
-	
-	switch(nr) {
-		case 0:
-			pic = tank;
-			type = 0;
-			break;
-		case 1:
-			pic = tank;
-			type = 1;
-			break;
-		default:
-			pic = gas;
-			type = 0;
-			break;
-	}
-
-	var newpowerUp = new PowerUp(x, y, 0, 0, type, pic);
-	powerUps.push(newpowerUp);
+	var newpowerUp = new PowerUp(powerupSprite);
+	//powerUps.push(newpowerUp);
+	objects.push(newpowerUp);
 }
 
 //Erzeugt ein zufälliges Power Up
 function createEnemy() {
-	var side = getRandom(0, 1);
-	var y = getRandom(0, 300);
-	var s = getRandom(3, 7);
-	var dir, x;
-	
-	// Ermittle die Position des naechsten Objekts
-	if(side == 0) {
-		x = 0;
-	}
-	else {
-		x = width;
-		s = -s;
-	}
-	
-	var newEnemy = new Enemy(x, y, s, 0, side);
-	enemies.push(newEnemy);
+	var newEnemy = new Bird(enemySprite);
+	//enemies.push(newEnemy);
+	objects.push(newEnemy);
 }
 
 // verringere Geschwindigkeit (beim Fallen)
 function updateBalloon() {
-	
 	// Flughoehe aktualisieren
-	flightAttitude += -balloonVertSpeed;
+	balloon.incFlightAttitude(-balloon.getVertSpeed());
 	
 	// Geschwindigkeit drosseln
-	if(balloonVertSpeed <= -20)
-		balloonVertSpeed = -20;
-	if(balloonVertSpeed >= 20)
-		balloonVertSpeed = 20;
-	
-	// Falls die Y Position des Ballons < 200 ist wird der Ballon nicht mehr bewegt nur die Objekte
-	if(balloonYPosition > 200) {
-		balloonYPosition += balloonVertSpeed;
-	}
-	
-	// Falls die Flughoehe kleiner Null ist nicht mehr sinken
-	if(flightAttitude < 0) {
-		flightAttitude = 0;
-		balloonVertSpeed = 0;
-	}
-	
-	// Falls die Flughoehe die maximale Level Hoehe erreicht
-	if(flightAttitude > maxLvlHeight) {
-		flightAttitude = maxLvlHeight;
-		balloonVertSpeed = 0;
+	balloon.derate();
 		
-		// lade naechstes Level
+	balloon.checkBoundary();
+	
+	balloon.incHorSpeed(windSpeed / 100);
+	balloon.incX(balloon.getHorSpeed());
+	
+	if(balloon.checkAttitude())
 		nextLevel();
-	}
-	flightAttitude = Math.round(flightAttitude);
-	
-	//console.log("Höhe: " + flightAttitude + "Max Höhe: " + maxLvlHeight);
-	
-	// Beende Bewegung wenn Ballon am Rand ist
-	if(balloonXPosition <= 0) { 						// linker Rand
-		if(balloonHorSpeed < 0) {
-			balloonHorSpeed = 0;
-			balloonXPosition = 0;
-		}
-	}
-	else if((balloonXPosition + 124) >= width) {		// rechter Rand
-		if(balloonHorSpeed > 0) {
-			balloonHorSpeed = 0;
-			balloonXPosition = (width - 124);
-		}
-	}
-	
-	balloonHorSpeed += windSpeed / 100;
-	balloonXPosition += balloonHorSpeed;
-	
-	//console.log("WindSpeed: " + windSpeed + " balloonHorSpeed: " + balloonHorSpeed);
-	
-	timer++;
 	
 	//Falls Ballon auf ein PowerUp trifft, wird dieses entfernt und die entsprechende Aktion ausgeführt
-	collect();
+	//collect();
 	
 	//Falls Vogel in den Ballon fliegt
 	//collision();
-	
-	// verringere geschwindigkeit jede Sekunde um 1 (Schwerkraft)
-	if(timer == 10) {
-		if(balloonVertSpeed >= -20 && balloonVertSpeed <= 20) {
-			balloonVertSpeed += 1;
-		}
-		
-		timer = 0;
-		balloonFrame = 0;
-		heightBarFrame = 3;
-	}
 }
 
 function collect(){
@@ -194,7 +94,7 @@ function collect(){
 				&& enemies[b].x <= balloonXPosition + 260 && enemies[b].y <= balloonYPosition + 550){
 			var type = enemies[b].type;
 			if (type == 0){
-				balloonVertSpeed = 0;
+				balloon.setVertSpeed(0);
 			}
 			
 			enemies.splice(b, 1);
@@ -240,7 +140,6 @@ function updateWindArrow() {
 }
 
 function updateHeightBar() {
-	
 	// Zeichne horizontale Linien
 	var s = height / 10;
 	
@@ -259,12 +158,10 @@ function updateHeightBar() {
 	hctx.save();
 	
 	var step = (height - 80) / maxLvlHeight;
-	var relHeight = (height - 80) - (flightAttitude * step);
+	var relHeight = (height - 80) - (balloon.getFlightAttitude() * step);
 	var center = HBWidth / 2;
-	
-	//hctx.drawImage(heightBarPicture, 0, relHeight);
-	
-	b_sprite.drawFrame(hctx, heightBarFrame, center - 16, relHeight);	
+
+	balloonSprite.drawFrame(hctx, balloon.getHeightBarFrame(), center - 16, relHeight);	
 	
 	hctx.restore();
 }
@@ -295,43 +192,30 @@ function updateStatusBar(){
 	// aktualisiere Windpfeil 
 	updateWindArrow();
 	
+	// zeichne Tankstatus
+	drawTankStatus();
+}
+
+function drawTankStatus() {
 	// Position der Tankanzeige
 	var posW = width - 50;
 	var posH = 1;
-
-	var frame = 0;
 	
-	// Hole die richtige Tankanzeige, entsprechend dem aktuellen Status			
-	if (tankStatus < 100){
-		frame = 4;
-	}
-	if (tankStatus >= 100 && tankStatus < 200){
-		frame = 3;
-	}
-	if (tankStatus >= 200 && tankStatus < 300){
-		frame = 2;
-	}
-	if (tankStatus >= 300 && tankStatus < 400){
-		frame = 1;
-	} 
-	if (tankStatus >= 400){
-		frame = 0;
-	}
+	// Hole die richtige Tankanzeige, entsprechend dem aktuellen Status
+	var frame = balloon.getTankFrame();
 	
-	t_sprite.drawFrame(sctx, frame, posW, posH);
+	tankSprite.drawFrame(sctx, frame, posW, posH);
 }
 
 // Lade naechstes Level
 function nextLevel() {
 	clearScene();
+	clearLevel();
 	
-	// Wolken-Array leeren
-	clouds = [];
-	
-	level =lvlMngr.nextLevel();
+	level = lvlMngr.nextLevel();
 	updateLevel(level);
 	
-	flightAttitude = 0;
+	startGame();
 }
 
 function updateLevel(level) {
@@ -353,30 +237,18 @@ function rotate($object, degree) {
 }
 
 // Erstellt eine zufaellige Zahl in einem bestimmten Bereich 
-function getRandom(min, max) {
-	if (min > max) {
-		return -1;
-	}
- 
-	if (min == max) {
-		return min;
-	}
- 
-	var r;
- 
-	do {
-		r = Math.random();
-	}
-	while(r == 1.0);
- 
-	return min + parseInt(r * (max-min+1));
+function getRandom(a, b) {
+	var z = Math.random();
+	z *= (b - a + 1);
+	z += a;
+	return (Math.floor(z));
 }
 
 function updateBackground() {
 	var yPos = 1300 - height;
-	yPos = yPos - (flightAttitude / 50);
+	yPos = yPos - (balloon.getFlightAttitude() / 50);
 	
-	bg_sprite.drawFrame(ctx, bgFrame, 0, -yPos);
+	backgroundSprite.drawFrame(ctx, bgFrame, 0, -yPos);
 }
 
 function clearScene() {	
@@ -407,7 +279,7 @@ function checkFocus() {
 	else
 		pauseGame();
 		
-	console.log("hasFocus: " + hasFocus + " isStarted: " + isStarted);
+	//console.log("hasFocus: " + hasFocus + " isStarted: " + isStarted);
 }
 
 //===========================================================
@@ -419,10 +291,8 @@ function draw() {
 	checkFocus();
 		
 	drawScene();
-	drawClouds();
 	drawBalloon();
-	drawPowerUp();
-	drawEnemies();
+	drawObjects();
 }
 
 // Zeichnet alle Hintergrundteile der Szene 
@@ -454,96 +324,36 @@ function drawBalloon() {
 	// Zeichne den Ballon
 	updateBalloon();
 	
-	b_sprite.drawFrame(ctx, balloonFrame, balloonXPosition, balloonYPosition);
-	//ctx.drawImage(balloonPicture, balloonXPosition, balloonYPosition);
+	balloonSprite.drawFrame(ctx, balloon.getFrame(), balloon.getX(), balloon.getY());
 }
 
 function drawText() {
 	// Flughoehe
 	sctx.fillStyle = "white";
     sctx.font = "Bold 16px Sans-Serif";
-	sctx.fillText(flightAttitude + "m", 10, 20);
+	sctx.fillText(balloon.getFlightAttitude() + "m", 10, 20);
 }
 
-// Zeichnet alle Wolken
-function drawClouds() {
-	// Entferne alle Wolken, die sich nicht mehr innerhalb des Bildschirms befinden
-	for (var b = 0; b < clouds.length; b++) {
-		if (clouds[b].defunct == true || clouds[b].x + 200 < 0 || clouds[b].y + 100 < 0 || clouds[b].x > width || clouds[b].y > height) {
-			clouds.splice(b, 1);
-			b--;
-		}
-	}
-	
-	for (var b = 0; b < clouds.length; b++) {
-		// Bewege die Wolken
-		clouds[b].speed += windSpeed / 100; // Wind
-		clouds[b].x += clouds[b].speed;
-		
-		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
-		if(balloonYPosition < 200)
-			clouds[b].y -= balloonVertSpeed;
-			
-		cloud_sprite.drawFrame(ctx, clouds[b].frame, clouds[b].x, clouds[b].y);
-	}
-}
-
-function drawPowerUp() {
-	// Entferne alle PowerUps, die sich nicht mehr innerhalb des Bildschirms befinden
-	for (var b = 0; b < powerUps.length; b++) {
-		if (powerUps[b].defunct == true || powerUps[b].x > width || powerUps[b].y > height ) {
-			powerUps.splice(b, 1);
-			b--;
-		}
-	}
-	
-	for (var b = 0; b < powerUps.length; b++) {
-		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
-		if(balloonYPosition < 200)
-			powerUps[b].y -= balloonVertSpeed;
-		
-		ctx.drawImage(powerUps[b].pic, powerUps[b].x, powerUps[b].y);
-	}
-}
-
-function drawEnemies() {
+function drawObjects() {
 	// Entferne alle Voegel, die sich nicht mehr innerhalb des Bildschirms befinden
-	for (var b = 0; b < enemies.length; b++) {
-		if (enemies[b].defunct == true || enemies[b].x > (width + 100) || enemies[b].x < -100 || enemies[b].y > height ) {
-			enemies.splice(b, 1);
-			b--;
+	for (var i = 0; i < objects.length; i++) {
+		if (objects[i].defunct == true || objects[i].x > (width + 100) || objects[i].x < -100 || objects[i].y > height ) {
+			objects.splice(i, 1);
+			i--;
 		}
 	}
 	
-	for (var b = 0; b < enemies.length; b++) {
-		// Bewege den Vogel nach rechts
-		enemies[b].x += enemies[b].speed;	
+	for (var i = 0; i < objects.length; i++) {
+		// bewege Objekt
+		objects[i].fly();
 		
-		var xPos = Math.round(enemies[b].x);
-		
-		var frame = 0;
-		
-		if((xPos % 50) >= 0 && (xPos % 50) <= 10) {
-			if(enemies[b].dir == 1)
-				frame = 0;
-			else
-				frame = 2;
-				
-			enemies[b].y += 3;
-		}
-		else {
-			if(enemies[b].dir == 1)
-				frame = 1;
-			else
-				frame = 3;
-				
-			enemies[b].y -= 3;
-		}
-		
-		// Bewege Objekte nach unten damit es so aussieht dass der Ballon steigt
-		if(balloonYPosition < 200)
-			enemies[b].y -= balloonVertSpeed;
+		// Bewege Objekt nach unten damit es so aussieht dass der Ballon steigt
+		if(balloon.getY() < 200)
+			objects[i].y -= balloon.getVertSpeed();
 	
-		enemy_sprite.drawFrame(ctx, frame, enemies[b].x, enemies[b].y);
+		// Zeichne Objekt
+		var sprite = objects[i].getSprite();
+		sprite.drawFrame(ctx, objects[i].getFrame(), objects[i].getX(), objects[i].getY());
+		
 	}
 }

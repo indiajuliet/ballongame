@@ -14,8 +14,8 @@ _p = SpriteSheet.prototype;
 
 _p.drawFrame = function(ctx, index, x, y) {
 	var frame = this._frames[index];
-	
 	if(!frame) {
+		alert(index + " " + x + " " + y);
 		console.log("Return");
 		return;
 	}
