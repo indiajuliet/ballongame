@@ -8,14 +8,24 @@ function LevelManager()
 	this.currentLevel = 0;
 	this.levels;
 	this.xml;
+	
+	this.spriteRowHeights = [0,			// Levelhintergrund 
+							 1301, 		// LevelButtons
+							 1472, 		// Ballon
+							 1689, 		// Wolke
+							 1790, 		// Vogel
+							 1841, 		// Tankstatus
+							 1881, 		// Button
+							 1922, 		// PowerUp
+							 1983		// Flugzeug
+							 ];
 }
 
 // Initialisation
 LevelManager.prototype.init = function(file) {
 	this.levelFile = file;
-	this.currentLevel = 0;
 	this.level = new Level();
-
+	
 	// lade Level Datei	
 	this.xml = this.getXml(file);
 	
@@ -47,6 +57,11 @@ LevelManager.prototype.getCurrentLevelId = function() {
 LevelManager.prototype.loadLevel = function(lvl) {
 	this.currentLevel = lvl;
 	
+	var enemies = {};
+	var objects = {};
+	var powerUps = {};
+	var attr = {}; 
+	
 	$(this.xml).find('level').each(function(){
 		var id = $(this).attr('id');
 		
@@ -57,10 +72,86 @@ LevelManager.prototype.loadLevel = function(lvl) {
 			Level.prototype.setBgPicture($(this).find('picture').text());
 			Level.prototype.setLvlHeight($(this).find('lvlHeight').text());
 			Level.prototype.setMaxWindStrenght($(this).find('maxWindStrenght').text());
+			
+			// Gegnerdaten sammeln
+			$(this).find('enemy').each(function() {
+			
+				var desc = $(this).find('desc').text();	
+				attr = {'width' : $(this).find('width').text(),
+						'height' : $(this).find('height').text(),
+						'frames' : $(this).find('frames').text().split(','),
+						'row' : $(this).find('row').text()
+					   };
+								
+				enemies[desc] = attr;
+			});
+			
+			// Objektdaten sammeln
+			$(this).find('object').each(function() {
+			
+				var desc = $(this).find('desc').text();	
+				attr = {'width' : $(this).find('width').text(),
+						'height' : $(this).find('height').text(),
+						'frames' : $(this).find('frames').text().split(','),
+						'row' : $(this).find('row').text()
+					   };
+								
+				objects[desc] = attr;
+			});
+			
+			// PowerUp-Dauten sammeln
+			$(this).find('powerUp').each(function() {
+			
+				var desc = $(this).find('desc').text();	
+				attr = {'width' : $(this).find('width').text(),
+						'height' : $(this).find('height').text(),
+						'frames' : $(this).find('frames').text().split(','),
+						'row' : $(this).find('row').text()
+					   };
+								
+				powerUps[desc] = attr;
+			});
 		}
 	});
 	
+	var eFrames = this.calculateFrames(enemies);
+	Level.prototype.setEnemyFrames(eFrames);
+	
+	var oFrames = this.calculateFrames(objects);
+	Level.prototype.setObjectFrames(oFrames);
+	
+	var pFrames = this.calculateFrames(powerUps);
+	Level.prototype.setPowerUpFrames(pFrames);
+	
 	return this.level;
+}
+
+// Berechne alle Frames anhand der gesammelten Daten
+LevelManager.prototype.calculateFrames = function(data) {
+
+	var arr = [];
+	for(i in data) {
+		
+		var attribs = data[i];
+		
+		var frames = attribs['frames'];
+		var width = parseInt(attribs['width']);
+		var height = parseInt(attribs['height']);
+		var row = parseInt(attribs['row']);
+		var y = this.spriteRowHeights[row-1];
+		
+		var temp = [];
+		for(j in frames) {
+			var x = (parseInt(frames[j]) * (width + 1));
+			var frame = [x, y, width, height, 0, 0, i];
+			temp[j] = frame;
+		}
+		
+		arr[i] = temp;
+		
+	}
+
+	return temp;
 }
 
 // Naechstes Level

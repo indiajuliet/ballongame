@@ -35,8 +35,7 @@ window.addEventListener("load", function() {
 	// Image Manager
 	imgMngr =  new ImageManager();
 	imgMngr.load({
-		"spriteSheet"			: "./pics/spriteSheets/spriteSheet.png",
-		"tank"					: "./pics/tank.png",		
+		"spriteSheet"			: "./pics/spriteSheets/spriteSheet.png",		
 		"windArrow"		 		: "./pics/up_arrow_small.png"
 	}, onDone);
 	
@@ -50,7 +49,6 @@ window.addEventListener("load", function() {
 
 function onDone() {
 	spriteSheet 	= imgMngr.get("spriteSheet");
-	tank 			= imgMngr.get("tank");
 	windArrow 		= imgMngr.get("windArrow");
 	
 	var bgFrames = [
@@ -83,14 +81,18 @@ function onDone() {
 	balloon.setFrame(0);
 	balloon.setHeightBarFrame(3);
 	
-	var enemyFrames = [
-				[255, 1790, 63, 50, 0, 0],
+	/*var enemyFrames = [
+				[255, 1790, 63, 50, 0, 0], // Vogel
 				[63, 1790, 63, 50, 0, 0],
 				[318, 1790, 63, 50, 0, 0],
-				[191, 1790, 63, 50, 0, 0]
+				[191, 1790, 63, 50, 0, 0],
+				[0, 1982, 197, 125, 0, 0], // Flugzeug
+				[198, 1982, 198, 125, 0, 0],
+				[397, 1982, 197, 125, 0, 0],
+				[595, 1982, 198, 125, 0, 0]
 			];
 	
-	enemySprite = new SpriteSheet(spriteSheet, enemyFrames);
+	enemySprite = new SpriteSheet(spriteSheet, enemyFrames);*/
 	
 	var tankFrames = [
 				[0, 1841, 42, 39, 0, 0],
@@ -107,6 +109,7 @@ function onDone() {
 			];
 	
 	powerupSprite = new SpriteSheet(spriteSheet, powerupFrames);
+	
 }
 
 // Event zum starten des Spieles
@@ -164,7 +167,7 @@ function clearLevel() {
 	balloon.setX(200);
 	balloon.setX(250);
 	balloon.setVertSpeed(0);
-	balloon.setHorSpeed(0);
+	balloon.setSpeed(0);
 	balloon.setFrame(0);
 	
 	hasFocus = true;

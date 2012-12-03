@@ -12,6 +12,9 @@ function Level()
 	
 	this.lvlHeight;
 	this.maxWindStrenght;
+	this.enemyFrames;
+	this.objectFrames;
+	this.powerUpFrames;
 }
 
 Level.prototype = {
@@ -34,5 +37,14 @@ Level.prototype = {
 	getLvlHeight: function() { return this.lvlHeight; },
 	
 	setMaxWindStrenght: function(val) { this.maxWindStrenght = val; },
-	getMaxWindStrenght: function() { return this.maxWindStrenght; }
+	getMaxWindStrenght: function() { return this.maxWindStrenght; },
+	
+	setEnemyFrames: function(val) { this.enemyFrames = val; },
+	getEnemyFrames: function() { return this.enemyFrames; },
+	
+	setObjectFrames: function(val) { this.objectFrames = val; },
+	getObjectFrames: function() { return this.objectFrames; },
+	
+	setPowerUpFrames: function(val) { this.powerUpFrames = val; },
+	getPowerUpFrames: function() { return this.powerUpFrames; },
 }

@@ -9,11 +9,11 @@ function moveBalloon(e) {
 function keyDown(e) {
 	switch (e.keyCode) {
 		case LEFT_ARROW:
-			balloon.decHorSpeed(1);
+			balloon.decSpeed(1);
 			break;
 			
 		case RIGHT_ARROW:
-			balloon.incHorSpeed(1);
+			balloon.incSpeed(1);
 			break;
 			
 		case UP_ARROW:
@@ -47,21 +47,19 @@ function fireBullet() {
 // erstellt eine Wolke an einer Zufaelligen Stelle
 function createCloud() {
 	var newCloud = new Cloud(cloudSprite);
-	//clouds.push(newCloud);
 	objects.push(newCloud);
 }	
 
 //Erzeugt ein zufälliges Power Up
 function createPowerUp() {
-	var newpowerUp = new PowerUp(powerupSprite);
-	//powerUps.push(newpowerUp);
+	var newpowerUp = new Tank(powerupSprite);
 	objects.push(newpowerUp);
 }
 
 //Erzeugt ein zufälliges Power Up
 function createEnemy() {
+	
 	var newEnemy = new Bird(enemySprite);
-	//enemies.push(newEnemy);
 	objects.push(newEnemy);
 }
 
@@ -75,48 +73,11 @@ function updateBalloon() {
 		
 	balloon.checkBoundary();
 	
-	balloon.incHorSpeed(windSpeed / 100);
-	balloon.incX(balloon.getHorSpeed());
+	balloon.incSpeed(windSpeed / 100);
+	balloon.incX(balloon.getSpeed());
 	
 	if(balloon.checkAttitude())
 		nextLevel();
-	
-	//Falls Ballon auf ein PowerUp trifft, wird dieses entfernt und die entsprechende Aktion ausgeführt
-	//collect();
-	
-	//Falls Vogel in den Ballon fliegt
-	//collision();
-}
-
-function collect(){
-	for (var b = 0; b < enemies.length; b++) {
-		if (enemies[b].x >= balloonXPosition && enemies[b].y >= balloonYPosition
-				&& enemies[b].x <= balloonXPosition + 260 && enemies[b].y <= balloonYPosition + 550){
-			var type = enemies[b].type;
-			if (type == 0){
-				balloon.setVertSpeed(0);
-			}
-			
-			enemies.splice(b, 1);
-			b--;
-		}
-	}
-}
-
-function collision(){
-	for (var b = 0; b < enemies.length; b++) {
-		if (enemies[b].x >= balloonXPosition && enemies[b].y >= balloonYPosition
-				&& enemies[b].x <= balloonXPosition + 260 && enemies[b].y <= balloonYPosition + 550){
-			
-			var type = enemies[b].type;
-			if (type == 0 && tankStatus <= 300){
-				tankStatus += 100;
-			}
-			
-			powerUps.splice(b, 1);
-			b--;
-		}
-	}
 }
 
 // aktualisiere den Windpfeil
@@ -222,6 +183,18 @@ function updateLevel(level) {
 	maxLvlHeight = level.getLvlHeight();
 	maxWindStrenght = level.getMaxWindStrenght();
 	bgFrame = level.getLevelNr();
+	
+	// Gegnersprite anlegen
+	var enemyFrames = level.getEnemyFrames();
+	enemySprite = new SpriteSheet(spriteSheet, enemyFrames);
+	
+	// Objektsprite anlegen
+	var objectFrames = level.getObjectFrames();
+	cloudSprite = new SpriteSheet(spriteSheet, objectFrames);
+	
+	// PowerUp-Sprite anlegen
+	var powerUpFrames = level.getPowerUpFrames();
+	powerupSprite = new SpriteSheet(spriteSheet, powerUpFrames);
 }
 
 // Dreht ein Objekt entsprechend der Gradzahl (jQuery)
@@ -336,16 +309,15 @@ function drawText() {
 
 function drawObjects() {
 	// Entferne alle Voegel, die sich nicht mehr innerhalb des Bildschirms befinden
-	for (var i = 0; i < objects.length; i++) {
-		if (objects[i].defunct == true || objects[i].x > (width + 100) || objects[i].x < -100 || objects[i].y > height ) {
-			objects.splice(i, 1);
-			i--;
-		}
-	}
+	/*for (var i = 0; i < objects.length; i++) {
+		
+	}*/
 	
 	for (var i = 0; i < objects.length; i++) {
 		// bewege Objekt
 		objects[i].fly();
+		
+		balloon.checkCollisions(objects[i]);
 		
 		// Bewege Objekt nach unten damit es so aussieht dass der Ballon steigt
 		if(balloon.getY() < 200)
@@ -355,5 +327,9 @@ function drawObjects() {
 		var sprite = objects[i].getSprite();
 		sprite.drawFrame(ctx, objects[i].getFrame(), objects[i].getX(), objects[i].getY());
 		
+		if (objects[i].defunct == true || objects[i].x > (width + 100) || objects[i].x < -100 || objects[i].y > height ) {
+			objects.splice(i, 1);
+			i--;
+		}
 	}
 }

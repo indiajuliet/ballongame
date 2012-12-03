@@ -3,13 +3,53 @@
 *
 *******/
 
-FlyingObject = function(x, y, s, f) {
+FlyingObject = function(x, y, s, f, sp, w, h) {
 	this.x = x;
 	this.y = y;
 	this.speed = s;
 	this.frame = f;
+	this.sprite = sp;
+	this.width = w;
+	this.height = h;
 	this.defunct = false;
+	
+	this.setX = function(xPos) { this.x = xPos; };
+	this.getX = function() { return this.x; };
+	this.incX = function(inc) { this.x += inc; };
+	this.decX = function(dec) { this.x -= dec; };
+	
+	this.setY = function(yPos) { this.y = yPos; };
+	this.getY = function() { return this.y; };
+	this.incY = function(inc) { this.y += inc; };
+	this.decY = function(dec) { this.y -= dec; };
+	
+	this.setSpeed = function(s) { this.speed = s; };
+	this.getSpeed = function() { return this.speed; };
+	this.incSpeed = function(inc) { this.speed += inc; };
+	this.decSpeed = function(dec) { this.speed -= dec; };
+	
+	this.setSprite = function(val) { this.sprite = val; };
+	this.getSprite = function() { return this.sprite; };
+
+	this.setFrame = function(f) { this.frame = f; };
+	this.getFrame = function() { return this.frame; };
+	
+	this.setWidth = function(val) { this.width = val; };
+	this.getWidth = function() { return this.width; };
+	
+	this.setHeight = function(val) { this.height = val; };
+	this.getHeight = function() { return this.height; };
+	
+	this.setDefunct = function() { this.defunct = true; };
+	
+	this.init = function() {
+		var sprite = this.getSprite();
+		var frame = this.getFrame();
+		this.setWidth(sprite.getWidth(frame));
+		this.setHeight(sprite.getHeight(frame));
+	};
 }
+
 
 /****
 *  Wolke
@@ -19,7 +59,6 @@ Cloud = function(sp) {
 	this.base = FlyingObject;
 	
 	this.type = "Cloud";
-	this.sprite = sp;
 	
 	var xPos = getRandom(-100, width + 100);
 	var yPos = getRandom(-100, height);
@@ -33,33 +72,13 @@ Cloud = function(sp) {
 	
 	var frame = getRandom(0,2);
 	
-	this.base(xPos, yPos, speed, frame);
+	this.base(xPos, yPos, speed, frame, sp);
 }
 
 Cloud.prototype = new FlyingObject();
 Cloud.prototype.constructor = Cloud;
 
 Cloud.prototype = {
-	setX: function(xPos) { this.x = xPos; },
-	getX: function() { return this.x; },
-	incX: function(inc) { this.x += inc; },
-	decX: function(dec) { this.x -= dec; },
-	
-	setY: function(yPos) { this.y = yPos; },
-	getY: function() { return this.y; },
-	incY: function(inc) { this.y += inc; },
-	decY: function(dec) { this.y -= dec; },
-	
-	setSpeed: function(s) { this.speed = s; },
-	getSpeed: function() { return this.speed; },
-	incSpeed: function(inc) { this.speed += inc; },
-	decSpeed: function(dec) { this.speed -= dec; },
-
-	getSprite: function() { return this.sprite; },
-	
-	setFrame: function(f) { this.frame = f; },
-	getFrame: function() { return this.frame; },
-	
 	fly: function() {
 		this.incSpeed(windSpeed / 100);
 		this.incX(this.getSpeed());
@@ -70,41 +89,44 @@ Cloud.prototype = {
 *  PowerUp
 *
 ****/
-PowerUp = function(sp) {
+PowerUp = function(xPos, yPos, speed, frame, sp) {
 	this.base = FlyingObject;
+
 	
-	this.sprite = sp;
-	var xPos = getRandom(0, width-40);
-	var yPos = getRandom(-100 , -60);
-		
-	var frame = 0;
-	var speed = 0;
-	//var t = 0;
-	
-	this.base(xPos, yPos, speed, frame);
-	
+	this.base(xPos, yPos, speed, frame, sp);
+
 	this.type = "PowerUp";
 }
 
 PowerUp.prototype = new FlyingObject();
 PowerUp.prototype.constructor = PowerUp;
 
-PowerUp.prototype = {
-	setX: function(xPos) { this.x = xPos; },
-	getX: function() { return this.x; },
-	incX: function(inc) { this.x += inc; },
-	decX: function(dec) { this.x -= dec; },
-	
-	setY: function(yPos) { this.y = yPos; },
-	getY: function() { return this.y; },
-	incY: function(inc) { this.y += inc; },
-	decY: function(dec) { this.y -= dec; },
 
-	getSprite: function() { return this.sprite; },
+/****
+*  Tank
+*
+****/
+Tank = function(sp) {
+	this.base = PowerUp;
 	
-	setFrame: function(f) { this.frame = f; },
-	getFrame: function() { return this.frame; },
+	var xPos = getRandom(0, width-40);
+	var yPos = getRandom(-100 , -60);
+		
+	var frame = 0;
+	var speed = 0;
+	
+	this.base(xPos, yPos, speed, frame, sp);
+	this.init();
+	
+	this.type = "Tank";
+}
 
+Tank.prototype = new PowerUp();
+Tank.prototype.constructor = Tank;
+
+Tank.prototype = {
+	
+	
 	fly: function() {
 		
 	}
@@ -114,7 +136,7 @@ PowerUp.prototype = {
 *  Gegner
 *
 ****/
-Enemy = function(s) {
+Enemy = function(s, sp) {
 	this.base = FlyingObject;
 	
 	var yPos = getRandom(0, 300);
@@ -132,14 +154,15 @@ Enemy = function(s) {
 		speed = -speed;
 	}
 	
-	
-	this.base(xPos, yPos, speed, 0);
+	this.base(xPos, yPos, speed, 0, sp);
 
 	this.dir = side;
 }
 
 Enemy.prototype = new FlyingObject();
 Enemy.prototype.constructor = Enemy;
+
+
 
 
 /****
@@ -151,41 +174,29 @@ Bird = function(sp) {
 	
 	var speed = getRandom(3, 7);
 	
-	this.base(speed);
+	
+	this.base(speed, sp);
+	this.init();
 	
 	this.type = "Bird";
-	this.sprite = sp;
+	this.flyAwayFlag = false;
 }
 
 Bird.prototype = new Enemy();
 Bird.prototype.constructor = Bird;
 
 Bird.prototype = {
-	setX: function(xPos) { this.x = xPos; },
-	getX: function() { return this.x; },
-	incX: function(inc) { this.x += inc; },
-	decX: function(dec) { this.x -= dec; },
-	
-	setY: function(yPos) { this.y = yPos; },
-	getY: function() { return this.y; },
-	incY: function(inc) { this.y += inc; },
-	decY: function(dec) { this.y -= dec; },
-
-	setFrame: function(f) { this.frame = f; },
-	getFrame: function() { return this.frame; },
-	
-	getSprite: function() { return this.sprite; },
-	
-	getSpeed: function() {return this.speed; },
-	
 	getDir: function() { return this.dir; },
+	setDir: function(d) { this.dir = d; },
+	
+	setFlyAwayFlag: function() { this.flyAwayFlag = true; },
+	getFlyAwayFlag: function() { return this.flyAwayFlag; },
 	
 	fly: function() {
 		this.incX(this.getSpeed());
 		
 		var xPos = Math.round(this.getX());
 		var dir = this.getDir();
-		//this.setFrame(0);
 		
 		if((xPos % 50) >= 0 && (xPos % 50) <= 10) {
 			if(dir == 1)
@@ -203,8 +214,22 @@ Bird.prototype = {
 				
 			this.decY(3);
 		}
-		
 		//console.log("X: " + this.x + " xPos: " + xPos + " Y: " + this.y + " Frame: " + this.getFrame() + " Speed: " + this.getSpeed());
+	},
+	
+	changeDirection: function() {
+		var newDir = this.getDir() == 0 ? 1 : 0;
+		this.setDir(newDir);
+		this.setSpeed(-this.getSpeed());
+		return newDir;
+	}, 
+	
+	flyAway: function() {
+		var dir = this.changeDirection();
+		if(dir)
+			this.decSpeed(10);
+		else
+			this.incSpeed(10);
 	}
 }
 
@@ -217,33 +242,15 @@ Plane = function(sp) {
 	
 	var speed = getRandom(10, 15);
 	
-	this.base(speed);
+	this.base(speed, sp);
 	
 	this.type = "Plane";
-	this.sprite = sp;
 }
 
 Plane.prototype = new Enemy();
 Plane.prototype.constructor = Plane;
 
 Plane.prototype = {
-	setX: function(xPos) { this.x = xPos; },
-	getX: function() { return this.x; },
-	incX: function(inc) { this.x += inc; },
-	decX: function(dec) { this.x -= dec; },
-	
-	setY: function(yPos) { this.y = yPos; },
-	getY: function() { return this.y; },
-	incY: function(inc) { this.y += inc; },
-	decY: function(dec) { this.y -= dec; },
-
-	setFrame: function(f) { this.frame = f; },
-	getFrame: function() { return this.frame; },
-	
-	getSprite: function() { return this.sprite; },
-	
-	getSpeed: function() {return this.speed; },
-	
 	getDir: function() { return this.dir; },
 	
 	fly: function() {
@@ -252,19 +259,19 @@ Plane.prototype = {
 		var xPos = Math.round(this.getX());
 		var dir = this.getDir();
 		
-		if((xPos % 15) >= 0 && (xPos % 15) <= 10) {
+		if((xPos % 20) >= 0 && (xPos % 20) <= 5) {
 			if(dir == 1)
-				this.setFrame(0);
+				this.setFrame(7);
 			else
-				this.setFrame(2);
+				this.setFrame(4);
 				
 			this.incY(3);
 		}
 		else {
 			if(dir == 1)
-				this.setFrame(1);
+				this.setFrame(6);
 			else
-				this.setFrame(3);
+				this.setFrame(5);
 				
 			this.decY(3);
 		}
@@ -278,42 +285,28 @@ Plane.prototype = {
 ****/
 Balloon = function(x, y, horSpeed, vertSpeed, f) {	
 	this.base = FlyingObject;
+	
 	this.base(x, y, horSpeed, f);
 
+	this.type = "Balloon";
+	this.width = 124;
+	this.height = 216;
 	this.vertSpeed = vertSpeed;
 	this.fligtAttitude = 0;
 	this.tankStatus = 420;
 	this.timer = 0;
 	this.heightBarFrame = 3;
-	this.type = "Balloon";
+	
 }
 
 Balloon.prototype = new FlyingObject();
 Balloon.prototype.constructor = Balloon;
 
 Balloon.prototype = {
-	setX: function(xPos) { this.x = xPos; },
-	getX: function() { return this.x; },
-	incX: function(inc) { this.x += inc; },
-	decX: function(dec) { this.x -= dec; },
-	
-	setY: function(yPos) { this.y = yPos; },
-	getY: function() { return this.y; },
-	incY: function(inc) { this.y += inc; },
-	decY: function(dec) { this.y -= dec; },
-	
-	setHorSpeed: function(s) { this.s = s; },
-	getHorSpeed: function() { return this.s; },
-	incHorSpeed: function(inc) { this.s += inc; },
-	decHorSpeed: function(dec) { this.s -= dec; },
-	
 	setVertSpeed: function(s) { this.vertSpeed = s; },
 	getVertSpeed: function() { return this.vertSpeed; },
 	incVertSpeed: function(inc) { this.vertSpeed += inc; },
 	decVertSpeed: function(dec) { this.vertSpeed -= dec; },
-	
-	setFrame: function(f) { this.frame = f; },
-	getFrame: function() { return this.frame; },
 	
 	setHeightBarFrame: function(f) { this.heightBarFrame = f; },
 	getHeightBarFrame: function() { return this.heightBarFrame; },
@@ -381,14 +374,14 @@ Balloon.prototype = {
 	checkBoundary: function() {
 		// Beende Bewegung wenn Ballon am Rand ist
 		if(this.x <= 0) { 						// linker Rand
-			if(this.s < 0) {
-				this.setHorSpeed(0);
+			if(this.speed < 0) {
+				this.setSpeed(0);
 				this.setX(0);
 			}
 		}
 		else if((this.x + 124) >= width) {		// rechter Rand
-			if(this.s > 0) {
-				this.setHorSpeed(0);
+			if(this.speed > 0) {
+				this.setSpeed(0);
 				this.setX((width - 124));
 			}
 		}
@@ -418,20 +411,27 @@ Balloon.prototype = {
 		return frame;
 	},
 	
-	collide: function() {
-		for (var b = 0; b < enemies.length; b++) {
-		if (enemies[b].x >= balloonXPosition && enemies[b].y >= balloonYPosition
-				&& enemies[b].x <= balloonXPosition + 260 && enemies[b].y <= balloonYPosition + 550){
-			
-			var type = enemies[b].type;
-			if (type == 0 && tankStatus <= 300){
-				tankStatus += 100;
+	// Kollisionsverarbeitung
+	checkCollisions: function(object) {
+		var balloonX = this.getX();
+		var balloonY = this.getY();
+		var objectX = object.getX();
+		var objectY = object.getY();
+		var objectWidth = object.getWidth();
+		var objectHeigth = object.getHeight();
+		
+		if(balloonX + this.width >= objectX && balloonX <= objectX + objectWidth  && balloonY + this.height >= objectY && balloonY <= objectY + objectHeigth) {
+			if(object instanceof Bird) {
+				if(!object.getFlyAwayFlag()) {
+					object.flyAway();
+					object.setFlyAwayFlag();
+				}
 			}
-			
-			powerUps.splice(b, 1);
-			b--;
+			else if(object instanceof Tank) {
+				this.incTankStatus(100);
+				object.setDefunct();
+			}
 		}
-	}
 	}
 }
 

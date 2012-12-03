@@ -15,8 +15,7 @@ _p = SpriteSheet.prototype;
 _p.drawFrame = function(ctx, index, x, y) {
 	var frame = this._frames[index];
 	if(!frame) {
-		alert(index + " " + x + " " + y);
-		console.log("Return");
+		console.log("Return: " + index + " " + x + " " + y);
 		return;
 	}
 	
@@ -27,3 +26,17 @@ _p.drawFrame = function(ctx, index, x, y) {
 		y - frame[SpriteSheet.FRAME_ANCHOR_Y],
 		frame[SpriteSheet.FRAME_WIDTH], frame[SpriteSheet.FRAME_HEIGHT]);
 };
+
+_p.getWidth = function(index) {
+	var frame = this._frames[index];
+	return frame[SpriteSheet.FRAME_WIDTH];
+};
+
+_p.getHeight = function(index) {
+	var frame = this._frames[index];
+	return frame[SpriteSheet.FRAME_HEIGHT];
+};
+
+_p.getFrames = function() {
+	return this._frames;
+}

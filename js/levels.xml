@@ -3,51 +3,82 @@
 		<title>FirstStage</title>
 		<scene>
 			<background>
-				<picture>./pics/Level1_HG.png</picture>
 				<color>#6495ED</color>	
 				<music>blub.mp3</music>
 			</background>
-			<ground>ground1.png</ground>
-			<clouds>
-				<cloud id="0">cloud1.png</cloud>
-			</clouds>
+			<objects>
+				<object id="0">
+					<desc>cloud</desc>
+					<row>4</row>
+					<width>145</width>
+					<height>100</height>
+					<frames>0,1,2</frames>
+				</object>
+			</objects>
 		</scene>
 		<powerUps>
-			<powerUp id="0">fuel</powerUp>
+			<powerUp id="0">
+				<desc>fuel</desc>
+				<row>8</row>
+				<width>42</width>
+				<height>60</height>
+				<frames>0</frames>
+			</powerUp>
 		</powerUps>
+		<enemies>
+			<enemy id="0">
+				<desc>bird</desc>
+				<row>5</row>
+				<width>63</width>
+				<height>50</height>
+				<frames>4,1,5,3</frames>
+			</enemy>
+		</enemies>
 		<lvlHeight>2000</lvlHeight>
 		<maxWindStrenght>3</maxWindStrenght>
-		<enemies>
-			<enemy id="0">bird</enemy>
-			<enemy id="1">plane</enemy>
-		</enemies>
 	</level>
 	<level id="1">
 		<title>SecondStage</title>
 		<scene>
 			<background>
-				<picture>./pics/Level2_HG.png</picture>
 				<color>#FF0000</color>
 				<music>blub.mp3</music>
 			</background>
-			<ground>ground1.png</ground>
-			<clouds>
-				<cloud id="0">cloud1.png</cloud>
-				<cloud id="1">cloud2.png</cloud>
-				<cloud id="2">cloud3.png</cloud>
-			</clouds>
+			<objects>
+				<object id="0">
+					<desc>cloud</desc>
+					<row>4</row>
+					<width>145</width>
+					<height>100</height>
+					<frames>0,1,2</frames>
+				</object>
+			</objects>
 		</scene>
 		<powerUps>
-			<powerUp id="0">fuel</powerUp>
+			<powerUp id="0">
+				<desc>fuel</desc>
+				<row>8</row>
+				<width>42</width>
+				<height>60</height>
+				<frames>0</frames>
+			</powerUp>
 		</powerUps>
 		<lvlHeight>35000</lvlHeight>
 		<maxWindStrenght>0</maxWindStrenght>
 		<enemies>
 			<enemy id="0">
-				<name>bird</name>
+				<desc>bird</desc>
+				<row>5</row>
+				<width>63</width>
+				<height>50</height>
+				<frames>4,1,5,3</frames>
 			</enemy>
 			<enemy id="1">
-				<name>plane</name>
+				<desc>plane</desc>
+				<row>9</row>
+				<width>197</width>
+				<height>125</height>
+				<frames>0,1,2,3</frames>
 			</enemy>
 		</enemies>
 	</level>
@@ -55,11 +86,9 @@
 		<title>ThirdStage</title>
 		<scene>
 			<background>
-				<picture>./pics/Level3_HG.png</picture>
 				<color>#00FF00</color>
 				<music>blub.mp3</music>
 			</background>
-			<ground>ground1.png</ground>
 			<clouds>
 				<cloud id="0">cloud1.png</cloud>
 				<cloud id="1">cloud2.png</cloud>
@@ -80,11 +109,9 @@
 		<title>FourthStage</title>
 		<scene>
 			<background>
-				<picture></picture>
 				<color>#0000FF</color>
 				<music>blub.mp3</music>
 			</background>
-			<ground>ground1.png</ground>
 			<clouds>
 				<cloud id="0">cloud1.png</cloud>
 				<cloud id="1">cloud2.png</cloud>
@@ -94,12 +121,17 @@
 		<powerUps>
 			<powerUp id="0">fuel</powerUp>
 		</powerUps>
+		<enemies>
+			<enemy id="0">
+				<desc>bird</desc>
+				<row>5</row>
+				<width>63</width>
+				<height>50</height>
+				<frames>4,1,5,3</frames>
+			</enemy>
+		</enemies>
 		<lvlHeight>35000</lvlHeight>
 		<maxWindStrenght>9</maxWindStrenght>
-		<enemies>
-			<enemy id="0">bird</enemy>
-			<enemy id="1">plane</enemy>
-		</enemies>
 	</level>
 	<level id="4">
 		<title>FifthStage</title>
