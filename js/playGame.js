@@ -21,6 +21,7 @@ function keyDown(e) {
 			balloon.decTankStatus(1);
 			balloon.setFrame(1);
 			balloon.setHeightBarFrame(4);
+			sound.ignite.play();
 			break;	
 			
 		case DOWN_ARROW:
