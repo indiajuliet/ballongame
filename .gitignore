@@ -166,3 +166,7 @@ pip-log.txt
 .db
 Thumbs.db
 desktop.ini
+
+
+# Kate Sicherungen
+*~
