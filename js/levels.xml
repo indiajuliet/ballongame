@@ -46,11 +46,7 @@
 			</background>
 			<objects>
 				<object id="0">
-					<desc>cloud</desc>
-					<row>4</row>
-					<width>145</width>
-					<height>100</height>
-					<frames>0,1,2</frames>
+					
 				</object>
 			</objects>
 		</scene>
