@@ -40,6 +40,7 @@ window.addEventListener("load", function() {
 	}, onDone);
 	
 	balloon = new Balloon(balloonXPosition, balloonYPosition, balloonHorSpeed, balloonVertSpeed, balloonFrame);
+	sound= new Sound();
 	
 	// Mouse Events
 	document.addEventListener("mousemove", moveBalloon, false);
@@ -152,7 +153,7 @@ function startNewGame(lvl) {
 	
 	level = lvlMngr.loadLevel(lvl-1);
 	updateLevel(level);
-
+	sound.levelsound.play();
 	startGame();
 }
 
@@ -198,6 +199,8 @@ function stopGame() {
 		cloudHandle = 0;
 		powerUpHandle = 0;
 		enemyHandle = 0;
+		
+		sound.levelsound.pause();
 	}
 }
 
