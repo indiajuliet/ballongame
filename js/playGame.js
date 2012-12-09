@@ -59,8 +59,9 @@ function createPowerUp() {
 
 //Erzeugt ein zufälliges Power Up
 function createEnemy() {
+	//var newEnemy = new Bird(enemySprite);
 	
-	var newEnemy = new Bird(enemySprite);
+	var newEnemy = new Asteroid(enemySprite);
 	objects.push(newEnemy);
 }
 

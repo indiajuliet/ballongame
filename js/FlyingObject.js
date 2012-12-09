@@ -278,6 +278,102 @@ Plane.prototype = {
 	}
 }
 
+/****
+*  Asteroid
+*
+****/
+Asteroid = function(sp) {
+	this.base = Enemy;
+	
+	var speed = getRandom(3, 7);
+
+	this.base(speed, sp);
+	this.init();
+	
+	this.type = "Asteroid";
+	this.flyAwayFlag = false;
+	this.angle;
+	this.degree;
+	this.vx;
+	this.vy;
+	
+	this.setFlight();
+}
+
+Asteroid.prototype = new Enemy();
+Asteroid.prototype.constructor = Asteroid;
+
+Asteroid.prototype = {
+	getDir: function() { return this.dir; },
+	setDir: function(d) { this.dir = d; },
+	
+	getAngle: function() { return this.angle; },
+	setAngle: function(val) { this.angle = val; },
+	
+	getDegree: function() { return this.degree; },
+	setDegree: function(val) { this.degree = val; },
+	
+	setFlyAwayFlag: function() { this.flyAwayFlag = true; },
+	getFlyAwayFlag: function() { return this.flyAwayFlag; },
+	
+	getVX: function() { return this.vx; },
+	setVX: function(val) { this.vx = val; },
+	
+	getVY: function() { return this.vy; },
+	setVY: function(val) { this.vy = val; },
+	
+	setFlight: function() {
+		var dir = this.getDir();
+		
+		if(dir == 1) {
+			var d = getRandom(7, 8);
+			this.setFrame(d-7);
+		}
+		else {
+			var d = getRandom(10, 11);
+			this.setFrame(d-7-1);
+		}
+		
+		this.setDegree(d * 30);
+		this.setAngle(this.getDegree() * Math.PI / 180);
+		var angle = this.getAngle();
+		this.setVX(this.getSpeed() * Math.cos(angle));
+		this.setVY(this.getSpeed() * Math.sin(angle));
+	},
+	
+	fly: function() {
+		// Pathfinder
+	
+		var dir = this.getDir();
+		
+		if(dir == 1) {
+			this.decX(this.getVX());
+			this.incY(this.getVY());
+		}
+		else {
+			this.incX(this.getVX());
+			this.decY(this.getVY());
+		}
+		
+		//console.log("X: " + this.x + " xPos: " + xPos + " Y: " + this.y + " Frame: " + this.getFrame() + " Speed: " + this.getSpeed());
+	},
+	
+	changeDirection: function() {
+		var newDir = this.getDir() == 0 ? 1 : 0;
+		this.setDir(newDir);
+		this.setSpeed(-this.getSpeed());
+		return newDir;
+	}, 
+	
+	flyAway: function() {
+		var dir = this.changeDirection();
+		if(dir)
+			this.decSpeed(10);
+		else
+			this.incSpeed(10);
+	}
+}
+
 
 /****
 *  Ballon
