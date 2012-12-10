@@ -57,10 +57,14 @@ function createPowerUp() {
 	objects.push(newpowerUp);
 }
 
-//Erzeugt ein zufälliges Power Up
+//Erzeugt einen zufälligen Enemy
 function createEnemy() {
-	
-	var newEnemy = new Bird(enemySprite);
+	var newEnemy;
+	console.log("level: " + level.getLevelNr());
+	if(level.getLevelNr() == 0)
+		newEnemy = new Bird(enemySprite);
+	else 
+		newEnemy = new Plane(enemySprite);
 	objects.push(newEnemy);
 }
 
