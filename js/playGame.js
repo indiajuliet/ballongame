@@ -61,7 +61,7 @@ function createPowerUp() {
 function createEnemy() {
 	//var newEnemy = new Bird(enemySprite);
 	
-	var newEnemy = new Asteroid(enemySprite);
+	var newEnemy = new Bird(enemySprite);
 	objects.push(newEnemy);
 }
 
