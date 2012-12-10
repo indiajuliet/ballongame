@@ -1,6 +1,7 @@
 function SpriteSheet(image, frames) {
 	this._image = image;
 	this._frames = frames;
+	console.log(frames);
 }
 
 SpriteSheet.FRAME_X = 0;
@@ -14,8 +15,9 @@ _p = SpriteSheet.prototype;
 
 _p.drawFrame = function(ctx, index, x, y) {
 	var frame = this._frames[index];
+	
 	if(!frame) {
-		console.log("Return: " + index + " " + x + " " + y);
+		//console.log("Return: " + index + " " + x + " " + y);
 		return;
 	}
 	

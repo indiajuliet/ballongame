@@ -10,14 +10,13 @@ function LevelManager()
 	this.xml;
 	
 	this.spriteRowHeights = [0,			// Levelhintergrund 
-							 1301, 		// LevelButtons
-							 1472, 		// Ballon
-							 1689, 		// Wolke
-							 1790, 		// Vogel
-							 1841, 		// Tankstatus
-							 1881, 		// Button
-							 1922, 		// PowerUp
-							 1983		// Flugzeug
+							 1301, 		// Ballon
+							 1518, 		// Wolke
+							 1619, 		// Vogel
+							 1670, 		// Tankstatus
+							 1710, 		// PowerUp
+							 1771, 		// Flugzeug
+							 1897 		// Asteroid
 							 ];
 }
 

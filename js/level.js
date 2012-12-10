@@ -42,6 +42,8 @@ Level.prototype = {
 	setEnemyFrames: function(val) { this.enemyFrames = val; },
 	getEnemyFrames: function() { return this.enemyFrames; },
 	
+	getEnemyFrame: function(index) { return this.enemyFrames[index]; },
+	
 	setObjectFrames: function(val) { this.objectFrames = val; },
 	getObjectFrames: function() { return this.objectFrames; },
 	

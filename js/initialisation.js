@@ -61,20 +61,20 @@ function onDone() {
 	backgroundSprite = new SpriteSheet(spriteSheet, bgFrames);
 	
 	var cloudFrames = [
-				[0, 1689, 145, 100, 0, 0],
-				[146, 1689, 172, 100, 0, 0],
-				[319, 1689, 181, 100, 0, 0]
+				[0, 1518, 145, 100, 0, 0],
+				[146, 1518, 172, 100, 0, 0],
+				[319, 1518, 181, 100, 0, 0]
 			];
 	
 	cloudSprite = new SpriteSheet(spriteSheet, cloudFrames);
 	
 	var balloonFrames = [
-				[0, 1472, 124, 216, 0, 0],
-				[125, 1472, 124, 216, 0, 0],
-				[250, 1472, 124, 216, 0, 0],
-				[375, 1472, 34, 59, 0, 0],
-				[410, 1472, 34, 59, 0, 0],
-				[445, 1472, 34, 59, 0, 0]
+				[0, 1301, 124, 216, 0, 0],
+				[125, 1301, 124, 216, 0, 0],
+				[250, 1301, 124, 216, 0, 0],
+				[375, 1301, 34, 59, 0, 0],
+				[410, 1301, 34, 59, 0, 0],
+				[445, 1301, 34, 59, 0, 0]
 			];
 	
 	balloonSprite = new SpriteSheet(spriteSheet, balloonFrames);
@@ -96,17 +96,17 @@ function onDone() {
 	enemySprite = new SpriteSheet(spriteSheet, enemyFrames);*/
 	
 	var tankFrames = [
-				[0, 1841, 42, 39, 0, 0],
-				[43, 1841, 42, 39, 0, 0],
-				[86, 1841, 42, 39, 0, 0],
-				[129, 1841, 42, 39, 0, 0],
-				[172, 1841, 42, 39, 0, 0]
+				[0, 1670, 42, 39, 0, 0],
+				[43, 1670, 42, 39, 0, 0],
+				[86, 1670, 42, 39, 0, 0],
+				[129, 1670, 42, 39, 0, 0],
+				[172, 1670, 42, 39, 0, 0]
 			];
 	
 	tankSprite = new SpriteSheet(spriteSheet, tankFrames);
 	
 	var powerupFrames = [
-				[0, 1920, 42, 60, 0, 0]
+				[0, 1710, 42, 60, 0, 0]
 			];
 	
 	powerupSprite = new SpriteSheet(spriteSheet, powerupFrames);
