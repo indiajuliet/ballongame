@@ -60,13 +60,13 @@ function onDone() {
 	
 	backgroundSprite = new SpriteSheet(spriteSheet, bgFrames);
 	
-	var cloudFrames = [
+	/*var cloudFrames = [
 				[0, 1518, 145, 100, 0, 0],
 				[146, 1518, 172, 100, 0, 0],
 				[319, 1518, 181, 100, 0, 0]
 			];
 	
-	cloudSprite = new SpriteSheet(spriteSheet, cloudFrames);
+	cloudSprite = new SpriteSheet(spriteSheet, cloudFrames);*/
 	
 	var balloonFrames = [
 				[0, 1301, 124, 216, 0, 0],
@@ -105,11 +105,11 @@ function onDone() {
 	
 	tankSprite = new SpriteSheet(spriteSheet, tankFrames);
 	
-	var powerupFrames = [
+	/*var powerupFrames = [
 				[0, 1710, 42, 60, 0, 0]
 			];
 	
-	powerupSprite = new SpriteSheet(spriteSheet, powerupFrames);
+	powerupSprite = new SpriteSheet(spriteSheet, powerupFrames);*/
 	
 }
 
@@ -164,6 +164,9 @@ function clearLevel() {
 	balloon.setTankStatus(420);
 	
 	objects = [];
+	enemySprite = [];
+	cloudSprite = [];
+	powerupSprite = [];
 	
 	balloon.setX(200);
 	balloon.setX(250);

@@ -47,30 +47,45 @@ function fireBullet() {
 
 // erstellt eine Wolke an einer Zufaelligen Stelle
 function createCloud() {
-	var newCloud = new Cloud(cloudSprite);
-	objects.push(newCloud);
+	for(o in cloudSprite) {
+		switch(o) {
+			case 'cloud':
+				var newCloud = new Cloud(cloudSprite['cloud']);
+				objects.push(newCloud);
+				break;
+		default:
+			// mache nix
+			break;
+		}
+	}
 }	
 
 //Erzeugt ein zufälliges Power Up
 function createPowerUp() {
-	var newpowerUp = new Tank(powerupSprite);
+	var newpowerUp = new Tank(powerupSprite['fuel']);
 	objects.push(newpowerUp);
 }
 
 //Erzeugt einen zufälligen Enemy
 function createEnemy() {
-	var newEnemy;
+
+	for(e in enemySprite) {
+		var newEnemy;
+		switch (e) {
+			case 'bird':
+				newEnemy = new Bird(enemySprite['bird']);
+				objects.push(newEnemy);
+				break;
+			case 'asteroid':
+				newEnemy = new Asteroid(enemySprite['asteroid']);
+				objects.push(newEnemy);
+				break;
+			default:
+				// mache nix
+				break;
+		}
+	}
 	
-	console.log("level: " + level.getLevelNr());
-	if(level.getLevelNr() == 0)
-		newEnemy = new Bird(enemySprite);
-	else 
-		newEnemy = new Plane(enemySprite);
-	
-	var newEnemy = new Bird(enemySprite);
-	var newEnemy = new Asteroid(enemySprite);
-	
-	objects.push(newEnemy);
 }
 
 // verringere Geschwindigkeit (beim Fallen)
@@ -196,15 +211,22 @@ function updateLevel(level) {
 	
 	// Gegnersprite anlegen
 	var enemyFrames = level.getEnemyFrames();
-	enemySprite = new SpriteSheet(spriteSheet, enemyFrames);
+	for(e in enemyFrames) {
+		enemySprite[e] = new SpriteSheet(spriteSheet, enemyFrames[e]);
+	}
 	
 	// Objektsprite anlegen
 	var objectFrames = level.getObjectFrames();
-	cloudSprite = new SpriteSheet(spriteSheet, objectFrames);
+	for(o in objectFrames) {
+		cloudSprite[o] = new SpriteSheet(spriteSheet, objectFrames[o]);
+	}
 	
 	// PowerUp-Sprite anlegen
 	var powerUpFrames = level.getPowerUpFrames();
-	powerupSprite = new SpriteSheet(spriteSheet, powerUpFrames);
+	for(p in powerUpFrames) {
+		console.log(p);
+		powerupSprite[p] = new SpriteSheet(spriteSheet, powerUpFrames[p]);
+	}
 }
 
 // Dreht ein Objekt entsprechend der Gradzahl (jQuery)

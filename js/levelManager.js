@@ -147,10 +147,9 @@ LevelManager.prototype.calculateFrames = function(data) {
 		}
 		
 		arr[i] = temp;
-		
 	}
 
-	return temp;
+	return arr;
 }
 
 // Naechstes Level
