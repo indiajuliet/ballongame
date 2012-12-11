@@ -164,7 +164,6 @@ Enemy.prototype.constructor = Enemy;
 
 
 
-
 /****
 *  Vogel
 *
@@ -239,12 +238,12 @@ Bird.prototype = {
 ****/
 Plane = function(sp) {
 	this.base = Enemy;
-	
 	var speed = getRandom(10, 15);
-	
 	this.base(speed, sp);
-	
 	this.type = "Plane";
+	this.init();
+	this.flyAwayFlag = false;
+	
 }
 
 Plane.prototype = new Enemy();
@@ -252,6 +251,10 @@ Plane.prototype.constructor = Plane;
 
 Plane.prototype = {
 	getDir: function() { return this.dir; },
+	setDir: function(d) { this.dir = d; },
+	
+	setFlyAwayFlag: function() { this.flyAwayFlag = true; },
+	getFlyAwayFlag: function() { return this.flyAwayFlag; },
 	
 	fly: function() {
 		this.incX(this.getSpeed());
@@ -275,6 +278,21 @@ Plane.prototype = {
 				
 			this.decY(3);
 		}
+	},
+	
+	changeDirection: function() {
+		var newDir = this.getDir() == 0 ? 1 : 0;
+		this.setDir(newDir);
+		this.setSpeed(-this.getSpeed());
+		return newDir;
+	}, 
+	
+	flyAway: function() {
+		var dir = this.changeDirection();
+		if(dir)
+			this.decSpeed(10);
+		else
+			this.incSpeed(10);
 	}
 }
 
@@ -527,10 +545,10 @@ Balloon.prototype = {
 				this.incTankStatus(100);
 				object.setDefunct();
 			}
-				else if(object instanceof Plane) {
-					balloon.decVertSpeed(20);
-					console.log("speed: "+ balloon.getVertSpeed);
-				}
+			else if(object instanceof Plane) {
+				this.decVertSpeed(20);
+				console.log("speed: "+ this.getVertSpeed);
+			}
 		}
 	}
 }

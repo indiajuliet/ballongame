@@ -59,18 +59,25 @@ function createPowerUp() {
 
 //Erzeugt einen zufälligen Enemy
 function createEnemy() {
-<<<<<<< HEAD
 	var newEnemy;
+	var lvl = level.getLevelNr();
 	console.log("level: " + level.getLevelNr());
-	if(level.getLevelNr() == 0)
-		newEnemy = new Bird(enemySprite);
-	else 
-		newEnemy = new Plane(enemySprite);
-=======
-	//var newEnemy = new Bird(enemySprite);
 	
-	var newEnemy = new Asteroid(enemySprite);
->>>>>>> 3bca7cac03d3217338c2a6f7d945a9740c683675
+
+	switch(lvl){
+		case 0:
+			newEnemy = new Bird(enemySprite);
+			break;
+		case 1:
+			newEnemy = new Plane(enemySprite);
+			break;
+		case 2:
+			newEnemy = new Asteroid(enemySprite);
+			break;
+	}
+	
+//	var newEnemy = new Asteroid(enemySprite);
+
 	objects.push(newEnemy);
 }
 
