@@ -1,6 +1,45 @@
 TO DO
 
+
+*****************
+Status 11.12.2012
+*****************
+
+
+Allgemeiner Beschluss
+- Kollision: Bei jedem Gegner schlägt der Ballon in eine andere Richtung aus Bsp: Vogel von links - Ausschlag nach rechts
+	- Vögel gehen, für andere Gegner Ausschlag festlegen Bsp: Asteroid von rechts oben - Ausschlag nach links unten
+- Gegner pro Level (max. 3 Gegner pro Level):
+	- Level 1: Flieger, Vögel
+	- Level 2: Satellit, Ufo, Asteroid
+	- Level 3: Katze Nyan
+- Power-Ups in jedem Level: Tank-Kanister
+- Textanzeigen (Level 1, etc...) werden direkt vom Programm angezeigt
+- Tank-Anzeige: Special --> blinkt auf im roten Bereich, mit Sound verstärken
+- Musik in Sound umbenennen
+
+Konni
+- Anzahl Gegner (über Counter) optimieren
+
+Micha
+- Kollision auf restliche Gegner erweitern
+- Klasse Satellit und Ufo erstellen
+
+IJ
+- Sound-Buttons einrichten
+- Sound für Tank-Warnung
+- Sound für Tank leer / Spiel verloren --> Ballon stürzt ab
+----> Sound allgemein
+
+Johanna
+- Spieleanleitung schreiben
+- Gegner in xml ergänzen und Spritesheet erweitern
+
+
+*****************
 Status 13.11.2012
+*****************
+
 
 Allgemeiner Beschluss:
 - Spielerauswahl wird nach hinten gestellt
@@ -22,7 +61,11 @@ Micha
 Konni
 - Optimierungen
 
+
+*****************
 Status 06.11.2012
+*****************
+
 
 **Spiel Start**
 
