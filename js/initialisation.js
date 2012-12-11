@@ -153,7 +153,6 @@ function startNewGame(lvl) {
 	
 	level = lvlMngr.loadLevel(lvl-1);
 	updateLevel(level);
-	sound.levelsound.play();
 	startGame();
 }
 
@@ -186,6 +185,7 @@ function startGame() {
 		cloudHandle = setInterval(createCloud, 1000);
 		powerUpHandle = setInterval(createPowerUp, 15000);
 		enemyHandle = setInterval(createEnemy, 1000);
+		sound.levelSound.play();
 	}
 }
 
@@ -203,7 +203,7 @@ function stopGame() {
 		powerUpHandle = 0;
 		enemyHandle = 0;
 		
-		sound.levelsound.pause();
+		sound.levelSound.pause();
 	}
 }
 

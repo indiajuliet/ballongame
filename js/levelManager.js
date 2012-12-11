@@ -71,6 +71,7 @@ LevelManager.prototype.loadLevel = function(lvl) {
 			Level.prototype.setBgPicture($(this).find('picture').text());
 			Level.prototype.setLvlHeight($(this).find('lvlHeight').text());
 			Level.prototype.setMaxWindStrenght($(this).find('maxWindStrenght').text());
+			Level.prototype.setLevelSound($(this).find('music').text());
 			
 			// Gegnerdaten sammeln
 			$(this).find('enemy').each(function() {
@@ -79,7 +80,9 @@ LevelManager.prototype.loadLevel = function(lvl) {
 				attr = {'width' : $(this).find('width').text(),
 						'height' : $(this).find('height').text(),
 						'frames' : $(this).find('frames').text().split(','),
-						'row' : $(this).find('row').text()
+						'row' : $(this).find('row').text(),
+						'sound_appear': $(this).find('sound_appear').text(),
+						'sound_hit': $(this).find('sound_hit').text()
 					   };
 								
 				enemies[desc] = attr;
