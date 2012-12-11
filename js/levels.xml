@@ -4,7 +4,7 @@
 		<scene>
 			<background>
 				<color>#6495ED</color>	
-				<music>blub.mp3</music>
+				<music>audio/level1.wav</music>
 			</background>
 			<objects>
 				<object id="0">
@@ -23,6 +23,7 @@
 				<width>42</width>
 				<height>60</height>
 				<frames>0</frames>
+				<sound_pickup>audio/powerup.wav</sound_pickup>
 			</powerUp>
 		</powerUps>
 		<enemies>
@@ -32,6 +33,8 @@
 				<width>63</width>
 				<height>50</height>
 				<frames>4,1,5,3</frames>
+				<sound_appear>audio/bird_twitter.wav</sound_appear>
+				<sound_hit>audio/bird_hit.wav</sound_hit>
 			</enemy>
 		</enemies>
 		<lvlHeight>2000</lvlHeight>
@@ -42,7 +45,7 @@
 		<scene>
 			<background>
 				<color>#FF0000</color>
-				<music>blub.mp3</music>
+				<music>audio/level2.wav</music>
 			</background>
 			<objects>
 				<object id="0">
@@ -76,7 +79,7 @@
 		<scene>
 			<background>
 				<color>#00FF00</color>
-				<music>blub.mp3</music>
+				<music>audio/nyan.wav</music>
 			</background>
 			<clouds>
 				<cloud id="0">cloud1.png</cloud>

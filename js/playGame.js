@@ -58,7 +58,11 @@ function createPowerUp() {
 }
 
 //Erzeugt einen zufälligen Enemy
+<<<<<<< HEAD
 function createEnemy() {
+=======
+function createEnemy() {
+>>>>>>> a86aea209f96dec4eeeab964f0b5349be4bf351a
 	var newEnemy;
 	//console.log("level: " + level.getLevelNr());
 	if(level.getLevelNr() == 0)
@@ -66,9 +70,16 @@ function createEnemy() {
 	else 
 		newEnemy = new Plane(enemySprite);
 
+<<<<<<< HEAD
 	
 //	var newEnemy = new Asteroid(enemySprite);
 
+=======
+	//var newEnemy = new Bird(enemySprite);
+	
+	var newEnemy = new Asteroid(enemySprite);
+
+>>>>>>> a86aea209f96dec4eeeab964f0b5349be4bf351a
 	objects.push(newEnemy);
 }
 
@@ -204,6 +215,9 @@ function updateLevel(level) {
 	// PowerUp-Sprite anlegen
 	var powerUpFrames = level.getPowerUpFrames();
 	powerupSprite = new SpriteSheet(spriteSheet, powerUpFrames);
+	
+	sound.setEnemyAppear(level.getEnemyAppear());
+	sound.setLevelSound(level.getLevelSound());
 }
 
 // Dreht ein Objekt entsprechend der Gradzahl (jQuery)
