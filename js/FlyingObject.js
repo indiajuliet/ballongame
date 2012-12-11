@@ -261,17 +261,17 @@ Plane.prototype = {
 		
 		if((xPos % 20) >= 0 && (xPos % 20) <= 5) {
 			if(dir == 1)
-				this.setFrame(7);
+				this.setFrame(3);
 			else
-				this.setFrame(4);
+				this.setFrame(1);
 				
 			this.incY(3);
 		}
 		else {
 			if(dir == 1)
-				this.setFrame(6);
+				this.setFrame(2);
 			else
-				this.setFrame(5);
+				this.setFrame(0);
 				
 			this.decY(3);
 		}
@@ -527,6 +527,10 @@ Balloon.prototype = {
 				this.incTankStatus(100);
 				object.setDefunct();
 			}
+				else if(object instanceof Plane) {
+					balloon.decVertSpeed(20);
+					console.log("speed: "+ balloon.getVertSpeed);
+				}
 		}
 	}
 }
