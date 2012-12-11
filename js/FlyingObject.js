@@ -540,6 +540,20 @@ Balloon.prototype = {
 					object.flyAway();
 					object.setFlyAwayFlag();
 				}
+				
+				if (object.getDir() == 1){
+					if (balloonX + this.width + 20 < width-5)
+						this.incX(20);
+						
+				} else {
+					if (balloonX - 20 > 5)
+						this.decX(20);
+						
+				}
+				this.incVertSpeed(5);
+				this.incFlightAttitude(12);
+				this.setHeightBarFrame(3);
+				
 			}
 			else if(object instanceof Tank) {
 				this.incTankStatus(100);
