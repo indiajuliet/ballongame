@@ -32,6 +32,8 @@ IJ
 ----> Sound allgemein
 
 Johanna
+- Astronaut Helm aufsetzen
+- Ballongame Banner
 - Spieleanleitung schreiben
 - Gegner in xml ergänzen und Spritesheet erweitern
 
