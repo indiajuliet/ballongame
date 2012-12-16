@@ -17,11 +17,13 @@ function keyDown(e) {
 			break;
 			
 		case UP_ARROW:
-			balloon.decVertSpeed(1);
-			balloon.decTankStatus(1);
-			balloon.setFrame(1);
-			balloon.setHeightBarFrame(4);
-			sound.ignite.play();
+			if(balloon.getTankStatus() >= 0) {
+				balloon.decVertSpeed(1);
+				balloon.decTankStatus(1);
+				balloon.setFrame(1);
+				balloon.setHeightBarFrame(4);
+				sound.ignite.play();
+			}
 			break;	
 			
 		case DOWN_ARROW:
@@ -50,8 +52,10 @@ function createCloud() {
 	for(o in cloudSprite) {
 		switch(o) {
 			case 'cloud':
-				var newCloud = new Cloud(cloudSprite['cloud']);
-				objects.push(newCloud);
+				if(checkInterval(cloudSprite['cloud'].getInterval(), 100, 200)) {
+					var newCloud = new Cloud(cloudSprite['cloud']);
+					objects.push(newCloud);
+				}
 				break;
 		default:
 			// mache nix
@@ -62,8 +66,10 @@ function createCloud() {
 
 //Erzeugt ein zufälliges Power Up
 function createPowerUp() {
-	var newpowerUp = new Tank(powerupSprite['fuel']);
-	objects.push(newpowerUp);
+	if(checkInterval(powerupSprite['fuel'].getInterval(), 200, 300)) {
+		var newpowerUp = new Tank(powerupSprite['fuel']);
+		objects.push(newpowerUp);
+	}
 }
 
 //Erzeugt einen zufälligen Enemy
@@ -73,12 +79,22 @@ function createEnemy() {
 		var newEnemy;
 		switch (e) {
 			case 'bird':
-				newEnemy = new Bird(enemySprite['bird']);
-				objects.push(newEnemy);
+				if(checkInterval(enemySprite['bird'].getInterval(), 0, 50)) {
+					newEnemy = new Bird(enemySprite['bird']);
+					objects.push(newEnemy);
+				}
+				break;
+			case 'plane':
+				if(checkInterval(enemySprite['plane'].getInterval(), 100, 200)) {
+					newEnemy = new Plane(enemySprite['plane']);
+					objects.push(newEnemy);
+				}
 				break;
 			case 'asteroid':
-				newEnemy = new Asteroid(enemySprite['asteroid']);
-				objects.push(newEnemy);
+				if(checkInterval(enemySprite['asteroid'].getInterval(), 0, 10)) {
+					newEnemy = new Asteroid(enemySprite['asteroid']);
+					objects.push(newEnemy);
+				}
 				break;
 			default:
 				// mache nix
@@ -226,7 +242,6 @@ function updateLevel(level) {
 		console.log(p);
 		powerupSprite[p] = new SpriteSheet(spriteSheet, powerUpFrames[p]);
 	}
-	powerupSprite = new SpriteSheet(spriteSheet, powerUpFrames);
 	
 	sound.setEnemyAppear(level.getEnemyAppear());
 	sound.setLevelSound(level.getLevelSound());
@@ -290,6 +305,10 @@ function checkFocus() {
 	//console.log("hasFocus: " + hasFocus + " isStarted: " + isStarted);
 }
 
+function checkInterval(interval, a, b) {
+	console.log((balloon.getFlightAttitude() % interval) >= a , (balloon.getFlightAttitude() % interval) <= b)
+	return ((balloon.getFlightAttitude() % interval) >= a && (balloon.getFlightAttitude() % interval <= b));
+}
 //===========================================================
 // Zeichenfunktionen
 //===========================================================

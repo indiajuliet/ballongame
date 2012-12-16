@@ -13,6 +13,7 @@
 					<width>145</width>
 					<height>100</height>
 					<frames>0,1,2</frames>
+					<interval>300</interval>
 				</object>
 			</objects>
 		</scene>
@@ -23,6 +24,7 @@
 				<width>42</width>
 				<height>60</height>
 				<frames>0</frames>
+				<interval>4000</interval>
 				<sound_pickup>audio/powerup.wav</sound_pickup>
 			</powerUp>
 		</powerUps>
@@ -33,18 +35,20 @@
 				<width>63</width>
 				<height>50</height>
 				<frames>4,1,5,3</frames>
+				<interval>50</interval>
 				<sound_appear>audio/bird_twitter.wav</sound_appear>
 				<sound_hit>audio/bird_hit.wav</sound_hit>
 			</enemy>
 			<enemy id="1">
-				<desc>asteroid</desc>
-				<row>8</row>
-				<width>109</width>
-				<height>100</height>
+				<desc>plane</desc>
+				<row>7</row>
+				<width>198</width>
+				<height>125</height>
 				<frames>0,1,2,3</frames>
+				<interval>5000</interval>
 			</enemy>
 		</enemies>
-		<lvlHeight>2000</lvlHeight>
+		<lvlHeight>20000</lvlHeight>
 		<maxWindStrenght>3</maxWindStrenght>
 	</level>
 	<level id="1">
@@ -67,6 +71,7 @@
 				<width>42</width>
 				<height>60</height>
 				<frames>0</frames>
+				<interval>4000</interval>
 			</powerUp>
 		</powerUps>
 		<lvlHeight>35000</lvlHeight>
@@ -78,6 +83,7 @@
 				<width>109</width>
 				<height>100</height>
 				<frames>0,1,2,3</frames>
+				<interval>50</interval>
 			</enemy>
 		</enemies>
 	</level>

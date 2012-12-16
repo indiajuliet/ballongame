@@ -81,6 +81,7 @@ LevelManager.prototype.loadLevel = function(lvl) {
 						'height' : $(this).find('height').text(),
 						'frames' : $(this).find('frames').text().split(','),
 						'row' : $(this).find('row').text(),
+						'interval' : $(this).find('interval').text(),
 						'sound_appear': $(this).find('sound_appear').text(),
 						'sound_hit': $(this).find('sound_hit').text()
 					   };
@@ -95,7 +96,8 @@ LevelManager.prototype.loadLevel = function(lvl) {
 				attr = {'width' : $(this).find('width').text(),
 						'height' : $(this).find('height').text(),
 						'frames' : $(this).find('frames').text().split(','),
-						'row' : $(this).find('row').text()
+						'row' : $(this).find('row').text(),
+						'interval' : $(this).find('interval').text()
 					   };
 								
 				objects[desc] = attr;
@@ -108,7 +110,8 @@ LevelManager.prototype.loadLevel = function(lvl) {
 				attr = {'width' : $(this).find('width').text(),
 						'height' : $(this).find('height').text(),
 						'frames' : $(this).find('frames').text().split(','),
-						'row' : $(this).find('row').text()
+						'row' : $(this).find('row').text(),
+						'interval' : $(this).find('interval').text()
 					   };
 								
 				powerUps[desc] = attr;
@@ -141,11 +144,12 @@ LevelManager.prototype.calculateFrames = function(data) {
 		var height = parseInt(attribs['height']);
 		var row = parseInt(attribs['row']);
 		var y = this.spriteRowHeights[row-1];
+		var interval = parseInt(attribs['interval']);
 		
 		var temp = [];
 		for(j in frames) {
 			var x = (parseInt(frames[j]) * (width + 1));
-			var frame = [x, y, width, height, 0, 0, i];
+			var frame = [x, y, width, height, 0, 0, interval];
 			temp[j] = frame;
 		}
 		

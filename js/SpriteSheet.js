@@ -10,6 +10,7 @@ SpriteSheet.FRAME_WIDTH = 2;
 SpriteSheet.FRAME_HEIGHT = 3;
 SpriteSheet.FRAME_ANCHOR_X = 4;
 SpriteSheet.FRAME_ANCHOR_Y = 5;
+SpriteSheet.INTERVAL = 6;
 
 _p = SpriteSheet.prototype;
 
@@ -38,6 +39,11 @@ _p.getWidth = function(index) {
 _p.getHeight = function(index) {
 	var frame = this._frames[index];
 	return frame[SpriteSheet.FRAME_HEIGHT];
+};
+
+_p.getInterval = function() {
+	var frame = this._frames[0];
+	return frame[SpriteSheet.INTERVAL];
 };
 
 _p.getFrames = function() {

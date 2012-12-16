@@ -471,7 +471,7 @@ Balloon.prototype = {
 		
 		// verringere geschwindigkeit jede Sekunde um 1 (Schwerkraft)
 		if(this.timer == 10) {
-			if(this.vertSpeed >= -20 && this.vertSpeed <= 20) {
+			if(this.vertSpeed >= -20 && this.vertSpeed <= 20 && this.flightAttitude > 0) {
 				this.incVertSpeed(1);
 			}
 			
@@ -506,19 +506,19 @@ Balloon.prototype = {
 		var tankStatus = this.tankStatus;
 		
 		// Hole die richtige Tankanzeige, entsprechend dem aktuellen Status			
-		if (tankStatus < 100){
+		if (tankStatus <= 0){
 			frame = 4;
 		}
-		if (tankStatus >= 100 && tankStatus < 200){
+		if (tankStatus >= 0 && tankStatus < 100){
 			frame = 3;
 		}
-		if (tankStatus >= 200 && tankStatus < 300){
+		if (tankStatus >= 100 && tankStatus < 200){
 			frame = 2;
 		}
-		if (tankStatus >= 300 && tankStatus < 400){
+		if (tankStatus >= 200 && tankStatus < 300){
 			frame = 1;
 		} 
-		if (tankStatus >= 400){
+		if (tankStatus >= 300){
 			frame = 0;
 		}
 		
