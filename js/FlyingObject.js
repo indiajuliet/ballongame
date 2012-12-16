@@ -379,6 +379,70 @@ Asteroid.prototype = {
 	changeDirection: function() {
 		var newDir = this.getDir() == 0 ? 1 : 0;
 		this.setDir(newDir);
+		//this.setSpeed(-this.getSpeed());
+		return newDir;
+	}, 
+	
+	flyAway: function() {
+		var dir = this.changeDirection();
+		if(dir)
+			this.decSpeed(10);
+		else
+			this.incSpeed(10);
+	}
+}
+
+/****
+*	Satellite
+*
+****/
+Satellite = function(sp) {
+	this.base = Enemy;
+	var speed = getRandom(10, 15);
+	this.base(speed, sp);
+	this.type = "Satellite";
+	this.init();
+	this.flyAwayFlag = false;
+	
+}
+
+Satellite.prototype = new Enemy();
+Satellite.prototype.constructor = Satellite;
+
+Satellite.prototype = {
+	getDir: function() { return this.dir; },
+	setDir: function(d) { this.dir = d; },
+	
+	setFlyAwayFlag: function() { this.flyAwayFlag = true; },
+	getFlyAwayFlag: function() { return this.flyAwayFlag; },
+	
+	fly: function() {
+		this.incX(this.getSpeed());
+		
+		var xPos = Math.round(this.getX());
+		var dir = this.getDir();
+		
+		if((xPos % 20) >= 0 && (xPos % 20) <= 5) {
+			if(dir == 1)
+				this.setFrame(3);
+			else
+				this.setFrame(1);
+				
+			this.incY(3);
+		}
+		else {
+			if(dir == 1)
+				this.setFrame(2);
+			else
+				this.setFrame(0);
+				
+			this.decY(3);
+		}
+	},
+	
+	changeDirection: function() {
+		var newDir = this.getDir() == 0 ? 1 : 0;
+		this.setDir(newDir);
 		this.setSpeed(-this.getSpeed());
 		return newDir;
 	}, 
@@ -392,6 +456,133 @@ Asteroid.prototype = {
 	}
 }
 
+/****
+*  Ufo
+*
+****/
+Ufo = function(sp) {
+	this.base = Enemy;
+	var speed = getRandom(10, 15);
+	this.base(speed, sp);
+	this.type = "Ufo";
+	this.init();
+	this.flyAwayFlag = false;
+	
+}
+
+Ufo.prototype = new Enemy();
+Ufo.prototype.constructor = Ufo;
+
+Ufo.prototype = {
+	getDir: function() { return this.dir; },
+	setDir: function(d) { this.dir = d; },
+	
+	setFlyAwayFlag: function() { this.flyAwayFlag = true; },
+	getFlyAwayFlag: function() { return this.flyAwayFlag; },
+	
+	fly: function() {
+		this.incX(this.getSpeed());
+		
+		var xPos = Math.round(this.getX());
+		var dir = this.getDir();
+		
+		if((xPos % 20) >= 0 && (xPos % 20) <= 5) {
+			if(dir == 1)
+				this.setFrame(3);
+			else
+				this.setFrame(1);
+				
+			this.incY(3);
+		}
+		else {
+			if(dir == 1)
+				this.setFrame(2);
+			else
+				this.setFrame(0);
+				
+			this.decY(3);
+		}
+	},
+	
+	changeDirection: function() {
+		var newDir = this.getDir() == 0 ? 1 : 0;
+		this.setDir(newDir);
+		this.setSpeed(-this.getSpeed());
+		return newDir;
+	}, 
+	
+	flyAway: function() {
+		var dir = this.changeDirection();
+		if(dir)
+			this.decSpeed(10);
+		else
+			this.incSpeed(10);
+	}
+}
+
+/****
+*  Nyancat
+*
+****/
+Nyancat = function(sp) {
+	this.base = Enemy;
+	var speed = getRandom(10, 15);
+	this.base(speed, sp);
+	this.type = "Nyancat";
+	this.init();
+	this.flyAwayFlag = false;
+	
+}
+
+Nyancat.prototype = new Enemy();
+Nyancat.prototype.constructor = Nyancat;
+
+Nyancat.prototype = {
+	getDir: function() { return this.dir; },
+	setDir: function(d) { this.dir = d; },
+	
+	setFlyAwayFlag: function() { this.flyAwayFlag = true; },
+	getFlyAwayFlag: function() { return this.flyAwayFlag; },
+	
+	fly: function() {
+		this.incX(this.getSpeed());
+		
+		var xPos = Math.round(this.getX());
+		var dir = this.getDir();
+		
+		if((xPos % 20) >= 0 && (xPos % 20) <= 5) {
+			if(dir == 1)
+				this.setFrame(3);
+			else
+				this.setFrame(1);
+				
+			this.incY(3);
+		}
+		else {
+			if(dir == 1)
+				this.setFrame(2);
+			else
+				this.setFrame(0);
+				
+			this.decY(3);
+		}
+	},
+	
+	changeDirection: function() {
+		var newDir = this.getDir() == 0 ? 1 : 0;
+		this.setDir(newDir);
+		this.setSpeed(-this.getSpeed());
+		return newDir;
+	}, 
+	
+	flyAway: function() {
+		var dir = this.changeDirection();
+		if(dir)
+			this.decSpeed(10);
+		else
+			this.incSpeed(10);
+	}
+}
 
 /****
 *  Ballon
@@ -535,36 +726,70 @@ Balloon.prototype = {
 		var objectHeigth = object.getHeight();
 		
 		if(balloonX + this.width >= objectX && balloonX <= objectX + objectWidth  && balloonY + this.height >= objectY && balloonY <= objectY + objectHeigth) {
+			var offsetX, offsetY, speedOffset;
+			
 			if(object instanceof Bird) {
+				offsetX = 20;
+				offsetY = 5;
+				speedOffset = 5;
+			}
+			
+			else if(object instanceof Plane) {
+				offsetX = 30;
+				offsetY = 5;
+				speedOffset = 1;
+			}
+			
+			else if(object instanceof Asteroid) {
+				offsetX = 5;
+				offsetY = 20;
+				speedOffset = 1;
+			}
+			
+			else if(object instanceof Satellite) {
+				offsetX = 5;
+				offsetY = 5;
+				speedOffset = 8;
+			}
+			
+			else if(object instanceof Ufo) {
+				offsetX = 30;
+				offsetY = -5;
+				speedOffset = 8;
+			}
+			
+			else if(object instanceof Nyancat) {
+				offsetX = 10;
+				offsetY = 10;
+				speedOffset = 10;
+			}
+			
+			else if(object instanceof Tank) {
+				this.incTankStatus(100);
+				object.setDefunct();
+			}
+						
+			if (!(object instanceof Tank)){
+				if (object.getDir() == 1){
+					if (balloonX + this.width + 20 < width-5)
+						this.incX(offsetX);
+				} else {
+					if (balloonX - 20 > 5)
+						this.decX(offsetX);			
+				}
+				
 				if(!object.getFlyAwayFlag()) {
 					object.flyAway();
 					object.setFlyAwayFlag();
 				}
 				
-				if (object.getDir() == 1){
-					if (balloonX + this.width + 20 < width-5)
-						this.incX(20);
-						
-				} else {
-					if (balloonX - 20 > 5)
-						this.decX(20);
-						
-				}
-				this.incVertSpeed(5);
-				this.incFlightAttitude(12);
+				this.incVertSpeed(speedOffset);
+				this.incFlightAttitude(offsetY);
 				this.setHeightBarFrame(3);
-				
-			}
-			else if(object instanceof Tank) {
-				this.incTankStatus(100);
-				object.setDefunct();
-			}
-			else if(object instanceof Plane) {
-				this.decVertSpeed(20);
-				console.log("speed: "+ this.getVertSpeed);
 			}
 		}
 	}
+	
 }
 
 function getRandom(a, b) {
