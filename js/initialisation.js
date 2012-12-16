@@ -183,7 +183,7 @@ function startGame() {
 		
 		gameHandle = setInterval(draw, 50);
 		cloudHandle = setInterval(createCloud, 1000);
-		powerUpHandle = setInterval(createPowerUp, 15000);
+		powerUpHandle = setInterval(createPowerUp, 1000);
 		enemyHandle = setInterval(createEnemy, 1000);
 		sound.levelSound.play();
 	}
