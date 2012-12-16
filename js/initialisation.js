@@ -138,6 +138,35 @@ $(document).ready(function(){
 });
 
 
+//Sound an/aus
+
+PlaySound=1;
+
+
+$(document).ready(function(){
+	$("#sound_on").click(function() {
+		PlaySound=1;
+		$("#musicBtn").css("background-image", "url(pics/Button_music_on.png)");
+		sound.setVolume(PlaySound);
+	});
+	$("#sound_off").click(function() {
+		PlaySound=0;
+		$("#musicBtn").css("background-image", "url(pics/Button_music_off.png)");
+		sound.setVolume(PlaySound);
+	});
+	$("#musicBtn").click(function() {
+		PlaySound=(PlaySound+1)%2;
+		if (PlaySound){
+		  $("#musicBtn").css("background-image", "url(pics/Button_music_on.png)"); 
+		sound.setVolume(PlaySound);}
+		else{
+		  $("#musicBtn").css("background-image", "url(pics/Button_music_off.png)");
+		sound.setVolume(PlaySound);}
+	});
+	
+});
+
+
 // Spiele Hintergrundmusik ab
 function playBackgroundMusic() {
 	var audio = document.createElement('audio');
@@ -185,6 +214,7 @@ function startGame() {
 		cloudHandle = setInterval(createCloud, 1000);
 		powerUpHandle = setInterval(createPowerUp, 1000);
 		enemyHandle = setInterval(createEnemy, 1000);
+		sound.setVolume(PlaySound);
 		sound.levelSound.play();
 	}
 }

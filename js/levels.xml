@@ -46,6 +46,8 @@
 				<height>125</height>
 				<frames>0,1,2,3</frames>
 				<interval>5000</interval>
+				<sound_appear>audio/bird_twitter.wav</sound_appear>
+				<sound_hit>audio/bird_hit.wav</sound_hit>
 			</enemy>
 		</enemies>
 		<lvlHeight>20000</lvlHeight>
@@ -72,6 +74,7 @@
 				<height>60</height>
 				<frames>0</frames>
 				<interval>4000</interval>
+				<sound_pickup>audio/powerup.wav</sound_pickup>
 			</powerUp>
 		</powerUps>
 		<lvlHeight>35000</lvlHeight>
@@ -84,6 +87,8 @@
 				<height>100</height>
 				<frames>0,1,2,3</frames>
 				<interval>50</interval>
+				<sound_appear>audio/bird_twitter.wav</sound_appear>
+				<sound_hit>audio/bird_hit.wav</sound_hit>
 			</enemy>
 		</enemies>
 	</level>
@@ -101,7 +106,13 @@
 			</clouds>
 		</scene>
 		<powerUps>
-			<powerUp id="0">fuel</powerUp>
+			<desc>fuel</desc>
+			<row>6</row>
+			<width>42</width>
+			<height>60</height>
+			<frames>0</frames>
+			<interval>4000</interval>
+			<sound_pickup>audio/powerup.wav</sound_pickup>
 		</powerUps>
 		<lvlHeight>35000</lvlHeight>
 		<maxWindStrenght>9</maxWindStrenght>
