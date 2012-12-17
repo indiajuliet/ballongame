@@ -731,12 +731,11 @@ Balloon.prototype = {
 			if(object instanceof Bird) {
 				offsetX = 20;
 				offsetY = 5;
-<<<<<<< HEAD
 				speedOffset = 3;
-=======
+
 				speedOffset = 5;
 				object.soundHit.play();
->>>>>>> 559468c1080482b21271f0365f7adbe10da7e57f
+
 			}
 			
 			else if(object instanceof Plane) {
