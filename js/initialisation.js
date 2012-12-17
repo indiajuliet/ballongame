@@ -140,10 +140,12 @@ $(document).ready(function(){
 
 //Sound an/aus
 
-PlaySound=1;
+
 
 
 $(document).ready(function(){
+	PlaySound=1;
+	$("#sound_on").attr("checked","checked");
 	$("#sound_on").click(function() {
 		PlaySound=1;
 		$("#musicBtn").css("background-image", "url(pics/Button_music_on.png)");
@@ -158,10 +160,14 @@ $(document).ready(function(){
 		PlaySound=(PlaySound+1)%2;
 		if (PlaySound){
 		  $("#musicBtn").css("background-image", "url(pics/Button_music_on.png)"); 
-		sound.setVolume(PlaySound);}
+		  sound.setVolume(PlaySound);
+		  $("#sound_on").attr("checked","checked");
+		}
 		else{
 		  $("#musicBtn").css("background-image", "url(pics/Button_music_off.png)");
-		sound.setVolume(PlaySound);}
+		  sound.setVolume(PlaySound);
+		  $("#sound_off").attr("checked","checked");
+		}
 	});
 	
 });
