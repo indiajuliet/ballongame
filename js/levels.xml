@@ -102,8 +102,8 @@
 			<enemy id="1">
 				<desc>satellit</desc>
 				<row>9</row>
-				<width>431</width>
-				<height>431</height>
+				<width>145</width>
+				<height>145</height>
 				<frames>0,1,2,3</frames>
 				<interval>100</interval>
 				<sound_appear></sound_appear>
@@ -112,8 +112,8 @@
 			<enemy id="1">
 				<desc>ufo</desc>
 				<row>10</row>
-				<width>200</width>
-				<height>164</height>
+				<width>130</width>
+				<height>107</height>
 				<frames>0,1</frames>
 				<interval>80</interval>
 				<sound_appear></sound_appear>
@@ -151,8 +151,8 @@
 			<enemy id="0">
 				<desc>nyancat</desc>
 				<row>11</row>
-				<width>140</width>
-				<height>80</height>
+				<width>120</width>
+				<height>74</height>
 				<frames>0,1</frames>
 				<interval>80</interval>
 				<sound_appear></sound_appear>
