@@ -27,6 +27,15 @@
 				<interval>4000</interval>
 				<sound_pickup>audio/powerup.wav</sound_pickup>
 			</powerUp>
+			<powerUp id="0">
+				<desc>fuel</desc>
+				<row>6</row>
+				<width>42</width>
+				<height>60</height>
+				<frames>1</frames>
+				<interval>100</interval>
+				<sound_pickup>audio/powerup.wav</sound_pickup>
+			</powerUp>
 		</powerUps>
 		<enemies>
 			<enemy id="0">

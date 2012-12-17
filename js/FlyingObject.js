@@ -133,6 +133,34 @@ Tank.prototype = {
 }
 
 /****
+*  Nitro
+*
+****/
+Nitro = function(sp) {
+	this.base = PowerUp;
+	
+	var xPos = getRandom(0, width-40);
+	var yPos = getRandom(-100 , -60);
+		
+	var frame = 1;
+	var speed = 0;
+	
+	this.base(xPos, yPos, speed, frame, sp);
+	this.init();
+	
+	this.type = "Nitro";
+}
+
+Nitro.prototype = new PowerUp();
+Nitro.prototype.constructor = Nitro;
+
+Nitro.prototype = {
+	fly: function() {
+		
+	}
+}
+
+/****
 *  Gegner
 *
 ****/
@@ -387,8 +415,32 @@ Asteroid.prototype = {
 	}, 
 	
 	flyAway: function() {
-		var dir = this.changeDirection();
+		//var dir = this.changeDirection();
+		var d = this.getDegree();
 		
+		switch(d){
+			case 210:
+				this.setDegree(330);
+				this.setFrame(2);
+				break;
+			case 240:
+				this.setDegree(300);
+				this.setFrame(2);
+				break;
+			case 300:
+				this.setDegree(240);
+				this.setFrame(0);
+				break;
+			case 330:
+				this.setDegree(210);
+				this.setFrame(0);
+				break;
+		}
+		
+		this.setAngle(this.getDegree() * Math.PI / 180);
+		var angle = this.getAngle();
+		this.setVX(this.getSpeed() * Math.cos(angle));
+		this.setVY(this.getSpeed() * Math.sin(angle));
 	}
 }
 
@@ -745,9 +797,9 @@ Balloon.prototype = {
 			}
 			
 			else if(object instanceof Asteroid) {
-				offsetX = 5;
+				offsetX = 10;
 				offsetY = 20;
-				speedOffset = 1;
+				speedOffset = 2;
 			}
 			
 			else if(object instanceof Satellite) {
@@ -777,10 +829,10 @@ Balloon.prototype = {
 			if (!(object instanceof Tank)){
 				if (object.getDir() == 1){
 					if (balloonX + this.width + 20 < width-5)
-						this.incX(offsetX);
+						this.decX(offsetX);
 				} else {
 					if (balloonX - 20 > 5)
-						this.decX(offsetX);			
+						this.incX(offsetX);			
 				}
 				
 				if(!object.getFlyAwayFlag()) {
