@@ -243,7 +243,7 @@ function updateLevel(level) {
 		powerupSprite[p] = new SpriteSheet(spriteSheet, powerUpFrames[p]);
 	}
 	
-	sound.setEnemyAppear(level.getEnemyAppear());
+//	sound.setEnemyAppear(level.getEnemyAppear());
 	sound.setLevelSound(level.getLevelSound());
 }
 

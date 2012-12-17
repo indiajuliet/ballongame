@@ -90,6 +90,26 @@
 				<sound_appear>audio/bird_twitter.wav</sound_appear>
 				<sound_hit>audio/bird_hit.wav</sound_hit>
 			</enemy>
+			<enemy id="1">
+				<desc>satellit</desc>
+				<row>9</row>
+				<width>431</width>
+				<height>431</height>
+				<frames>0,1,2,3</frames>
+				<interval>100</interval>
+				<sound_appear></sound_appear>
+				<sound_hit></sound_hit>
+			</enemy>
+			<enemy id="1">
+				<desc>ufo</desc>
+				<row>10</row>
+				<width>200</width>
+				<height>164</height>
+				<frames>0,1</frames>
+				<interval>80</interval>
+				<sound_appear></sound_appear>
+				<sound_hit></sound_hit>
+			</enemy>
 		</enemies>
 	</level>
 	<level id="2">
@@ -117,8 +137,16 @@
 		<lvlHeight>35000</lvlHeight>
 		<maxWindStrenght>9</maxWindStrenght>
 		<enemies>
-			<enemy id="0">bird</enemy>
-			<enemy id="1">plane</enemy>
+			<enemy id="0">
+				<desc>nyancat</desc>
+				<row>11</row>
+				<width>140</width>
+				<height>80</height>
+				<frames>0,1</frames>
+				<interval>80</interval>
+				<sound_appear></sound_appear>
+				<sound_hit></sound_hit>
+			</enemy>
 		</enemies>
 	</level>
 	<level id="3">

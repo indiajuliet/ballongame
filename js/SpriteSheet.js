@@ -11,6 +11,8 @@ SpriteSheet.FRAME_HEIGHT = 3;
 SpriteSheet.FRAME_ANCHOR_X = 4;
 SpriteSheet.FRAME_ANCHOR_Y = 5;
 SpriteSheet.INTERVAL = 6;
+SpriteSheet.SOUNDAPPEAR = 7;
+SpriteSheet.SOUNDHIT = 8;
 
 _p = SpriteSheet.prototype;
 
@@ -46,6 +48,17 @@ _p.getInterval = function() {
 	return frame[SpriteSheet.INTERVAL];
 };
 
+_p.getSoundHit = function() {
+	var frame = this._frames[0];
+	return frame[SpriteSheet.SOUNDHIT];
+};
+
+_p.getSoundAppear = function() {
+	var frame = this._frames[0];
+	return frame[SpriteSheet.SOUNDAPPEAR];
+};
+
 _p.getFrames = function() {
 	return this._frames;
 }
+
