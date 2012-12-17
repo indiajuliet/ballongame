@@ -133,6 +133,34 @@ Tank.prototype = {
 }
 
 /****
+*  Nitro
+*
+****/
+Nitro = function(sp) {
+	this.base = PowerUp;
+	
+	var xPos = getRandom(0, width-40);
+	var yPos = getRandom(-100 , -60);
+		
+	var frame = 1;
+	var speed = 0;
+	
+	this.base(xPos, yPos, speed, frame, sp);
+	this.init();
+	
+	this.type = "Nitro";
+}
+
+Nitro.prototype = new PowerUp();
+Nitro.prototype.constructor = Nitro;
+
+Nitro.prototype = {
+	fly: function() {
+		
+	}
+}
+
+/****
 *  Gegner
 *
 ****/
