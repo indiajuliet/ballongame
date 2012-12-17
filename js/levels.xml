@@ -27,6 +27,15 @@
 				<interval>4000</interval>
 				<sound_pickup>audio/powerup.wav</sound_pickup>
 			</powerUp>
+			<powerUp id="0">
+				<desc>fuel</desc>
+				<row>6</row>
+				<width>42</width>
+				<height>60</height>
+				<frames>1</frames>
+				<interval>100</interval>
+				<sound_pickup>audio/powerup.wav</sound_pickup>
+			</powerUp>
 		</powerUps>
 		<enemies>
 			<enemy id="0">
@@ -116,23 +125,25 @@
 		<title>ThirdStage</title>
 		<scene>
 			<background>
-				<color>#00FF00</color>
-				<music>audio/nyan.wav</music>
+				<color>#FF0000</color>
+				<music>audio/level2.wav</music>
 			</background>
-			<clouds>
-				<cloud id="0">cloud1.png</cloud>
-				<cloud id="1">cloud2.png</cloud>
-				<cloud id="2">cloud3.png</cloud>
-			</clouds>
+			<objects>
+				<object id="0">
+					
+				</object>
+			</objects>
 		</scene>
 		<powerUps>
-			<desc>fuel</desc>
-			<row>6</row>
-			<width>42</width>
-			<height>60</height>
-			<frames>0</frames>
-			<interval>4000</interval>
-			<sound_pickup>audio/powerup.wav</sound_pickup>
+			<powerUp id="0">
+				<desc>fuel</desc>
+				<row>6</row>
+				<width>42</width>
+				<height>60</height>
+				<frames>0</frames>
+				<interval>4000</interval>
+				<sound_pickup>audio/powerup.wav</sound_pickup>
+			</powerUp>
 		</powerUps>
 		<lvlHeight>35000</lvlHeight>
 		<maxWindStrenght>9</maxWindStrenght>
@@ -147,59 +158,6 @@
 				<sound_appear></sound_appear>
 				<sound_hit></sound_hit>
 			</enemy>
-		</enemies>
-	</level>
-	<level id="3">
-		<title>FourthStage</title>
-		<scene>
-			<background>
-				<color>#0000FF</color>
-				<music>blub.mp3</music>
-			</background>
-			<clouds>
-				<cloud id="0">cloud1.png</cloud>
-				<cloud id="1">cloud2.png</cloud>
-				<cloud id="2">cloud3.png</cloud>
-			</clouds>
-		</scene>
-		<powerUps>
-			<powerUp id="0">fuel</powerUp>
-		</powerUps>
-		<enemies>
-			<enemy id="0">
-				<desc>bird</desc>
-				<row>5</row>
-				<width>63</width>
-				<height>50</height>
-				<frames>4,1,5,3</frames>
-			</enemy>
-		</enemies>
-		<lvlHeight>35000</lvlHeight>
-		<maxWindStrenght>9</maxWindStrenght>
-	</level>
-	<level id="4">
-		<title>FifthStage</title>
-		<scene>
-			<background>
-				<picture></picture>
-				<color>#0F0F0F</color>
-				<music>blub.mp3</music>
-			</background>
-			<ground>ground1.png</ground>
-			<clouds>
-				<cloud id="0">cloud1.png</cloud>
-				<cloud id="1">cloud2.png</cloud>
-				<cloud id="2">cloud3.png</cloud>
-			</clouds>
-		</scene>
-		<powerUps>
-			<powerUp id="0">fuel</powerUp>
-		</powerUps>
-		<lvlHeight>35000</lvlHeight>
-		<maxWindStrenght>9</maxWindStrenght>
-		<enemies>
-			<enemy id="0">bird</enemy>
-			<enemy id="1">plane</enemy>
 		</enemies>
 	</level>
 </levels>
