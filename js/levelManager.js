@@ -83,7 +83,7 @@ LevelManager.prototype.loadLevel = function(lvl) {
 						'row' : $(this).find('row').text(),
 						'interval' : $(this).find('interval').text(),
 						'sound_appear': $(this).find('sound_appear').text(),
-						'sound_hit': $(this).find('sound_hit').text()
+						'sound_hit': $(this).find('sound_hit').text(),
 					   };
 								
 				enemies[desc] = attr;
@@ -145,11 +145,13 @@ LevelManager.prototype.calculateFrames = function(data) {
 		var row = parseInt(attribs['row']);
 		var y = this.spriteRowHeights[row-1];
 		var interval = parseInt(attribs['interval']);
+		var sound_appear = attribs['sound_appear'];
+		var sound_hit = attribs['sound_hit'];
 		
 		var temp = [];
 		for(j in frames) {
 			var x = (parseInt(frames[j]) * (width + 1));
-			var frame = [x, y, width, height, 0, 0, interval];
+			var frame = [x, y, width, height, 0, 0, interval,sound_appear,sound_hit];
 			temp[j] = frame;
 		}
 		

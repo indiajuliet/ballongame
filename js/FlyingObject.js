@@ -143,6 +143,7 @@ Enemy = function(s, sp) {
 	var speed = s;
 	var xPos;
 	
+	
 	// Ermittle die Position des naechsten Objekts
 	var side = getRandom(0, 1);
 	
@@ -179,6 +180,9 @@ Bird = function(sp) {
 	
 	this.type = "Bird";
 	this.flyAwayFlag = false;
+	this.soundHit = new Audio(sp.getSoundHit());
+	this.soundAppear = new Audio(sp.getSoundAppear());
+	this.soundAppear.play();
 }
 
 Bird.prototype = new Enemy();
@@ -243,6 +247,9 @@ Plane = function(sp) {
 	this.type = "Plane";
 	this.init();
 	this.flyAwayFlag = false;
+	
+	this.soundHit = new Audio(sp.getSoundHit());
+	this.soundAppear = new Audio(sp.getSoundAppear());
 	
 }
 
@@ -732,6 +739,7 @@ Balloon.prototype = {
 				offsetX = 20;
 				offsetY = 5;
 				speedOffset = 5;
+				object.soundHit.play();
 			}
 			
 			else if(object instanceof Plane) {
