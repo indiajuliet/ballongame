@@ -288,11 +288,7 @@ Plane.prototype = {
 	}, 
 	
 	flyAway: function() {
-		var dir = this.changeDirection();
-		if(dir)
-			this.decSpeed(10);
-		else
-			this.incSpeed(10);
+		//Do Nothing
 	}
 }
 
@@ -385,10 +381,7 @@ Asteroid.prototype = {
 	
 	flyAway: function() {
 		var dir = this.changeDirection();
-		if(dir)
-			this.decSpeed(10);
-		else
-			this.incSpeed(10);
+		
 	}
 }
 
@@ -731,12 +724,12 @@ Balloon.prototype = {
 			if(object instanceof Bird) {
 				offsetX = 20;
 				offsetY = 5;
-				speedOffset = 5;
+				speedOffset = 3;
 			}
 			
 			else if(object instanceof Plane) {
-				offsetX = 30;
-				offsetY = 5;
+				offsetX = 5;
+				offsetY = 35;
 				speedOffset = 1;
 			}
 			
@@ -765,7 +758,8 @@ Balloon.prototype = {
 			}
 			
 			else if(object instanceof Tank) {
-				this.incTankStatus(100);
+				if (this.getTankFrame() != 0)
+					this.incTankStatus(100);
 				object.setDefunct();
 			}
 						
