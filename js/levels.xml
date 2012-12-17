@@ -137,8 +137,16 @@
 		<lvlHeight>35000</lvlHeight>
 		<maxWindStrenght>9</maxWindStrenght>
 		<enemies>
-			<enemy id="0">bird</enemy>
-			<enemy id="1">plane</enemy>
+			<enemy id="0">
+				<desc>nyancat</desc>
+				<row>11</row>
+				<width>140</width>
+				<height>80</height>
+				<frames>0,1</frames>
+				<interval>80</interval>
+				<sound_appear></sound_appear>
+				<sound_hit></sound_hit>
+			</enemy>
 		</enemies>
 	</level>
 	<level id="3">
