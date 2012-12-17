@@ -210,7 +210,7 @@ Bird = function(sp) {
 	this.flyAwayFlag = false;
 	this.soundHit = new Audio(sp.getSoundHit());
 	this.soundAppear = new Audio(sp.getSoundAppear());
-	this.soundAppear.play();
+	//this.soundAppear.play();
 }
 
 Bird.prototype = new Enemy();
@@ -277,7 +277,7 @@ Plane = function(sp) {
 	this.flyAwayFlag = false;
 	
 	this.soundHit = new Audio(sp.getSoundHit());
-	this.soundAppear = new Audio(sp.getSoundAppear());
+//	this.soundAppear = new Audio(sp.getSoundAppear());
 	
 }
 
@@ -347,6 +347,8 @@ Asteroid = function(sp) {
 	this.vy;
 	
 	this.setFlight();
+	
+	this.soundHit = new Audio(sp.getSoundHit());
 }
 
 Asteroid.prototype = new Enemy();
@@ -794,36 +796,42 @@ Balloon.prototype = {
 				offsetX = 5;
 				offsetY = 35;
 				speedOffset = 1;
+				object.soundHit.play();
 			}
 			
 			else if(object instanceof Asteroid) {
 				offsetX = 10;
 				offsetY = 20;
 				speedOffset = 2;
+				object.soundHit.play();
 			}
 			
 			else if(object instanceof Satellite) {
 				offsetX = 5;
 				offsetY = 5;
 				speedOffset = 8;
+				object.soundHit.play();
 			}
 			
 			else if(object instanceof Ufo) {
 				offsetX = 30;
 				offsetY = -5;
 				speedOffset = 8;
+				object.soundHit.play();
 			}
 			
 			else if(object instanceof Nyancat) {
 				offsetX = 10;
 				offsetY = 10;
 				speedOffset = 10;
+				object.soundHit.play();
 			}
 			
 			else if(object instanceof Tank) {
 				if (this.getTankFrame() != 0)
 					this.incTankStatus(100);
 				object.setDefunct();
+				sound.powerup.play();
 			}
 						
 			if (!(object instanceof Tank)){

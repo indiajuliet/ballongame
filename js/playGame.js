@@ -245,6 +245,7 @@ function updateLevel(level) {
 	
 //	sound.setEnemyAppear(level.getEnemyAppear());
 	sound.setLevelSound(level.getLevelSound());
+	sound.setPowerup(level.getPowerup());
 }
 
 // Dreht ein Objekt entsprechend der Gradzahl (jQuery)
