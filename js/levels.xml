@@ -100,7 +100,7 @@
 				<sound_hit>audio/bird_hit.wav</sound_hit>
 			</enemy>
 			<enemy id="1">
-				<desc>satellit</desc>
+				<desc>satellite</desc>
 				<row>9</row>
 				<width>145</width>
 				<height>145</height>

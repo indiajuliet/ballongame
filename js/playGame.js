@@ -76,6 +76,7 @@ function createPowerUp() {
 			case 'fuel':
 				var interval = powerupSprite['fuel'].getInterval();
 				if(checkInterval(interval, 100, 115) && !powerUpCreated) {
+					console.log("Jetzt");
 					var newpowerUp = new Tank(powerupSprite['fuel']);
 					objects.push(newpowerUp);
 					powerUpCreated = true;
@@ -84,6 +85,7 @@ function createPowerUp() {
 			case 'nitro':
 				var interval = powerupSprite['nitro'].getInterval();
 				if(checkInterval(interval, 200, 215) && !powerUpCreated) {
+					console.log("Jetzt");
 					var newpowerUp = new Nitro(powerupSprite['nitro']);
 					objects.push(newpowerUp);
 					powerUpCreated = true;
@@ -124,6 +126,22 @@ function createEnemy() {
 				var interval = enemySprite['asteroid'].getInterval();
 				if(checkInterval(interval, 0, 50) && !enemyCreated) {
 					newEnemy = new Asteroid(enemySprite['asteroid']);
+					objects.push(newEnemy);
+					enemyCreated = true;
+				}
+				break;	
+			case 'satellite':
+				var interval = enemySprite['satellite'].getInterval();
+				if(checkInterval(interval, 0, 50) && !enemyCreated) {
+					newEnemy = new Satellite(enemySprite['satellite']);
+					objects.push(newEnemy);
+					enemyCreated = true;
+				}
+				break;
+			case 'ufo':
+				var interval = enemySprite['ufo'].getInterval();
+				if(checkInterval(interval, 0, 50) && !enemyCreated) {
+					newEnemy = new Ufo(enemySprite['ufo']);
 					objects.push(newEnemy);
 					enemyCreated = true;
 				}
@@ -352,7 +370,7 @@ function checkFocus() {
 }
 
 function checkInterval(interval, a, b) {
-	console.log((balloon.getFlightAttitude() % interval) >= a, (balloon.getFlightAttitude() % interval) <= b)
+	//console.log((balloon.getFlightAttitude() % interval) >= a, (balloon.getFlightAttitude() % interval) <= b)
 	return ((balloon.getFlightAttitude() % interval) >= a && (balloon.getFlightAttitude() % interval <= b));
 }
 //===========================================================

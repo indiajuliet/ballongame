@@ -806,21 +806,21 @@ Balloon.prototype = {
 				offsetX = 5;
 				offsetY = 5;
 				speedOffset = 8;
-				object.soundHit.play();
+				//object.soundHit.play();
 			}
 			
 			else if(object instanceof Ufo) {
 				offsetX = 30;
 				offsetY = -5;
 				speedOffset = 8;
-				object.soundHit.play();
+				//object.soundHit.play();
 			}
 			
 			else if(object instanceof Nyancat) {
 				offsetX = 10;
 				offsetY = 10;
 				speedOffset = 10;
-				object.soundHit.play();
+				//object.soundHit.play();
 			}
 			
 			else if(object instanceof Tank) {
