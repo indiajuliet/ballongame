@@ -210,6 +210,8 @@ function clearLevel() {
 	
 	hasFocus = true;
 	isStarted = false;
+	upSpeed = 1;
+	upSpeedTimer = 0;
 }
 
 function startGame() {

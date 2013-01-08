@@ -655,6 +655,7 @@ Balloon = function(x, y, horSpeed, vertSpeed, f) {
 	this.tankStatus = 420;
 	this.timer = 0;
 	this.heightBarFrame = 3;
+	this.deration = 20;
 	
 }
 
@@ -683,10 +684,10 @@ Balloon.prototype = {
 	getSprite: function() { return this.sprite; },
 	
 	derate: function() {
-		if(this.vertSpeed <= -20)
-			this.vertSpeed = -20;
-		if(this.vertSpeed >= 20)
-			this.vertSpeed = 20;
+		if(this.vertSpeed <= -this.deration)
+			this.vertSpeed = -this.deration;
+		if(this.vertSpeed >= this.deration)
+			this.vertSpeed = this.deration;
 	},
 	
 	checkAttitude: function() {
@@ -833,8 +834,16 @@ Balloon.prototype = {
 				object.setDefunct();
 				sound.powerup.play();
 			}
+			
+			else if(object instanceof Nitro) {
+				upSpeed = 10;
+				this.deration = 50;
+				this.incTankStatus(200);
+				
+				object.setDefunct();
+			}
 						
-			if (!(object instanceof Tank)){
+			if (!(object instanceof Tank) && !(object instanceof Nitro)){
 				if (object.getDir() == 1){
 					if (balloonX + this.width + 20 < width-5)
 						this.decX(offsetX);

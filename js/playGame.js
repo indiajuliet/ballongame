@@ -18,7 +18,7 @@ function keyDown(e) {
 			
 		case UP_ARROW:
 			if(balloon.getTankStatus() >= 0) {
-				balloon.decVertSpeed(1);
+				balloon.decVertSpeed(upSpeed);
 				balloon.decTankStatus(1);
 				balloon.setFrame(1);
 				balloon.setHeightBarFrame(4);
@@ -27,7 +27,7 @@ function keyDown(e) {
 			break;	
 			
 		case DOWN_ARROW:
-			balloon.incVertSpeed(1);
+			balloon.incVertSpeed(upSpeed);
 			balloon.setFrame(2);
 			balloon.setHeightBarFrame(5);
 			break;
@@ -66,9 +66,23 @@ function createCloud() {
 
 //Erzeugt ein zufälliges Power Up
 function createPowerUp() {
-	if(checkInterval(powerupSprite['fuel'].getInterval(), 200, 300)) {
-		var newpowerUp = new Tank(powerupSprite['fuel']);
-		objects.push(newpowerUp);
+	for(p in powerupSprite) {
+		switch(p) {
+			case 'fuel':
+				if(checkInterval(powerupSprite['fuel'].getInterval(), 100, 200)) {
+					var newpowerUp = new Tank(powerupSprite['fuel']);
+					objects.push(newpowerUp);
+				}
+				break;
+			case 'nitro':
+				if(checkInterval(powerupSprite['nitro'].getInterval(), 100, 200)) {
+					var newpowerUp = new Nitro(powerupSprite['nitro']);
+					objects.push(newpowerUp);
+				}
+				break;
+			default:
+				break;
+		}
 	}
 }
 
@@ -110,7 +124,7 @@ function updateBalloon() {
 	
 	// Geschwindigkeit drosseln
 	balloon.derate();
-		
+	
 	balloon.checkBoundary();
 	
 	balloon.incSpeed(windSpeed / 100);
@@ -118,6 +132,16 @@ function updateBalloon() {
 	
 	if(balloon.checkAttitude())
 		nextLevel();
+		
+	if(upSpeed > 1) {
+		if(upSpeedTimer < 50)
+			upSpeedTimer++;
+		else {
+			upSpeed = 1;
+			upSpeedTimer = 0;
+			balloon.deration = 20;
+		}
+	}
 }
 
 // aktualisiere den Windpfeil

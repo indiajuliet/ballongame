@@ -82,3 +82,6 @@ var bgFrame = 0;
 var hasFocus = true;
 var isStarted = false;
 var powerupSprite = new Array();
+
+var upSpeed = 1;
+var upSpeedTimer = 0;
