@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function Level()
 {
 	this.levelNr;
@@ -68,7 +67,7 @@ Level.prototype = {
 	setPowerup:	function(val) {this.Powerup = val;},
 	getPowerup:	function() {return this.Powerup;},
 	
-=======
+}
 function Level()
 {
 	this.levelNr;
@@ -136,7 +135,5 @@ Level.prototype = {
 	getEnemyHit:	function() {return this.enemyHit;},
 
 	setPowerup:	function(val) {this.Powerup = val;},
-	getPowerup:	function() {return this.Powerup;},
-	
->>>>>>> revert
+	getPowerup:	function() {return this.Powerup;}
 }
