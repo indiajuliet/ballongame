@@ -28,8 +28,6 @@
 				<sound_pickup>audio/powerup.wav</sound_pickup>
 			</powerUp>
 			<powerUp id="1">
-				<desc>fuel</desc>
-			<powerUp id="0">
 				<desc>nitro</desc>
 				<row>6</row>
 				<width>42</width>
