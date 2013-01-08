@@ -52,16 +52,21 @@ function createCloud() {
 	for(o in cloudSprite) {
 		switch(o) {
 			case 'cloud':
-				if(checkInterval(cloudSprite['cloud'].getInterval(), 100, 200)) {
+				var interval = cloudSprite['cloud'].getInterval();
+				if(checkInterval(interval, 150, 200) && !cloudCreated) {					
 					var newCloud = new Cloud(cloudSprite['cloud']);
 					objects.push(newCloud);
+					cloudCreated = true;
 				}
+				
 				break;
 		default:
 			// mache nix
 			break;
 		}
 	}
+	if(checkInterval(150, 50, 100))
+		cloudCreated = false;
 }	
 
 //Erzeugt ein zufälliges Power Up
@@ -69,21 +74,27 @@ function createPowerUp() {
 	for(p in powerupSprite) {
 		switch(p) {
 			case 'fuel':
-				if(checkInterval(powerupSprite['fuel'].getInterval(), 100, 200)) {
+				var interval = powerupSprite['fuel'].getInterval();
+				if(checkInterval(interval, 100, 115) && !powerUpCreated) {
 					var newpowerUp = new Tank(powerupSprite['fuel']);
 					objects.push(newpowerUp);
+					powerUpCreated = true;
 				}
 				break;
 			case 'nitro':
-				if(checkInterval(powerupSprite['nitro'].getInterval(), 100, 200)) {
+				var interval = powerupSprite['nitro'].getInterval();
+				if(checkInterval(interval, 200, 215) && !powerUpCreated) {
 					var newpowerUp = new Nitro(powerupSprite['nitro']);
 					objects.push(newpowerUp);
+					powerUpCreated = true;
 				}
 				break;
 			default:
 				break;
 		}
 	}
+	if(checkInterval(4000, 100, 150))
+		powerUpCreated = false;
 }
 
 //Erzeugt einen zufälligen Enemy
@@ -93,27 +104,37 @@ function createEnemy() {
 		var newEnemy;
 		switch (e) {
 			case 'bird':
-				if(checkInterval(enemySprite['bird'].getInterval(), 0, 50)) {
+				var interval = enemySprite['bird'].getInterval();
+				if(checkInterval(interval, 0, 50) && !enemyCreated) {
 					newEnemy = new Bird(enemySprite['bird']);
 					objects.push(newEnemy);
+					enemyCreated = true;
 				}
+				
 				break;
 			case 'plane':
-				if(checkInterval(enemySprite['plane'].getInterval(), 100, 200)) {
+				var interval = enemySprite['plane'].getInterval();
+				if(checkInterval(interval, 0, 50) && !enemyCreated) {
 					newEnemy = new Plane(enemySprite['plane']);
 					objects.push(newEnemy);
+					enemyCreated = true;
 				}
 				break;
 			case 'asteroid':
-				if(checkInterval(enemySprite['asteroid'].getInterval(), 0, 10)) {
+				var interval = enemySprite['asteroid'].getInterval();
+				if(checkInterval(interval, 0, 50) && !enemyCreated) {
 					newEnemy = new Asteroid(enemySprite['asteroid']);
 					objects.push(newEnemy);
+					enemyCreated = true;
 				}
 				break;
 			default:
 				// mache nix
 				break;
 		}
+		
+		if(checkInterval(50, 0, 50))
+			enemyCreated = false;
 	}
 }
 
@@ -331,7 +352,7 @@ function checkFocus() {
 }
 
 function checkInterval(interval, a, b) {
-	console.log((balloon.getFlightAttitude() % interval) >= a , (balloon.getFlightAttitude() % interval) <= b)
+	console.log((balloon.getFlightAttitude() % interval) >= a, (balloon.getFlightAttitude() % interval) <= b)
 	return ((balloon.getFlightAttitude() % interval) >= a && (balloon.getFlightAttitude() % interval <= b));
 }
 //===========================================================

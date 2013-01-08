@@ -85,3 +85,7 @@ var powerupSprite = new Array();
 
 var upSpeed = 1;
 var upSpeedTimer = 0;
+
+var cloudCreated = false;
+var powerUpCreated = false;
+var enemyCreated = false;
