@@ -1,5 +1,27 @@
 TO DO
 
+*****************
+Status 08.01.2013
+*****************
+
+Allgemeiner Beschluss:
+
+	- Play/Pause Button erscheinen je nach Spielverlauf
+	- Zurückbutton wird durch Homebutton ersetzt
+	- Pausebutton bisher wird durch Stop-Button ersetzt
+	- bei Stopbutton erscheint Layer mit Option: Beenden / Neues Spiel starten
+	- Bei Spiel verloren erscheint Text GAME OVER mit einem Layer: Höhenangabe, Neues Spiel, Beenden
+
+Konni:
+	- Funktionalität Buttons
+
+Johanna:
+	- Spieleanleitung
+	- Button Home, Button Stop, Button Pause auf Größe von Play ändern
+
+Micha
+	- erstellt Layer
+
 
 *****************
 Status 11.12.2012
