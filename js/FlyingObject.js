@@ -119,6 +119,8 @@ Tank = function(sp) {
 	this.init();
 	
 	this.type = "Tank";
+	
+	this.soundHit = new Audio(sp.getSoundHit());
 }
 
 Tank.prototype = new PowerUp();
@@ -149,6 +151,9 @@ Nitro = function(sp) {
 	this.init();
 	
 	this.type = "Nitro";
+
+	this.soundHit = new Audio(sp.getSoundHit());
+	
 }
 
 Nitro.prototype = new PowerUp();
@@ -209,8 +214,7 @@ Bird = function(sp) {
 	this.type = "Bird";
 	this.flyAwayFlag = false;
 	this.soundHit = new Audio(sp.getSoundHit());
-	this.soundAppear = new Audio(sp.getSoundAppear());
-	this.soundAppear.play();
+
 }
 
 Bird.prototype = new Enemy();
@@ -277,8 +281,7 @@ Plane = function(sp) {
 	this.flyAwayFlag = false;
 	
 	this.soundHit = new Audio(sp.getSoundHit());
-	this.soundAppear = new Audio(sp.getSoundAppear());
-	
+
 }
 
 Plane.prototype = new Enemy();
@@ -347,6 +350,8 @@ Asteroid = function(sp) {
 	this.vy;
 	
 	this.setFlight();
+	
+	this.soundHit = new Audio(sp.getSoundHit());
 }
 
 Asteroid.prototype = new Enemy();
@@ -432,6 +437,8 @@ Satellite = function(sp) {
 	this.init();
 	this.flyAwayFlag = false;
 	
+	this.soundHit = new Audio(sp.getSoundHit());
+	
 }
 
 Satellite.prototype = new Enemy();
@@ -496,6 +503,8 @@ Ufo = function(sp) {
 	this.init();
 	this.flyAwayFlag = false;
 	
+	this.soundHit = new Audio(sp.getSoundHit());
+	
 }
 
 Ufo.prototype = new Enemy();
@@ -559,6 +568,8 @@ Nyancat = function(sp) {
 	this.type = "Nyancat";
 	this.init();
 	this.flyAwayFlag = false;
+	
+	this.soundHit = new Audio(sp.getSoundHit());
 	
 }
 
@@ -763,7 +774,8 @@ Balloon.prototype = {
 				speedOffset = 3;
 
 				speedOffset = 5;
-				object.soundHit.play();
+				if(PlaySound)
+				  object.soundHit.play();
 
 			}
 			
@@ -771,36 +783,48 @@ Balloon.prototype = {
 				offsetX = 5;
 				offsetY = 35;
 				speedOffset = 1;
+				if(PlaySound)
+				  object.soundHit.play();
 			}
 			
 			else if(object instanceof Asteroid) {
 				offsetX = 5;
 				offsetY = 20;
 				speedOffset = 1;
+				if(PlaySound)
+				  object.soundHit.play();
 			}
 			
 			else if(object instanceof Satellite) {
 				offsetX = 5;
 				offsetY = 5;
 				speedOffset = 8;
+				if(PlaySound)
+				  object.soundHit.play();
 			}
 			
 			else if(object instanceof Ufo) {
 				offsetX = 30;
 				offsetY = -5;
 				speedOffset = 8;
+				if(PlaySound)
+				  object.soundHit.play();
 			}
 			
 			else if(object instanceof Nyancat) {
 				offsetX = 10;
 				offsetY = 10;
 				speedOffset = 10;
+				if(PlaySound)
+				  object.soundHit.play();
 			}
 			
 			else if(object instanceof Tank) {
 				if (this.getTankFrame() != 0)
 					this.incTankStatus(100);
 				object.setDefunct();
+				if(PlaySound)
+				  object.soundHit.play();
 			}
 			
 			else if(object instanceof Nitro) {
@@ -809,6 +833,8 @@ Balloon.prototype = {
 				this.incTankStatus(200);
 				
 				object.setDefunct();
+				if(PlaySound)
+				  object.soundHit.play();
 			}
 						
 			if (!(object instanceof Tank) && !(object instanceof Nitro)){

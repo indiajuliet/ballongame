@@ -334,7 +334,7 @@ function checkFocus() {
 }
 
 function checkInterval(interval, a, b) {
-	console.log((balloon.getFlightAttitude() % interval) >= a , (balloon.getFlightAttitude() % interval) <= b)
+	//console.log((balloon.getFlightAttitude() % interval) >= a , (balloon.getFlightAttitude() % interval) <= b)
 	return ((balloon.getFlightAttitude() % interval) >= a && (balloon.getFlightAttitude() % interval <= b));
 }
 //===========================================================

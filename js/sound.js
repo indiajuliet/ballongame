@@ -10,7 +10,7 @@ Sound.prototype = {
 //  setEnemy2Appear: 	function(val) {this.enemy2Appear=new Audio(val);},
 //  setEnemyHit:		function(val) {this.enemyHit=new Audio(val);},
 //  setEnemy2Hit:		function(val) {this.enemy2Hit=new Audio(val);},
-  setPowerup:		function(val) {this.powerup=new Audio(val);},
+ // setPowerup:		function(val) {this.powerup=new Audio(val);},
  
  
  setVolume:		function(val) {	this.ignite.volume=val;

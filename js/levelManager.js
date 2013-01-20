@@ -82,7 +82,6 @@ LevelManager.prototype.loadLevel = function(lvl) {
 						'frames' : $(this).find('frames').text().split(','),
 						'row' : $(this).find('row').text(),
 						'interval' : $(this).find('interval').text(),
-						'sound_appear': $(this).find('sound_appear').text(),
 						'sound_hit': $(this).find('sound_hit').text(),
 					   };
 								
@@ -103,7 +102,7 @@ LevelManager.prototype.loadLevel = function(lvl) {
 				objects[desc] = attr;
 			});
 			
-			// PowerUp-Dauten sammeln
+			// PowerUp-Daten sammeln
 			$(this).find('powerUp').each(function() {
 			
 				var desc = $(this).find('desc').text();	
@@ -111,7 +110,8 @@ LevelManager.prototype.loadLevel = function(lvl) {
 						'height' : $(this).find('height').text(),
 						'frames' : $(this).find('frames').text().split(','),
 						'row' : $(this).find('row').text(),
-						'interval' : $(this).find('interval').text()
+						'interval' : $(this).find('interval').text(),
+						'sound_hit': $(this).find('sound_pickup').text(),
 					   };
 								
 				powerUps[desc] = attr;

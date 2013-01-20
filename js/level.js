@@ -17,7 +17,6 @@ function Level()
 	this.powerUpFrames;
 	
 	this.levelSound;
-	this.enemyAppear;
 	this.enemyHit;
 }
 
@@ -57,8 +56,6 @@ Level.prototype = {
 	setLevelSound:	function(val) {this.levelSound = val;},
 	getLevelSound:	function() {return this.levelSound;},
 	
-	setEnemyAppear:	function(val) {this.enemyAppear = val;},
-	getEnemyAppear:	function() {return this.enemyAppear;},
 
 	setEnemyHit:	function(val) {this.enemyHit = val;},
 	getEnemyHit:	function() {return this.enemyHit;}
