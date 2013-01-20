@@ -52,21 +52,16 @@ function createCloud() {
 	for(o in cloudSprite) {
 		switch(o) {
 			case 'cloud':
-				var interval = cloudSprite['cloud'].getInterval();
-				if(checkInterval(interval, 150, 200) && !cloudCreated) {					
+				if(checkInterval(cloudSprite['cloud'].getInterval(), 100, 200)) {
 					var newCloud = new Cloud(cloudSprite['cloud']);
 					objects.push(newCloud);
-					cloudCreated = true;
 				}
-				
 				break;
 		default:
 			// mache nix
 			break;
 		}
 	}
-	if(checkInterval(150, 50, 100))
-		cloudCreated = false;
 }	
 
 //Erzeugt ein zufälliges Power Up
@@ -74,29 +69,21 @@ function createPowerUp() {
 	for(p in powerupSprite) {
 		switch(p) {
 			case 'fuel':
-				var interval = powerupSprite['fuel'].getInterval();
-				if(checkInterval(interval, 100, 115) && !powerUpCreated) {
-					console.log("Jetzt");
+				if(checkInterval(powerupSprite['fuel'].getInterval(), 100, 200)) {
 					var newpowerUp = new Tank(powerupSprite['fuel']);
 					objects.push(newpowerUp);
-					powerUpCreated = true;
 				}
 				break;
 			case 'nitro':
-				var interval = powerupSprite['nitro'].getInterval();
-				if(checkInterval(interval, 200, 215) && !powerUpCreated) {
-					console.log("Jetzt");
+				if(checkInterval(powerupSprite['nitro'].getInterval(), 100, 200)) {
 					var newpowerUp = new Nitro(powerupSprite['nitro']);
 					objects.push(newpowerUp);
-					powerUpCreated = true;
 				}
 				break;
 			default:
 				break;
 		}
 	}
-	if(checkInterval(4000, 100, 150))
-		powerUpCreated = false;
 }
 
 //Erzeugt einen zufälligen Enemy
@@ -106,53 +93,27 @@ function createEnemy() {
 		var newEnemy;
 		switch (e) {
 			case 'bird':
-				var interval = enemySprite['bird'].getInterval();
-				if(checkInterval(interval, 0, 50) && !enemyCreated) {
+				if(checkInterval(enemySprite['bird'].getInterval(), 0, 50)) {
 					newEnemy = new Bird(enemySprite['bird']);
 					objects.push(newEnemy);
-					enemyCreated = true;
 				}
-				
 				break;
 			case 'plane':
-				var interval = enemySprite['plane'].getInterval();
-				if(checkInterval(interval, 0, 50) && !enemyCreated) {
+				if(checkInterval(enemySprite['plane'].getInterval(), 100, 200)) {
 					newEnemy = new Plane(enemySprite['plane']);
 					objects.push(newEnemy);
-					enemyCreated = true;
 				}
 				break;
 			case 'asteroid':
-				var interval = enemySprite['asteroid'].getInterval();
-				if(checkInterval(interval, 0, 50) && !enemyCreated) {
+				if(checkInterval(enemySprite['asteroid'].getInterval(), 0, 10)) {
 					newEnemy = new Asteroid(enemySprite['asteroid']);
 					objects.push(newEnemy);
-					enemyCreated = true;
-				}
-				break;	
-			case 'satellite':
-				var interval = enemySprite['satellite'].getInterval();
-				if(checkInterval(interval, 0, 50) && !enemyCreated) {
-					newEnemy = new Satellite(enemySprite['satellite']);
-					objects.push(newEnemy);
-					enemyCreated = true;
-				}
-				break;
-			case 'ufo':
-				var interval = enemySprite['ufo'].getInterval();
-				if(checkInterval(interval, 0, 50) && !enemyCreated) {
-					newEnemy = new Ufo(enemySprite['ufo']);
-					objects.push(newEnemy);
-					enemyCreated = true;
 				}
 				break;
 			default:
 				// mache nix
 				break;
 		}
-		
-		if(checkInterval(50, 0, 50))
-			enemyCreated = false;
 	}
 }
 
@@ -308,7 +269,6 @@ function updateLevel(level) {
 	
 //	sound.setEnemyAppear(level.getEnemyAppear());
 	sound.setLevelSound(level.getLevelSound());
-	sound.setPowerup(level.getPowerup());
 }
 
 // Dreht ein Objekt entsprechend der Gradzahl (jQuery)
@@ -361,16 +321,20 @@ function checkFocus() {
         hasFocus = true;
     });
 	
-	if(hasFocus)
+	if(hasFocus) {
 		startGame();
-	else
+		$('#playBtn').css('background-image', 'url(pics/button_pause.png)');
+	}
+	else {
 		pauseGame();
+		$('#playBtn').css('background-image', 'url(pics/button_play.png)');
+	}
 		
 	//console.log("hasFocus: " + hasFocus + " isStarted: " + isStarted);
 }
 
 function checkInterval(interval, a, b) {
-	//console.log((balloon.getFlightAttitude() % interval) >= a, (balloon.getFlightAttitude() % interval) <= b)
+	console.log((balloon.getFlightAttitude() % interval) >= a , (balloon.getFlightAttitude() % interval) <= b)
 	return ((balloon.getFlightAttitude() % interval) >= a && (balloon.getFlightAttitude() % interval <= b));
 }
 //===========================================================
@@ -438,7 +402,7 @@ function drawObjects() {
 		balloon.checkCollisions(objects[i]);
 		
 		// Bewege Objekt nach unten damit es so aussieht dass der Ballon steigt
-		if(balloon.getY() < 200)
+		//if(balloon.getY() < 200)
 			objects[i].y -= balloon.getVertSpeed();
 	
 		// Zeichne Objekt

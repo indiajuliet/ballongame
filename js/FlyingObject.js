@@ -199,7 +199,10 @@ Enemy.prototype.constructor = Enemy;
 ****/
 Bird = function(sp) {
 	this.base = Enemy;
+	
 	var speed = getRandom(3, 7);
+	
+	
 	this.base(speed, sp);
 	this.init();
 	
@@ -207,7 +210,7 @@ Bird = function(sp) {
 	this.flyAwayFlag = false;
 	this.soundHit = new Audio(sp.getSoundHit());
 	this.soundAppear = new Audio(sp.getSoundAppear());
-	//this.soundAppear.play();
+	this.soundAppear.play();
 }
 
 Bird.prototype = new Enemy();
@@ -274,7 +277,7 @@ Plane = function(sp) {
 	this.flyAwayFlag = false;
 	
 	this.soundHit = new Audio(sp.getSoundHit());
-//	this.soundAppear = new Audio(sp.getSoundAppear());
+	this.soundAppear = new Audio(sp.getSoundAppear());
 	
 }
 
@@ -344,8 +347,6 @@ Asteroid = function(sp) {
 	this.vy;
 	
 	this.setFlight();
-	
-	this.soundHit = new Audio(sp.getSoundHit());
 }
 
 Asteroid.prototype = new Enemy();
@@ -414,32 +415,8 @@ Asteroid.prototype = {
 	}, 
 	
 	flyAway: function() {
-		//var dir = this.changeDirection();
-		var d = this.getDegree();
+		var dir = this.changeDirection();
 		
-		switch(d){
-			case 210:
-				this.setDegree(330);
-				this.setFrame(2);
-				break;
-			case 240:
-				this.setDegree(300);
-				this.setFrame(2);
-				break;
-			case 300:
-				this.setDegree(240);
-				this.setFrame(0);
-				break;
-			case 330:
-				this.setDegree(210);
-				this.setFrame(0);
-				break;
-		}
-		
-		this.setAngle(this.getDegree() * Math.PI / 180);
-		var angle = this.getAngle();
-		this.setVX(this.getSpeed() * Math.cos(angle));
-		this.setVY(this.getSpeed() * Math.sin(angle));
 	}
 }
 
@@ -515,10 +492,10 @@ Ufo = function(sp) {
 	this.base = Enemy;
 	var speed = getRandom(10, 15);
 	this.base(speed, sp);
-	this.init();
 	this.type = "Ufo";
-	
+	this.init();
 	this.flyAwayFlag = false;
+	
 }
 
 Ufo.prototype = new Enemy();
@@ -539,7 +516,7 @@ Ufo.prototype = {
 		
 		if((xPos % 20) >= 0 && (xPos % 20) <= 5) {
 			if(dir == 1)
-				this.setFrame(0);
+				this.setFrame(3);
 			else
 				this.setFrame(1);
 				
@@ -547,7 +524,7 @@ Ufo.prototype = {
 		}
 		else {
 			if(dir == 1)
-				this.setFrame(1);
+				this.setFrame(2);
 			else
 				this.setFrame(0);
 				
@@ -784,50 +761,46 @@ Balloon.prototype = {
 				offsetX = 20;
 				offsetY = 5;
 				speedOffset = 3;
+
+				speedOffset = 5;
 				object.soundHit.play();
 
 			}
 			
 			else if(object instanceof Plane) {
 				offsetX = 5;
-				offsetY = 30;
+				offsetY = 35;
 				speedOffset = 1;
-				object.soundHit.play();
 			}
 			
 			else if(object instanceof Asteroid) {
-				offsetX = 10;
+				offsetX = 5;
 				offsetY = 20;
-				speedOffset = 2;
-				object.soundHit.play();
+				speedOffset = 1;
 			}
 			
 			else if(object instanceof Satellite) {
 				offsetX = 5;
 				offsetY = 5;
 				speedOffset = 8;
-				//object.soundHit.play();
 			}
 			
 			else if(object instanceof Ufo) {
 				offsetX = 30;
 				offsetY = -5;
 				speedOffset = 8;
-				//object.soundHit.play();
 			}
 			
 			else if(object instanceof Nyancat) {
 				offsetX = 10;
 				offsetY = 10;
 				speedOffset = 10;
-				//object.soundHit.play();
 			}
 			
 			else if(object instanceof Tank) {
 				if (this.getTankFrame() != 0)
 					this.incTankStatus(100);
 				object.setDefunct();
-				sound.powerup.play();
 			}
 			
 			else if(object instanceof Nitro) {
@@ -839,11 +812,11 @@ Balloon.prototype = {
 			}
 						
 			if (!(object instanceof Tank) && !(object instanceof Nitro)){
-				if (object.getDir() == 0){
-					if (balloonX + this.width + offsetX < width-5)
+				if (object.getDir() == 1){
+					if (balloonX + this.width + 20 < width-5)
 						this.incX(offsetX);
 				} else {
-					if (balloonX > offsetX + 5)
+					if (balloonX - 20 > 5)
 						this.decX(offsetX);			
 				}
 				

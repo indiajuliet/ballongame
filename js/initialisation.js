@@ -129,9 +129,16 @@ $(document).ready(function(){
 			pauseGame();
 	});
 	$("#playBtn").click(function() {
-		//startGame();
+		pauseGame();
+		if(gamePaused) {
+			$(this).css('background-image', 'url(pics/button_play.png)');
+		}
+		else {
+			$(this).css('background-image', 'url(pics/button_pause.png)');
+		}
 	});
 	$("#pauseBtn").click(function() {
+		
 		pauseGame();
 	});
 	
@@ -217,10 +224,11 @@ function clearLevel() {
 function startGame() {
 	if(hasFocus && !isStarted) {
 		isStarted = true;
+		gamePaused = false;
 		
 		gameHandle = setInterval(draw, 50);
-		cloudHandle = setInterval(createCloud, 50);
-		powerUpHandle = setInterval(createPowerUp, 50);
+		cloudHandle = setInterval(createCloud, 1000);
+		powerUpHandle = setInterval(createPowerUp, 1000);
 		enemyHandle = setInterval(createEnemy, 1000);
 		sound.setVolume(PlaySound);
 		sound.levelSound.play();
@@ -230,7 +238,8 @@ function startGame() {
 function stopGame() {
 	if(isStarted) {
 		isStarted = false;
-	
+		gamePaused = true;
+		
 		clearInterval(gameHandle);
 		clearInterval(cloudHandle);
 		clearInterval(powerUpHandle);
@@ -249,10 +258,8 @@ function stopGame() {
 function pauseGame() {
 	if (!gamePaused) {
 		stopGame();
-		gamePaused = true;
 	} else if (gamePaused) {
 		startGame();
-		gamePaused = false;
 	}
 }
 

@@ -16,9 +16,7 @@ function LevelManager()
 							 1670, 		// Tankstatus
 							 1710, 		// PowerUp
 							 1771, 		// Flugzeug
-							 1897, 		// Asteroid
-							 1997,		// Satellite
-							 2143		// Ufo
+							 1897 		// Asteroid
 							 ];
 }
 
@@ -113,13 +111,10 @@ LevelManager.prototype.loadLevel = function(lvl) {
 						'height' : $(this).find('height').text(),
 						'frames' : $(this).find('frames').text().split(','),
 						'row' : $(this).find('row').text(),
-						'interval' : $(this).find('interval').text(),
-						
+						'interval' : $(this).find('interval').text()
 					   };
 								
 				powerUps[desc] = attr;
-				
-				Level.prototype.setPowerup($(this).find('sound_pickup').text());
 			});
 		}
 	});
