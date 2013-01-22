@@ -84,16 +84,32 @@ body {
 	margin-left:10px;
 }
 
+#backhome
+{
+	float: right;
+	height: 60px;
+	width: 30px;
+	margin-right:10px;
+}
+
 #gameBtns
 {
 	float:left;
 	height: 40px;
 	width: 250px;
 	margin-top: auto;
-	margin-left: 150px;  
+	margin-left: 170px;  
 	margin-right: auto; 
 }
 
+#homeBtn
+{
+	float:left;
+	margin-top: 5 px;
+	background-image: url(../pics/button_home.png);
+	height: 30px;
+	width: 30px;	
+}
 
 #backBtn
 {
