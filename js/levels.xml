@@ -160,7 +160,7 @@
 				<height>74</height>
 				<frames>0,1</frames>
 				<interval>30</interval>
-				<sound_hit>hit_nyancat.ogg</sound_hit>
+				<sound_hit>audio/hit_nyancat.ogg</sound_hit>
 			</enemy>
 		</enemies>
 	</level>
