@@ -127,10 +127,11 @@ $(document).ready(function(){
 	$("#getLvl").click(function() {
 		startNewGame(lvlMngr.getCurrentLevelId()+1);
 	});
-	$("#nextLvl").click(function() {
+	$("#nextLvl").click(function() {	
 		var lvl = lvlMngr.getCurrentLevelId()+2;
-		if (lvl <= 3)
-		startNewGame(lvl);
+		if (lvl <= 3){
+			startNewGame(lvl);
+		}
 	});
 	$("#backBtn").click(function() {
 		if(isStarted == true)
@@ -145,8 +146,7 @@ $(document).ready(function(){
 			$(this).css('background-image', 'url(pics/button_pause.png)');
 		}
 	});
-	$("#pauseBtn").click(function() {
-		
+	$("#pauseBtn").click(function() {		
 		pauseGame();
 	});
 	
@@ -273,5 +273,3 @@ function pauseGame() {
 		startGame();
 	}
 }
-
-

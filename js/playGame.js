@@ -17,7 +17,7 @@ function keyDown(e) {
 			break;
 			
 		case UP_ARROW:
-			if(balloon.getTankStatus() >= 0) {
+			if(balloon.getTankStatus() >= -5) {
 				balloon.decVertSpeed(upSpeed);
 				balloon.decTankStatus(1);
 				balloon.setFrame(1);
@@ -160,13 +160,14 @@ function updateBalloon() {
 			balloon.deration = 20;
 		}
 	}
-	if(balloon.getTankStatus() <= 0) {	//Tank Leer
+	if(balloon.getTankStatus() <= -5) {	//Tank Leer
 		pauseGame();
 		setTimeout(function() {
 			$.mobile.changePage("#tankEmpty", { transition: "slideup"} )
 		}, 3000);
-		$('#reachedHeigth').append("<p>Du hast eine Flughöhe von " + balloon.getFlightAttitude() + " erreicht</p>");
-		
+
+		$('#height').remove();
+		$('#reachedHeigth').append("<p id='height'>Du hast eine Flughöhe von " + balloon.getFlightAttitude() + " erreicht</p>");
 	}
 }
 
