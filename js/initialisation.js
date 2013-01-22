@@ -132,12 +132,18 @@ $(document).ready(function(){
 		startNewGame(3);
 	});
 	$("#getLvl").click(function() {
+		$.mobile.changePage("#main", { transition: "slideup"} )
+		startNewGame(lvlMngr.getCurrentLevelId()+1);
+	});
+	$("#lvlDoneReplay").click(function() {
+		$.mobile.changePage("#main", { transition: "slideup"} )
 		startNewGame(lvlMngr.getCurrentLevelId()+1);
 	});
 	$("#nextLvl").click(function() {	
 		var lvl = lvlMngr.getCurrentLevelId()+2;
 		if (lvl <= 3){
-			startNewGame(lvl);
+			$.mobile.changePage("#main", { transition: "slideup"} )
+			startNewGame(lvl);			
 		}
 	});
 	$("#backBtn").click(function() {
