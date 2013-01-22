@@ -19,7 +19,7 @@ function LevelManager()
 							 1897, 		// Asteroid
 							 1998, 		// Satellit
 							 2143, 		// Ufo
-							 2252		// Nyancat
+							 2253		// Nyancat
 							 ];
 }
 

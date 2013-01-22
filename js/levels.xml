@@ -102,7 +102,7 @@
 				<width>145</width>
 				<height>145</height>
 				<frames>0,1,2,3</frames>
-				<interval>100</interval>
+				<interval>500</interval>
 				<sound_hit>audio/hit_satellite.wav</sound_hit>
 			</enemy>
 			<enemy id="1">
@@ -111,7 +111,7 @@
 				<width>130</width>
 				<height>107</height>
 				<frames>0,1</frames>
-				<interval>80</interval>
+				<interval>1000</interval>
 				<sound_appear></sound_appear>
 				<sound_hit>audio/hit_ufo.wav</sound_hit>
 			</enemy>

@@ -598,13 +598,13 @@ Nyancat.prototype = {
 		var xPos = Math.round(this.getX());
 		var dir = this.getDir();
 		
-		if((xPos % 20) >= 0 && (xPos % 20) <= 5) {
+		if((xPos % 100) >= 0 && (xPos % 100) <= 5) {
 			if(dir == 1)
-				this.setFrame(0);
-			else
 				this.setFrame(1);
+			else
+				this.setFrame(0);
 				
-			this.incY(3);
+			this.incY(5);
 		}
 		else {
 			if(dir == 1)
@@ -612,7 +612,7 @@ Nyancat.prototype = {
 			else
 				this.setFrame(0);
 				
-			this.decY(3);
+			this.decY(5);
 		}
 	},
 	
