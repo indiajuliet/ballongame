@@ -380,10 +380,14 @@ Asteroid.prototype = {
 		var dir = this.getDir();
 		
 		if(dir == 1) {
+			this.setX(getRandom((220-this.getWidth()), width));
+			this.setY(-100);
 			var d = getRandom(7, 8);
 			this.setFrame(d-7);
 		}
 		else {
+			this.setX(getRandom(0, 220));
+			this.setY(-100);
 			var d = getRandom(10, 11);
 			this.setFrame(d-7-1);
 		}
@@ -518,27 +522,32 @@ Ufo.prototype = {
 	getFlyAwayFlag: function() { return this.flyAwayFlag; },
 	
 	fly: function() {
-		this.incX(this.getSpeed());
-		
+
 		var xPos = Math.round(this.getX());
+		this.incX(this.getSpeed());
 		var dir = this.getDir();
-		
-		if((xPos % 20) >= 0 && (xPos % 20) <= 5) {
-			if(dir == 1)
-				this.setFrame(3);
-			else
+
+		if((xPos % 200) >= 0 && (xPos % 200) <= 50) {
+			if(dir == 1) {
 				this.setFrame(1);
-				
-			this.incY(3);
+			}
+			else {
+				this.setFrame(0);
+			}
+
+			this.incY(5);
 		}
 		else {
-			if(dir == 1)
-				this.setFrame(2);
-			else
+			if(dir == 1) {
+				this.setFrame(1);
+			}
+			else {
 				this.setFrame(0);
-				
-			this.decY(3);
+			}
+
+			this.decY(5);
 		}
+
 	},
 	
 	changeDirection: function() {

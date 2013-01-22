@@ -16,7 +16,10 @@ function LevelManager()
 							 1670, 		// Tankstatus
 							 1710, 		// PowerUp
 							 1771, 		// Flugzeug
-							 1897 		// Asteroid
+							 1897, 		// Asteroid
+							 1998, 		// Satellit
+							 2143, 		// Ufo
+							 2252		// Nyancat
 							 ];
 }
 

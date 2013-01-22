@@ -110,6 +110,24 @@ function createEnemy() {
 					objects.push(newEnemy);
 				}
 				break;
+			case 'satellite':
+				if(checkInterval(enemySprite['satellite'].getInterval(), 0, 10)) {
+					newEnemy = new Satellite(enemySprite['satellite']);
+					objects.push(newEnemy);
+				}
+				break;
+			case 'ufo':
+				if(checkInterval(enemySprite['ufo'].getInterval(), 0, 10)) {
+					newEnemy = new Ufo(enemySprite['ufo']);
+					objects.push(newEnemy);
+				}
+				break;
+			case 'nyancat':
+				if(checkInterval(enemySprite['nyancat'].getInterval(), 0, 10)) {
+					newEnemy = new Nyancat(enemySprite['nyancat']);
+					objects.push(newEnemy);
+				}
+				break;
 			default:
 				// mache nix
 				break;

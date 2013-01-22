@@ -140,6 +140,15 @@
 				<interval>4000</interval>
 				<sound_pickup>audio/powerup.wav</sound_pickup>
 			</powerUp>
+			<powerUp id="1">
+				<desc>nitro</desc>
+				<row>6</row>
+				<width>42</width>
+				<height>60</height>
+				<frames>0,1</frames>
+				<interval>5000</interval>
+				<sound_pickup>audio/powerup_nitro.wav</sound_pickup>
+			</powerUp>
 		</powerUps>
 		<lvlHeight>35000</lvlHeight>
 		<maxWindStrenght>9</maxWindStrenght>
@@ -150,7 +159,7 @@
 				<width>120</width>
 				<height>74</height>
 				<frames>0,1</frames>
-				<interval>80</interval>
+				<interval>30</interval>
 				<sound_hit>hit_nyancat.wav</sound_hit>
 			</enemy>
 		</enemies>
