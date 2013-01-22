@@ -41,7 +41,7 @@ window.addEventListener("load", function() {
 	
 	balloon = new Balloon(balloonXPosition, balloonYPosition, balloonHorSpeed, balloonVertSpeed, balloonFrame);
 	sound= new Sound();
-	
+	sound.menuSound.play();
 	// Mouse Events
 	document.addEventListener("mousemove", moveBalloon, false);
 	document.addEventListener("mousedown", fireBullet, false);
@@ -157,6 +157,7 @@ $(document).ready(function(){
 
 
 $(document).ready(function(){
+	
 	PlaySound=1;
 	$("#sound_on").attr("checked","checked");
 	$("#sound_on").click(function() {
@@ -197,6 +198,7 @@ function playBackgroundMusic() {
 
 // starte ein neues Spiel
 function startNewGame(lvl) {
+	sound.menuSound.pause();
 	clearLevel();
 	
 	level = lvlMngr.loadLevel(lvl-1);
@@ -238,6 +240,7 @@ function startGame() {
 		enemyHandle = setInterval(createEnemy, 1000);
 		sound.setVolume(PlaySound);
 		sound.levelSound.play();
+		sound.menuSound.pause();
 	}
 }
 
@@ -257,11 +260,13 @@ function stopGame() {
 		enemyHandle = 0;
 		
 		sound.levelSound.pause();
+		sound.menuSound.play();
 	}
 }
 
 // Spiel pausieren oder wieder fortsetzen
 function pauseGame() {
+  sound.menuSound.play();
 	if (!gamePaused) {
 		stopGame();
 	} else if (gamePaused) {
