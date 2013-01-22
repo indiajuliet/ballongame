@@ -23,7 +23,7 @@ function keyDown(e) {
 				balloon.setFrame(1);
 				balloon.setHeightBarFrame(4);
 				sound.ignite.play();
-			}
+			} 
 			break;	
 			
 		case DOWN_ARROW:
@@ -141,6 +141,14 @@ function updateBalloon() {
 			upSpeedTimer = 0;
 			balloon.deration = 20;
 		}
+	}
+	if(balloon.getTankStatus() <= 0) {	//Tank Leer
+		pauseGame();
+		setTimeout(function() {
+			$.mobile.changePage("#tankEmpty", { transition: "slideup"} )
+		}, 3000);
+		$('#reachedHeigth').append("<p>Du hast eine Flughöhe von " + balloon.getFlightAttitude() + " erreicht</p>");
+		
 	}
 }
 

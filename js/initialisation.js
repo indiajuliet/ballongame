@@ -124,6 +124,14 @@ $(document).ready(function(){
 	$("#level3").click(function() {
 		startNewGame(3);
 	});
+	$("#getLvl").click(function() {
+		startNewGame(lvlMngr.getCurrentLevelId()+1);
+	});
+	$("#nextLvl").click(function() {
+		var lvl = lvlMngr.getCurrentLevelId()+2;
+		if (lvl <= 3)
+		startNewGame(lvl);
+	});
 	$("#backBtn").click(function() {
 		if(isStarted == true)
 			pauseGame();
@@ -146,8 +154,6 @@ $(document).ready(function(){
 
 
 //Sound an/aus
-
-
 
 
 $(document).ready(function(){

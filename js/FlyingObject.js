@@ -591,7 +591,7 @@ Nyancat.prototype = {
 		
 		if((xPos % 20) >= 0 && (xPos % 20) <= 5) {
 			if(dir == 1)
-				this.setFrame(3);
+				this.setFrame(0);
 			else
 				this.setFrame(1);
 				
@@ -599,7 +599,7 @@ Nyancat.prototype = {
 		}
 		else {
 			if(dir == 1)
-				this.setFrame(2);
+				this.setFrame(1);
 			else
 				this.setFrame(0);
 				
@@ -695,7 +695,12 @@ Balloon.prototype = {
 			this.setVertSpeed(0);
 			
 			// lade naechstes Level
-			nextLevelFlag = true;
+			//nextLevelFlag = true;
+			pauseGame();
+			setTimeout(function() {
+				$.mobile.changePage("#lvlDone", { transition: "slideup"} )
+			}, 3000);
+			
 		}
 		
 		this.setFlightAttitude(Math.round(this.flightAttitude));

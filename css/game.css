@@ -47,7 +47,7 @@ body {
 	opacity: 0;
 }
 
-#overviewMenu
+#overviewMenu, #looserButtons, #winnerButtons
 {
 	margin-top: 10px;
 	margin-left: auto;  

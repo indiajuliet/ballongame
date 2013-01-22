@@ -177,6 +177,7 @@ LevelManager.prototype.previousLevel = function() {
 // Lade das Level neu
 LevelManager.prototype.reloadLevel = function() {
 	// TODO
+	this.loadLevel(this.currentLevel);
 }
 
 // Setze die Level zurueck
