@@ -1,7 +1,7 @@
 function Sound(){
-  this.ignite=new Audio('audio/ignite.wav');
-  this.fuelWarning=new Audio('audio/fuel_warning.wav');
-  this.menuSound=new Audio('audio/menusound.wav');
+  this.ignite=new Audio('audio/ignite.ogg');
+  this.fuelWarning=new Audio('audio/fuel_warning.ogg');
+  this.menuSound=new Audio('audio/menusound.ogg');
   this.menuSound.loop=true;
   this.levelSound=new Audio();
 }

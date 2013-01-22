@@ -4,7 +4,7 @@
 		<scene>
 			<background>
 				<color>#6495ED</color>	
-				<music>audio/level1.wav</music>
+				<music>audio/level1.ogg</music>
 			</background>
 			<objects>
 				<object id="0">
@@ -25,7 +25,7 @@
 				<height>60</height>
 				<frames>0,1</frames>
 				<interval>4000</interval>
-				<sound_pickup>audio/powerup.wav</sound_pickup>
+				<sound_pickup>audio/powerup.ogg</sound_pickup>
 			</powerUp>
 			<powerUp id="1">
 				<desc>nitro</desc>
@@ -34,7 +34,7 @@
 				<height>60</height>
 				<frames>0,1</frames>
 				<interval>5000</interval>
-				<sound_pickup>audio/powerup_nitro.wav</sound_pickup>
+				<sound_pickup>audio/powerup_nitro.ogg</sound_pickup>
 			</powerUp>
 		</powerUps>
 		<enemies>
@@ -45,7 +45,7 @@
 				<height>50</height>
 				<frames>4,1,5,3</frames>
 				<interval>50</interval>
-				<sound_hit>audio/hit_bird.wav</sound_hit>
+				<sound_hit>audio/hit_bird.ogg</sound_hit>
 			</enemy>
 			<enemy id="1">
 				<desc>plane</desc>
@@ -54,7 +54,7 @@
 				<height>125</height>
 				<frames>0,1,2,3</frames>
 				<interval>5000</interval>
-				<sound_hit>audio/hit_plane.wav</sound_hit>
+				<sound_hit>audio/hit_plane.ogg</sound_hit>
 			</enemy>
 		</enemies>
 		<lvlHeight>20000</lvlHeight>
@@ -65,7 +65,7 @@
 		<scene>
 			<background>
 				<color>#FF0000</color>
-				<music>audio/level2.wav</music>
+				<music>audio/level2.ogg</music>
 			</background>
 			<objects>
 				<object id="0">
@@ -81,7 +81,7 @@
 				<height>60</height>
 				<frames>0</frames>
 				<interval>4000</interval>
-				<sound_pickup>audio/powerup.wav</sound_pickup>
+				<sound_pickup>audio/powerup.ogg</sound_pickup>
 			</powerUp>
 		</powerUps>
 		<lvlHeight>35000</lvlHeight>
@@ -94,7 +94,7 @@
 				<height>100</height>
 				<frames>0,1,2,3</frames>
 				<interval>50</interval>
-				<sound_hit>audio/hit_asteroid.wav</sound_hit>
+				<sound_hit>audio/hit_asteroid.ogg</sound_hit>
 			</enemy>
 			<enemy id="1">
 				<desc>satellite</desc>
@@ -103,7 +103,7 @@
 				<height>145</height>
 				<frames>0,1,2,3</frames>
 				<interval>500</interval>
-				<sound_hit>audio/hit_satellite.wav</sound_hit>
+				<sound_hit>audio/hit_satellite.ogg</sound_hit>
 			</enemy>
 			<enemy id="1">
 				<desc>ufo</desc>
@@ -113,7 +113,7 @@
 				<frames>0,1</frames>
 				<interval>1000</interval>
 				<sound_appear></sound_appear>
-				<sound_hit>audio/hit_ufo.wav</sound_hit>
+				<sound_hit>audio/hit_ufo.ogg</sound_hit>
 			</enemy>
 		</enemies>
 	</level>
@@ -122,7 +122,7 @@
 		<scene>
 			<background>
 				<color>#FF0000</color>
-				<music>audio/level3.wav</music>
+				<music>audio/level3.ogg</music>
 			</background>
 			<objects>
 				<object id="0">
@@ -138,7 +138,7 @@
 				<height>60</height>
 				<frames>0</frames>
 				<interval>4000</interval>
-				<sound_pickup>audio/powerup.wav</sound_pickup>
+				<sound_pickup>audio/powerup.ogg</sound_pickup>
 			</powerUp>
 			<powerUp id="1">
 				<desc>nitro</desc>
@@ -147,7 +147,7 @@
 				<height>60</height>
 				<frames>0,1</frames>
 				<interval>5000</interval>
-				<sound_pickup>audio/powerup_nitro.wav</sound_pickup>
+				<sound_pickup>audio/powerup_nitro.ogg</sound_pickup>
 			</powerUp>
 		</powerUps>
 		<lvlHeight>35000</lvlHeight>
@@ -160,7 +160,7 @@
 				<height>74</height>
 				<frames>0,1</frames>
 				<interval>30</interval>
-				<sound_hit>hit_nyancat.wav</sound_hit>
+				<sound_hit>hit_nyancat.ogg</sound_hit>
 			</enemy>
 		</enemies>
 	</level>
