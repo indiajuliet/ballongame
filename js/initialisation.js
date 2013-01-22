@@ -1,9 +1,10 @@
 // Initialisation beim Start
 window.addEventListener("load", function() {
 	// Hole das Canvas Element
-	var myCanvas = document.getElementById('gameCanvas');
-	var myStatusBar = document.getElementById('statusbar');
-	var myHeightBar = document.getElementById('heightBar');
+	myCanvas = document.getElementById('gameCanvas');
+	myStatusBar = document.getElementById('statusbar');
+	myHeightBar = document.getElementById('heightBar');
+	myFooter = document.getElementById('foot');
 	
 	if (!myCanvas || !myCanvas.getContext || !myStatusBar || !myStatusBar.getContext || !myHeightBar || !myHeightBar.getContext) {
 		return;
@@ -26,7 +27,9 @@ window.addEventListener("load", function() {
 	HBWidth = myHeightBar.width;
 	HBHeight = myHeightBar.height;
 	SBWidth = myStatusBar.width;
-	SBHeight = myStatusBar.height;	
+	SBHeight = myStatusBar.height;
+
+	RATIO = width / height; 	
 	
 	// Level Manager
 	lvlMngr = new LevelManager();
@@ -41,10 +44,16 @@ window.addEventListener("load", function() {
 	
 	balloon = new Balloon(balloonXPosition, balloonYPosition, balloonHorSpeed, balloonVertSpeed, balloonFrame);
 	sound= new Sound();
+<<<<<<< HEAD
 	sound.menuSound.play();
+=======
+	
+	resize();
+	window.addEventListener("resize", resize, false);
+>>>>>>> Auto Resize eingebaut
 	// Mouse Events
-	document.addEventListener("mousemove", moveBalloon, false);
-	document.addEventListener("mousedown", fireBullet, false);
+	/*document.addEventListener("mousemove", moveBalloon, false);
+	document.addEventListener("mousedown", fireBullet, false);*/
 	document.addEventListener("keydown", keyDown, false);
 }, false);
 
@@ -273,3 +282,37 @@ function pauseGame() {
 		startGame();
 	}
 }
+<<<<<<< HEAD
+=======
+
+function resize() {
+	currentHeight = window.innerHeight * 0.86;
+	currStatusHeight = window.innerHeight * 0.05;
+	currFooterHeight = window.innerHeight * 0.08;
+	
+	
+	// resize the width in proportion
+	// to the new height
+	currentWidth = currentHeight * RATIO;
+	scale = currentWidth / width;
+	
+	myCanvas.style.width = currentWidth * 0.92 + 'px';
+	myCanvas.style.height = currentHeight + 'px';
+	
+	myStatusBar.style.width = currentWidth + 'px';
+	myStatusBar.style.height = currStatusHeight + 'px';
+
+	myHeightBar.style.width = currentWidth * 0.08 + 'px';
+	myHeightBar.style.height = currentHeight + 'px';
+	
+	myFooter.style.width = currentWidth + 'px';
+	myFooter.style.height = currFooterHeight + 'px';
+	
+	// a short delay
+	window.setTimeout(function() {
+		window.scrollTo(0,1);
+	}, 1);
+}
+
+
+>>>>>>> Auto Resize eingebaut

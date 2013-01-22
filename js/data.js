@@ -1,6 +1,13 @@
 
+var myCanvas = null;
+var myStatusBar = null;
+var myHeightBar = null;
+var myFooter = null;
+
+
 var ctx = null;		// Spiel Canvas
-var sctx = null;	// Statusbar Canvas
+var sctx = null;
+	// Statusbar Canvas
 
 // width of the canvas
 var width = 480; 
@@ -85,3 +92,12 @@ var powerupSprite = new Array();
 
 var upSpeed = 1;
 var upSpeedTimer = 0;
+
+var RATION = null;
+
+var currentWidth = null;
+var currentHeight = null;
+var currStatusHeight = null;
+var currFooterHeight = null;
+
+var scale = null;
