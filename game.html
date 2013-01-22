@@ -1,6 +1,6 @@
 <html>  
   <head>  
-    <title>Simple game with HTML5 Canvas</title>
+    <title>Simple game with HTML5 Canvas</title>  
 	<link rel="stylesheet" type="text/css" href="css/game.css">
 	
 	<!-- JQuery und JQuery Mobile einbinden-->
@@ -10,7 +10,6 @@
 	<script type="text/javascript" src="jquery.spritely-0.6.1/jquery.spritely-0.6.1.js"></script>
 	
 	<script type="text/javascript" src="js/preroll.js"></script>
-	<script type="text/javascript" src="js/sound.js"></script>
 	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="js/FlyingObject.js"></script>
 	<script type="text/javascript" src="js/initialisation.js"></script>
@@ -19,7 +18,7 @@
 	<script type="text/javascript" src="js/level.js"></script>
 	<script type="text/javascript" src="js/levelManager.js"></script>
 	<script type="text/javascript" src="js/ImageManager.js"></script>
-	
+	<script type="text/javascript" src="js/sound.js"></script>
 	
 	<script type="text/javascript">
 		
@@ -97,9 +96,26 @@
 		</div>
 		
 		<div data-role="content" id="overviewExit"> 
-			<a href="" data-role="button">Ja</a>
+			<a href="#bye" data-role="button">Ja</a>
 			<a href="#menu" data-role="button">Nein</a>
 		</div>
+	</div>
+	
+	<!-- Bye Impressum -->
+	<div data-role="page" id="bye">
+			
+		<h1>Vielen Dank, dass Du unser Spiel gespielt hast!</h1>
+		<h2>Bis zum nächsten Mal!!!</h2>
+		
+		<h3>Vorlesung Spieleprogrammierung WS 2012/13</br>
+			Prof. Dr. Lecon</h3>
+		
+		
+		
+		Konstantin Fein</br>
+		Michael Stuetz</br>
+		Johanna Herkommer</br>
+		Michael Steinnbacher
 	</div>
 	
 	<!-- Spiel -->
@@ -113,9 +129,16 @@
 	  </div>
 	  
 	  <div data-role="footer" id="foot">
-	  	<a href="" data-role="button" id="musicBtn">&nbsp;</a>
-	  	<a href="" data-role="button" id="playBtn">&nbsp;</a>
-	  	<a href="#levels" data-role="button" id="homeBtn" >&nbsp;</a>
+		<div id="music">
+			<a href="" data-role="button" id="musicBtn">&nbsp;</a>
+		</div>
+		<div id="gameBtns">
+			<a href="" data-role="button" id="playBtn">&nbsp;</a>
+			<!--a href="" data-role="button" id="pauseBtn">&nbsp;</a-->		
+		</div>
+		<div id="backhome">
+			<a href="#levels" data-role="button" id="homeBtn" >&nbsp;</a>
+		</div>
 	  </div>
 	 
 	</div>
