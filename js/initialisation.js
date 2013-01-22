@@ -44,13 +44,11 @@ window.addEventListener("load", function() {
 	
 	balloon = new Balloon(balloonXPosition, balloonYPosition, balloonHorSpeed, balloonVertSpeed, balloonFrame);
 	sound= new Sound();
-<<<<<<< HEAD
 	sound.menuSound.play();
-=======
 	
 	resize();
 	window.addEventListener("resize", resize, false);
->>>>>>> Auto Resize eingebaut
+
 	// Mouse Events
 	/*document.addEventListener("mousemove", moveBalloon, false);
 	document.addEventListener("mousedown", fireBullet, false);*/
@@ -282,8 +280,6 @@ function pauseGame() {
 		startGame();
 	}
 }
-<<<<<<< HEAD
-=======
 
 function resize() {
 	currentHeight = window.innerHeight * 0.86;
@@ -313,6 +309,3 @@ function resize() {
 		window.scrollTo(0,1);
 	}, 1);
 }
-
-
->>>>>>> Auto Resize eingebaut
