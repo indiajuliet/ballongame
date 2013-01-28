@@ -78,31 +78,26 @@ body {
 	padding: 0px;
 }
 
+#foot div {display:inline-block;}
+
 #music
 {
-	float:left;
-	height: 60px;
-	width: 50px;
-	margin-left:10px;
+	float: left;
+	margin-left:auto;
+}
+
+#gameBtns
+{
+	float: center;
+	margin-left: auto;  
 }
 
 #backhome
 {
 	float: right;
-	height: 60px;
-	width: 30px;
-	margin-right:10px;
+	margin-left:auto;
 }
 
-#gameBtns
-{
-	float:left;
-	height: 40px;
-	width: 250px;
-	margin-top: auto;
-	margin-left: 170px;  
-	margin-right: auto; 
-}
 
 #homeBtn
 {
