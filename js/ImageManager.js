@@ -1,8 +1,3 @@
-/*
-*
-*
-*/
-
 
 function ImageManager(placeholderDataUri) {
 	this._images = {};

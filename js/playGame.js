@@ -1,8 +1,8 @@
 
 // Bewege den Ballon zur Mausposition (horizontal)
 function moveBalloon(e) {
-	/*balloonXPosition = e.clientX;
-	balloonYPosition = e.clientY;*/
+	balloonXPosition = e.clientX;
+	balloonYPosition = e.clientY;
 }
 
 // Tastenaktionen
@@ -37,15 +37,11 @@ function keyDown(e) {
 			break;
 		
 		default:
-			// TODO
 			break;
 	}
 }
 
-// Feuert eine Kugel ab
-function fireBullet() {
-	// TODO
-}
+
 
 // erstellt eine Wolke an einer Zufaelligen Stelle
 function createCloud() {
@@ -290,11 +286,9 @@ function updateLevel(level) {
 	// PowerUp-Sprite anlegen
 	var powerUpFrames = level.getPowerUpFrames();
 	for(p in powerUpFrames) {
-		console.log(p);
 		powerupSprite[p] = new SpriteSheet(spriteSheet, powerUpFrames[p]);
 	}
 	
-//	sound.setEnemyAppear(level.getEnemyAppear());
 	sound.setLevelSound(level.getLevelSound());
 }
 
@@ -357,7 +351,6 @@ function checkFocus() {
 		$('#playBtn').css('background-image', 'url(pics/button_play.png)');
 	}
 		
-	//console.log("hasFocus: " + hasFocus + " isStarted: " + isStarted);
 }
 
 function checkInterval(interval, a, b) {
@@ -418,9 +411,6 @@ function drawText() {
 
 function drawObjects() {
 	// Entferne alle Voegel, die sich nicht mehr innerhalb des Bildschirms befinden
-	/*for (var i = 0; i < objects.length; i++) {
-		
-	}*/
 	
 	for (var i = 0; i < objects.length; i++) {
 		// bewege Objekt
@@ -429,7 +419,6 @@ function drawObjects() {
 		balloon.checkCollisions(objects[i]);
 		
 		// Bewege Objekt nach unten damit es so aussieht dass der Ballon steigt
-		//if(balloon.getY() < 200)
 			objects[i].y -= balloon.getVertSpeed();
 	
 		// Zeichne Objekt

@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 function LevelManager()
 {
 	this.level;

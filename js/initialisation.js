@@ -16,7 +16,6 @@ window.addEventListener("load", function() {
 	hctx = myHeightBar.getContext('2d');
 	
 	// Initialisiere das Spiel
-	//playBackgroundMusic();
 	
 	myCanvas.style.opacity = 1;
 	myStatusBar.style.opacity = 1;
@@ -49,9 +48,6 @@ window.addEventListener("load", function() {
 	resize();
 	window.addEventListener("resize", resize, false);
 
-	// Mouse Events
-	/*document.addEventListener("mousemove", moveBalloon, false);
-	document.addEventListener("mousedown", fireBullet, false);*/
 	document.addEventListener("keydown", keyDown, false);
 }, false);
 
@@ -67,13 +63,6 @@ function onDone() {
 	
 	backgroundSprite = new SpriteSheet(spriteSheet, bgFrames);
 	
-	/*var cloudFrames = [
-				[0, 1518, 145, 100, 0, 0],
-				[146, 1518, 172, 100, 0, 0],
-				[319, 1518, 181, 100, 0, 0]
-			];
-	
-	cloudSprite = new SpriteSheet(spriteSheet, cloudFrames);*/
 	
 	var balloonFrames = [
 				[0, 1301, 124, 216, 0, 0],
@@ -89,18 +78,6 @@ function onDone() {
 	balloon.setFrame(0);
 	balloon.setHeightBarFrame(3);
 	
-	/*var enemyFrames = [
-				[255, 1790, 63, 50, 0, 0], // Vogel
-				[63, 1790, 63, 50, 0, 0],
-				[318, 1790, 63, 50, 0, 0],
-				[191, 1790, 63, 50, 0, 0],
-				[0, 1982, 197, 125, 0, 0], // Flugzeug
-				[198, 1982, 198, 125, 0, 0],
-				[397, 1982, 197, 125, 0, 0],
-				[595, 1982, 198, 125, 0, 0]
-			];
-	
-	enemySprite = new SpriteSheet(spriteSheet, enemyFrames);*/
 	
 	var tankFrames = [
 				[0, 1670, 42, 39, 0, 0],
@@ -111,13 +88,6 @@ function onDone() {
 			];
 	
 	tankSprite = new SpriteSheet(spriteSheet, tankFrames);
-	
-	/*var powerupFrames = [
-				[0, 1710, 42, 60, 0, 0]
-			];
-	
-	powerupSprite = new SpriteSheet(spriteSheet, powerupFrames);*/
-	
 }
 
 // Event zum starten des Spieles

@@ -249,7 +249,6 @@ Bird.prototype = {
 				
 			this.decY(3);
 		}
-		//console.log("X: " + this.x + " xPos: " + xPos + " Y: " + this.y + " Frame: " + this.getFrame() + " Speed: " + this.getSpeed());
 	},
 	
 	changeDirection: function() {
@@ -326,7 +325,6 @@ Plane.prototype = {
 	}, 
 	
 	flyAway: function() {
-		//Do Nothing
 	}
 }
 
@@ -400,8 +398,6 @@ Asteroid.prototype = {
 	},
 	
 	fly: function() {
-		// Pathfinder
-	
 		var dir = this.getDir();
 		
 		if(dir == 1) {
@@ -412,20 +408,16 @@ Asteroid.prototype = {
 			this.incX(this.getVX());
 			this.decY(this.getVY());
 		}
-		
-		//console.log("X: " + this.x + " xPos: " + xPos + " Y: " + this.y + " Frame: " + this.getFrame() + " Speed: " + this.getSpeed());
 	},
 	
 	changeDirection: function() {
 		var newDir = this.getDir() == 0 ? 1 : 0;
 		this.setDir(newDir);
-		//this.setSpeed(-this.getSpeed());
 		return newDir;
 	}, 
 	
 	flyAway: function() {
 		var dir = this.changeDirection();
-		
 	}
 }
 

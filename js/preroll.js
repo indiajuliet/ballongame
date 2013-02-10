@@ -74,28 +74,3 @@ Preroll.prototype.getImage = function(path) {
 	img.src = path;
 	return img;
 }
-
-/*
-function progress() {
-	var pwidget = document.getElementById("pwidget");
-	pwidget.style.visibility = "visible";
-
-	if(actualprogress >= maxprogress) {
-		clearInterval(itv);   	
-		return;
-	}	
-	
-	var progressnum = document.getElementById("progressnum");
-	var indicator = document.getElementById("indicator");
-	
-	
-	actualprogress += 1;	
-	
-	indicator.style.width = actualprogress + "px";
-	progressnum.innerHTML = actualprogress;
-	
-	if(actualprogress == maxprogress) {
-		clearInterval(itv); 
-	}
-}
-*/
