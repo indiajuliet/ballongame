@@ -80,8 +80,17 @@
 				<width>42</width>
 				<height>60</height>
 				<frames>0</frames>
-				<interval>4000</interval>
+				<interval>3000</interval>
 				<sound_pickup>audio/powerup.ogg</sound_pickup>
+			</powerUp>
+			<powerUp id="1">
+				<desc>nitro</desc>
+				<row>6</row>
+				<width>42</width>
+				<height>60</height>
+				<frames>0,1</frames>
+				<interval>9000</interval>
+				<sound_pickup>audio/powerup_nitro.ogg</sound_pickup>
 			</powerUp>
 		</powerUps>
 		<lvlHeight>35000</lvlHeight>
@@ -159,7 +168,7 @@
 				<width>120</width>
 				<height>74</height>
 				<frames>0,1</frames>
-				<interval>30</interval>
+				<interval>20</interval>
 				<sound_hit>audio/hit_nyancat.ogg</sound_hit>
 			</enemy>
 		</enemies>
